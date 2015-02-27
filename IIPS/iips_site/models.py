@@ -2,15 +2,18 @@ from django.db import models
 
 # Create your models here.
 
-class Courses(models.Model):
+class Course(models.Model):
 	course_name = models.CharField(max_length=200)
 	program_name = models.CharField(max_length=200)
-	duration = models.IntegerField(default=2)
-	desription = models.CharField(max_length=1000)
-	objective = models.CharField(max_length=1000)
-	learning_outcomes = models.CharField(max_length=1000)
-	syllabus =modelsmodels.CharField(max_length=1000)
-
+	number_of_semester = models.PositiveSmallIntegerField(null=True)
+	discipline = models.CharField(max_length=200,null=True) #computer or management
+	description = models.CharField(max_length=1000,null=True)
+	objective = models.CharField(max_length=1000,null=True)
+	learning_outcomes = models.CharField(max_length=1000,null=True)
+	def __unicode__(self):  # Python 3: def __str__(self):
+		return self.course_name
+	
+'''
 
 -- --------------------------------------------------------
 -- 
