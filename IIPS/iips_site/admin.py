@@ -1,5 +1,5 @@
 from django.contrib import admin
-from iips_site.models import Course
+from iips_site.models import *
 
 
 # Register your models here.
@@ -19,5 +19,8 @@ class CourseAdmin(admin.ModelAdmin):
 	]
 
 admin.site.register(Course, CourseAdmin)
+admin.site.register(User_Temp)
+admin.site.register(Staff_Info)
+admin.site.register(Faculty_Info)
 
 #admin.site.register(Course)
