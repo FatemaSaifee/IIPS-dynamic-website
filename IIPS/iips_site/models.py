@@ -6,13 +6,45 @@ class Course(models.Model):
 	course_name = models.CharField(max_length=200)
 	program_name = models.CharField(max_length=200)
 	number_of_semester = models.PositiveSmallIntegerField(null=True)
-	discipline = models.CharField(max_length=200,null=True) #computer or management
-	description = models.CharField(max_length=1000,null=True)
-	objective = models.CharField(max_length=1000,null=True)
-	learning_outcomes = models.CharField(max_length=1000,null=True)
-	def __unicode__(self):  # Python 3: def __str__(self):
-		return self.course_name
+	discipline = models.TextField(max_length=200,null=True) #computer or management
+	description = models.TextField(max_length=1000,null=True)
+	objective = models.TextField(max_length=1000,null=True)
+	learning_outcomes = models.TextField(max_length=1000,null=True)
 	
+	def __unicode__(self):  # Python 3: def __str__(self)
+		return self.course_name
+
+# Table structure for table Sylabus
+
+
+class Syllabus(models.Model):
+	Semester=models.CharField(max_length=15)
+	Course=models.ForeignKey('Course')
+	def __unicode__(self):  # Python 3: def __str__(self)
+		return str(self.Semester)
+
+
+class Subject(models.Model):
+	Course=models.ForeignKey(Syllabus)
+	Subject_Name=models.CharField(max_length=40)
+	Subject_ID=models.CharField(max_length=10,primary_key=True)
+	Aim_Of_course=models.TextField(max_length=400)
+	Objective=models.TextField(max_length=400)
+
+	def __unicode__(self):  # Python 3: def __str__(self)
+		return self.Course
+
+	
+
+class Course_Content(models.Model):
+	Subject = models.ForeignKey(Subject)
+	Unit=models.PositiveSmallIntegerField()
+	Contents=models.CharField(max_length=400)
+
+	def __unicode__(self):  # Python 3: def __str__(self)
+		return self.Subject
+
+
 #Table structure for table `User_Temp`
 
 class User_Temp(models.Model):
@@ -36,7 +68,7 @@ class User_Temp(models.Model):
 	Batch_ID =models.CharField(max_length=200,default=None)
 	Course_ID =models.SmallIntegerField()
 	def __unicode__(self):  # Python 3: def __str__(self):
-		return self.first_name
+		return self.First_Name
 	#PRIMARY KEY (`Temp_Transaction_ID`)
 	
 
@@ -103,34 +135,18 @@ class Eligiblity(models.Model):
 	Non_Eligiblity_For_Admission=models.CharField(max_length=1000,default=None)
 
 class Councling(models.Model):
-	description=models.CharField(max_length=1000,default=None)
+	Description=models.CharField(max_length=1000,default=None)
 
 class How_T0_Apply(models.Model):
-	description=models.CharField(max_length=1000,default=None)
+	Description=models.CharField(max_length=1000,default=None)
 
 class Fee_Structure(models.Model):
-	course=models.CharField(max_length=40),primary_key=True)
-	School_Of_Studies=models.CharField(max_length=60)
+	Course_Name=models.CharField(max_length=40,primary_key=True)
+	School_Of_Studies=models.CharField(max_length=60,default="International Institute of Professional Studies(IIPS)")
 	Group=models.CharField(max_length=1)
 	Fees_Excluding_Student_Services_Fee=models.PositiveSmallIntegerField()
 	Caution_Money_Refundable=models.PositiveSmallIntegerField()
 
-#Table structure for table Sylabus
-
-class Syllabus(models.Model):
-	Semester=models.PositiveSmallIntegerField()
-	Subject=models.ForeignKey('Subject')
-
-class Subject(models.Model):
-	Subject=models.CharField(max_length=40,primary_key=True)
-	Subject_ID=models.CharField(max_length=10)
-	Aim_Of_course=models.CharField(max_length=400)
-	Objective=models.CharField(max_length=400)
-	Course_Content=models.ForeignKey('Course_Content')
-
-class Course_Content(models.Model):
-	Unit=models.PositiveSmallIntegerField()
-	Contents=models.CharField(max_length=400)
 	
 
 
