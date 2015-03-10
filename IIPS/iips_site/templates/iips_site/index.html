@@ -1,0 +1,10 @@
+{% load url from future %}
+{% if latest_news_list %}
+    <ul>
+    {% for news in latest_news_list %}
+        <li><a href="{% url 'iips_site:index' news.id %}">{{ news.Title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}

@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+import datetime
 
 # Create your models here.
 
@@ -86,7 +88,7 @@ class Staff_Info(models.Model):
 	Twitter_Link=models.CharField(max_length=40,default=None)
 	Picture=models.CharField(max_length=40,default=None)
 	def __unicode__(self):  # Python 3: def __str__(self):
-		return self.User_ID
+		return str(self.User_ID)
 
 #Table structure for table `Faculty_Info`
 
@@ -108,37 +110,36 @@ class Faculty_Info(models.Model):
 	Picture=models.CharField(max_length=40,default=None)
 	Resume =models.CharField(max_length=40,default=None)#Link to resume
 	def __unicode__(self):  # Python 3: def __str__(self):
-		return self.User_ID
+		return str(self.User_ID)
 	#PRIMARY KEY (`Pitcture`)
 
 
 #Table structure for Admission Module
 
-class Entrance_Exam_CET(models.Model):
-	CET = models.CharField(max_length=1000,default=None)
-	List_Of_Criteria_For_Admission = models.CharField(max_length=1000,default=None)
-	Admission_Process_In_Affiliated_Colleges_If_Department_Is_Monitoring= models.CharField(max_length=1000,default=None)
-	Student_Profile_Analysis = models.CharField(max_length=1000,default=None)
-	Admission_To_NRI_PIO = models.CharField(max_length=1000,default=None)
-	Entrance_Test = models.CharField(max_length=1000,default=None)
-	Reservation_Policy_Conversion_Of_Seats=models.CharField(max_length=1000,default=None)
-	Councling=models.ForeignKey('Councling')
-	Eligiblity=models.ForeignKey('Eligiblity')
-	Refund_Of_Fee=models.CharField(max_length=1000,default=None)
-	Other_Important_points=models.CharField(max_length=1000,default=None)
-	Hostel_Accomodation=models.CharField(max_length=1000,default=None)
-	Note=models.CharField(max_length=1000,default=None)
+class Admission(models.Model):
+#Entrance_Exam_CET
+	CET = models.TextField(max_length=1000,default=None)
+	List_Of_Criteria_For_Admission = models.TextField(max_length=1000,default=None)
+	Admission_Process_In_Affiliated_Colleges_If_Department_Is_Monitoring= models.TextField(max_length=1000,default=None)
+	Student_Profile_Analysis = models.TextField(max_length=1000,default=None)
+	Admission_To_NRI_PIO = models.TextField(max_length=1000,default=None)
+	Entrance_Test = models.TextField(max_length=1000,default=None)
+	Reservation_Policy_Conversion_Of_Seats=models.TextField(max_length=1000,default=None)
 	
-class Eligiblity(models.Model):
-	Minimum_Percentage_For_Admissions_Eligibility_or_Appearing_In_Entrance_Test=models.CharField(max_length=1000,default=None)
-	Age_Limit = models.CharField(max_length=1000,default=None)
-	Non_Eligiblity_For_Admission=models.CharField(max_length=1000,default=None)
+	Refund_Of_Fee=models.TextField(max_length=1000,default=None)
+	Other_Important_points=models.TextField(max_length=1000,default=None)
+	Hostel_Accomodation=models.TextField(max_length=1000,default=None)
+	Note=models.TextField(max_length=1000,default=None)
+	How_To_Apply=models.TextField(max_length=1000,default=None)
+	
+#Eligiblity
+	Minimum_Percentage_For_Admissions_Eligibility_or_Appearing_In_Entrance_Test=models.TextField(max_length=1000,default=None)
+	Age_Limit = models.TextField(max_length=1000,default=None)
+	Non_Eligiblity_For_Admission=models.TextField(max_length=1000,default=None)
+#Councling
+	Councling=models.TextField(max_length=1000,default=None)
 
-class Councling(models.Model):
-	Description=models.CharField(max_length=1000,default=None)
 
-class How_T0_Apply(models.Model):
-	Description=models.CharField(max_length=1000,default=None)
 
 class Fee_Structure(models.Model):
 	Course_Name=models.CharField(max_length=40,primary_key=True)
@@ -147,8 +148,25 @@ class Fee_Structure(models.Model):
 	Fees_Excluding_Student_Services_Fee=models.PositiveSmallIntegerField()
 	Caution_Money_Refundable=models.PositiveSmallIntegerField()
 
-	
+	def __unicode__(self):  # Python 3: def __str__(self):
+		return self.Course_Name
 
+class Gallary(models.Model):
+	docfile = models.FileField(upload_to='documents/gallary/')
+
+class News(models.Model):
+	Title = models.CharField(max_length=100)
+	Docfile = models.FileField(upload_to='documents/news/')
+	pub_date = models.DateTimeField('date published')
+	
+	def __unicode__(self):  # Python 3: def __str__(self):
+		return self.Title
+
+	def was_published_recently(self):
+		now = timezone.now()
+		return now - datetime.timedelta(days=1) <= self.pub_date <= now
+
+    
 
 '''
 

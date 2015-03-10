@@ -6,7 +6,21 @@ from example.models import *
 
 
 
-# Register your models here .
+# Register your models here 
+class Fee_StructureAdmin(admin.ModelAdmin):
+	list_display = ('Course_Name','Group','Fees_Excluding_Student_Services_Fee')
+	list_filter = ['Course_Name','Group']
+
+class AdmissionAdmin(admin.ModelAdmin):
+	fieldsets = [
+		('Common Enterance Exam-CET',		{'fields': ['CET','List_Of_Criteria_For_Admission','Admission_Process_In_Affiliated_Colleges_If_Department_Is_Monitoring','Student_Profile_Analysis','Admission_To_NRI_PIO','Entrance_Test','Reservation_Policy_Conversion_Of_Seats','Refund_Of_Fee','Other_Important_points','Hostel_Accomodation','Note'],'classes':['collapse']}),
+		('Eligiblity',{'fields': ['Minimum_Percentage_For_Admissions_Eligibility_or_Appearing_In_Entrance_Test','Age_Limit','Non_Eligiblity_For_Admission'], 'classes':['collapse']}),
+		('How_To_Apply',{'fields' : ['How_To_Apply'], 'classes':['collapse']}),
+		('Councling',{'fields' : ['Councling'],'classes':['collapse']}),
+		
+	]
+
+
 #class CourseContentInLine(admin.StackedInline):
 class CourseContentInLine(NestedTabularInline):
 	model = Course_Content
@@ -33,6 +47,8 @@ class CourseAdmin(admin.ModelAdmin):
 	]
 class SyllabusAdmin(NestedModelAdmin):
 	list_display = ('Semester','Course')
+	list_filter = ['Course','Semester']
+	search_fields = ['Semester']
 
 	model = Syllabus
 	inlines = [SubjectInline]
@@ -40,11 +56,14 @@ class SyllabusAdmin(NestedModelAdmin):
 
 
 admin.site.register(Course, CourseAdmin)
+admin.site.register(Syllabus,SyllabusAdmin)
+admin.site.register(Admission,AdmissionAdmin)
+admin.site.register(Fee_Structure,Fee_StructureAdmin)
 admin.site.register(User_Temp)
 admin.site.register(Staff_Info)
 admin.site.register(Faculty_Info)
-admin.site.register(Syllabus,SyllabusAdmin)
-
+admin.site.register(Gallary)
+admin.site.register(News)
 
 #admin.site.register(Course)
 
