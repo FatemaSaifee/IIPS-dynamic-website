@@ -2,7 +2,7 @@ from django.contrib import admin
 from iips_site.models import *
 from django.contrib import admin 
 from nested_inline.admin import NestedStackedInline, NestedModelAdmin, NestedTabularInline 
-from example.models import *
+#from example.models import *
 
 
 
@@ -56,6 +56,7 @@ class SyllabusAdmin(NestedModelAdmin):
 
 	model = Syllabus
 	inlines = [SubjectInline]
+
 
 
 

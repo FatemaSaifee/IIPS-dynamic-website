@@ -1,0 +1,16 @@
+
+
+{% load url from future %}
+{% if latest_photo_list %}
+    <ul>
+    {% for photo in latest_photo_list %}
+        	{{photo.photo}}
+        	<img src="../../media/{{photo.photo}}"> </br>
+        
+    {% endfor %}
+    </ul>
+
+
+{% else %}
+    <p>No photos are available.</p>
+{% endif %}

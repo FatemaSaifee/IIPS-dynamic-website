@@ -1,11 +1,18 @@
 {% load url from future %}
 {% if latest_news_list %}
     <ul>
+    
     {% for news in latest_news_list %}
         
-        {{news.Title}} </br>
+        	{{news.Title}} </br>
+
+        
+        
+        
     {% endfor %}
     </ul>
+
+
 {% else %}
-    <p>No polls are available.</p>
+    <p>No News are available.</p>
 {% endif %}
