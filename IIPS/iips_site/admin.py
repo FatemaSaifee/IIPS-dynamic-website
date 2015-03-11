@@ -7,6 +7,10 @@ from example.models import *
 
 
 # Register your models here 
+class NewsAdmin(admin.ModelAdmin):
+	list_display = ('Title','pub_date')
+	list_filter = ['pub_date']
+
 class Fee_StructureAdmin(admin.ModelAdmin):
 	list_display = ('Course_Name','Group','Fees_Excluding_Student_Services_Fee')
 	list_filter = ['Course_Name','Group']
@@ -63,7 +67,7 @@ admin.site.register(User_Temp)
 admin.site.register(Staff_Info)
 admin.site.register(Faculty_Info)
 admin.site.register(Gallary)
-admin.site.register(News)
+admin.site.register(News,NewsAdmin)
 
 #admin.site.register(Course)
 

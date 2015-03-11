@@ -152,7 +152,21 @@ class Fee_Structure(models.Model):
 		return self.Course_Name
 
 class Gallary(models.Model):
-	docfile = models.FileField(upload_to='documents/gallary/')
+	photo = models.ImageField(upload_to='documents/gallary/')
+
+	def __unicode__(self):  # Python 3: def __str__(self):
+		return self.photo.name 
+
+'''
+from django.db import models
+from django.core.files.storage import FileSystemStorage
+
+fs = FileSystemStorage(location='/media/documents/gallary')
+
+class Car(models.Model):
+    ...
+    photo = models.ImageField(storage=fs)
+ '''
 
 class News(models.Model):
 	Title = models.CharField(max_length=100)
