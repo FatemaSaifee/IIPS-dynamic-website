@@ -23,3 +23,4 @@ class Generate_Transaction_IDAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Generate_Transaction_ID, Generate_Transaction_IDAdmin)
+admin.site.register(User_Temp)

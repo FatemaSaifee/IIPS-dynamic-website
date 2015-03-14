@@ -1,6 +1,7 @@
 
 
 {% load url from future %}
+<div class='container'>
 {% if latest_photo_list %}
     <ul>
     {% for photo in latest_photo_list %}
@@ -13,4 +14,5 @@
 
 {% else %}
     <p>No photos are available.</p>
+    </div>
 {% endif %}

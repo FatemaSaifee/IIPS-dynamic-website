@@ -16,6 +16,7 @@ class Generate_Transaction_ID(models.Model):
 class User_Temp(models.Model):
 	Temp_Transaction_ID=  models.CharField(max_length=20,null =False)#'This is a temporary transaction id of the user.',
 	First_Name= models.CharField(max_length=20,null =False)
+	Full_name = models.CharField(max_length=50,default=full_name())
 	Last_Name =models.CharField(max_length=25,null =False)
 	Father_Name =models.CharField(max_length=50)
 	Mother_Name =models.CharField(max_length=50)
@@ -33,8 +34,15 @@ class User_Temp(models.Model):
 	Responsibility =models.CharField(max_length=200)
 	Batch_ID =models.CharField(max_length=200,null=True)
 	Course_ID =models.SmallIntegerField()
+
+	def full_name(self):
+		return self.First_Name + self.Last_Name
 	def __unicode__(self):  # Python 3: def __str__(self):
-		return self.First_Name
+		return self.Full_Name
+
+	#def authenticate(self):
+	#	if Temp_Transaction_ID in Generate_Transaction_ID:
+
 	#PRIMARY KEY (`Temp_Transaction_ID`)
 
 '''
