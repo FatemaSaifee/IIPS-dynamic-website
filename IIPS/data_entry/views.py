@@ -1,10 +1,29 @@
-from django.shortcuts import render
+from django.shortcuts import render,render_to_response
 from django.contrib.auth.decorators import login_required
 from django.core.context_processors import csrf
 from django.contrib import auth
 from django.http import HttpResponseRedirect
 
+from django.forms.models import modelformset_factory
 
+from data_entry.models import Login,LoginForm
+
+def login(request):
+    if request.method == 'POST': # If the form has been submitted...
+        # ContactForm was defined in the previous section
+        form = LoginForm(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            # Process the data in form.cleaned_data
+            # ...
+            return HttpResponseRedirect('/thanks/') # Redirect after POST
+    else:
+        form = LoginForm() # An unbound form
+
+    return render(request, 'data_entry/login.html', {
+        'form': form,
+    })
+
+'''
 @login_required(login_url='/') #if not logged in redirect to /
 def temp_table(request):        
     return render(request, 'temp_table.html')
@@ -33,7 +52,7 @@ def invalid_view(request):
 
 def loggedin_view(request):
 	return render(request,'temp_table')
-
+'''
 '''
 def create_a_my_model(request):
         if request.method == 'POST':

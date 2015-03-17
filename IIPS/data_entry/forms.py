@@ -1,7 +1,8 @@
 from django import forms
 
 class LoginForm(forms.Form):
-    '''name = forms.CharField(max_length=100)
+    '''
+    name = forms.CharField(max_length=100)
     title = forms.CharField(max_length=3,
                 widget=forms.Select(choices=TITLE_CHOICES))
     birth_date = forms.DateField(required=False)'''

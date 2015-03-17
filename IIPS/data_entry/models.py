@@ -9,32 +9,8 @@ from django.forms import ModelForm
 
 
 # Create the form class.
-class LoginForm(ModelForm):
-    class Meta:
-        model = Login
-        fields = '__all__'
 
-class User_TempForm(ModelForm):
-	class Meta:
-		model = User_Temp
-		#fields = ['Temp_Transaction_ID','First_Name','Full_name','Last_Name','Father_Name','Mother_Name','Email','Type','DOB','Local_Address','Permanent_Address','Mobile_Number','Telephone_Number','Roll_Number','Enrollment_Number']
-		exclude = ['Full_Name']
-		'''
-		 widgets = {
-            'name': Textarea(attrs={'cols': 80, 'rows': 20}),
-        }
-        labels = {
-            'name': _('Writer'),
-        }
-        help_texts = {
-            'name': _('Some useful help text.'),
-        }
-        error_messages = {
-            'name': {
-                'max_length': _("This writer's name is too long."),
-            },
-        }
-'''
+
 		
 
 
@@ -60,6 +36,12 @@ class Login(models.Model):
 		else:
 			return False
 
+class LoginForm(ModelForm):
+    class Meta:
+        model = Login
+        fields = '__all__'
+
+
 class User_Temp(models.Model):
 	#Temp_Transaction_ID=  models.CharField(max_length=20,null =False)#'This is a temporary transaction id of the user.',
 	Temp_Transaction_ID = models.CharField(max_length=40)
@@ -78,7 +60,7 @@ class User_Temp(models.Model):
 	Roll_Number =models.CharField(max_length=200,null=True)
 	Enrollment_Number =models.CharField(max_length=200,null=True)
 	
-	Full_Name = models.CharField(max_length=50,default=full_name())
+	#Full_Name = models.CharField(max_length=50,default=full_name())
 
 	def full_name(self):
 		return self.First_Name + self.Last_Name
@@ -88,6 +70,28 @@ class User_Temp(models.Model):
 	
 
 	#PRIMARY KEY (`Temp_Transaction_ID`)
+
+class User_TempForm(ModelForm):
+	class Meta:
+		model = User_Temp
+		#fields = ['Temp_Transaction_ID','First_Name','Full_name','Last_Name','Father_Name','Mother_Name','Email','Type','DOB','Local_Address','Permanent_Address','Mobile_Number','Telephone_Number','Roll_Number','Enrollment_Number']
+		exclude = ['Full_Name']
+		'''
+		 widgets = {
+            'name': Textarea(attrs={'cols': 80, 'rows': 20}),
+        }
+        labels = {
+            'name': _('Writer'),
+        }
+        help_texts = {
+            'name': _('Some useful help text.'),
+        }
+        error_messages = {
+            'name': {
+                'max_length': _("This writer's name is too long."),
+            },
+        }
+'''
 
 '''
 CREATE TABLE IF NOT EXISTS `Student_Info` (

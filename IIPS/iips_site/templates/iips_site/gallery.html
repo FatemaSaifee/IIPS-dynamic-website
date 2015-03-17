@@ -1,0 +1,47 @@
+{% load url from future %}
+{% if news_list %}
+    <ul>
+    
+    {% for news in news_list %}
+        
+        	{{news.Title}} </br>
+
+        
+        
+        
+    {% endfor %}
+    </ul>
+
+
+{% else %}
+    <p>No News are available.</p>
+{% endif %}
+
+<hr>
+{% if photo_list %}
+    <ul>
+    {% for photo in photo_list %}
+    photo:
+        	{{photo.photo}}<br>
+        	<img src="../../media/{{photo.photo}}"> </br>
+        
+    {% endfor %}
+    </ul>
+
+
+{% else %}
+    <p>No photos are available.</p>
+    
+{% endif %}
+<hr>
+{% load url from future %}
+{% if course_list %}
+
+	{% for course in course_list %}
+
+		{{course.course_name}}
+		</br>
+
+	{% endfor %}
+
+{% endif %}

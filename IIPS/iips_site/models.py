@@ -141,6 +141,9 @@ class Admission(models.Model):
 #Councling
 	Councling=models.TextField(max_length=1000,default=None)
 
+	def __unicode__(self):  # Python 3: def __str__(self):
+		return str(self.id)
+
 
 
 class Fee_Structure(models.Model):
