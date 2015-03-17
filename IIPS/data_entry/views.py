@@ -6,13 +6,13 @@ from django.http import HttpResponseRedirect
 
 from django.forms.models import modelformset_factory
 
-from data_entry.models import Login,LoginForm
+from data_entry.models import Login,LoginForm, User_TempForm
 
 def login(request):
     if request.method == 'POST': # If the form has been submitted...
         # ContactForm was defined in the previous section
         form = LoginForm(request.POST) # A form bound to the POST data
-        if form.is_valid(): # All validation rules pass
+        if form.is_valid(): # All validat ion rules pass
             # Process the data in form.cleaned_data
             # ...
             return HttpResponseRedirect('/thanks/') # Redirect after POST
@@ -20,6 +20,21 @@ def login(request):
         form = LoginForm() # An unbound form
 
     return render(request, 'data_entry/login.html', {
+        'form': form,
+    })
+
+def user_temp(request):
+    if request.method == 'POST': # If the form has been submitted...
+        # ContactForm was defined in the previous section
+        form = User_TempForm(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validat ion rules pass
+            # Process the data in form.cleaned_data
+            # ...
+            return HttpResponseRedirect('/thanks/') # Redirect after POST
+    else:
+        form = User_TempForm() # An unbound form
+
+    return render(request, 'data_entry/user_temp_form.html', {
         'form': form,
     })
 

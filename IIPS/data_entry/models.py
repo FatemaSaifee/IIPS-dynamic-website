@@ -10,11 +10,6 @@ from django.forms import ModelForm
 
 # Create the form class.
 
-
-		
-
-
-
 # Create your models here.
 class Generate_Transaction_ID(models.Model):
 	Temp_Transaction_ID = models.CharField(max_length=20, blank=True, unique=True, default=uuid.uuid4)
@@ -62,10 +57,9 @@ class User_Temp(models.Model):
 	
 	#Full_Name = models.CharField(max_length=50,default=full_name())
 
-	def full_name(self):
-		return self.First_Name + self.Last_Name
+	
 	def __unicode__(self):  # Python 3: def __str__(self):
-		return self.Full_Name
+		return self.Full_Name + self.Last_Name
 
 	
 
