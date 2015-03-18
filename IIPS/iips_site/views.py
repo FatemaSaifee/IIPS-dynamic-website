@@ -37,7 +37,18 @@ class HomeView(ListView):
 
         return ctx
 
+class exampleanjeeview(list)
+   model = Course
+    template_name = 'iips_site/index.html'
 
+    def get_context_data(self, **kwargs):
+        ctx = super(HomeView, self).get_context_data(**kwargs)
+        ctx['photo_list'] = Gallary.objects.all()
+        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
+        ctx['syllabus_list'] = Syllabus.objects.all()
+        ctx['admission_list'] = Admission.objects.get(id = 1)
+        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
+        return ctx
 
 
