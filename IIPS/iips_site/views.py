@@ -36,7 +36,7 @@ class HomeView(ListView):
         ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
-
+'''
 class exampleanjeeView(ListView):
     model = Course
     template_name = 'iips_site/index.html'
@@ -51,4 +51,4 @@ class exampleanjeeView(ListView):
 
         return ctx
 
-
+'''
