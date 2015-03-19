@@ -52,3 +52,53 @@ class exampleanjeeView(ListView):
         return ctx
 
 '''
+class AdmissionView(ListView):
+    model = Admission
+    template_name = 'iips_site/sidebar.html'
+
+class ProgramView(ListView):
+    model = Course
+    template_name = 'iips_site/sidebar.html'
+
+class NewsView(ListView):
+    model = News
+    template_name = 'iips_site/sidebar.html'
+
+class NotificationView(ListView):
+    model = Notification
+    template_name = 'iips_site/sidebar.html'
+
+class SyllabusView(ListView):
+    model = Syllabus
+    template_name = 'iips_site/sidebar.html'
+
+class CalendarView(ListView):
+    model = Calendar
+    template_name = 'iips_site/sidebar.html'
+
+class PlacementView(ListView):
+    model = Placement
+    template_name = 'iips_site/sidebar.html'
+
+class StaffInfoView(ListView):
+    model = Staff_Info
+    template_name = 'iips_site/sidebar.html'
+
+class FacultyInfoView(ListView):
+    model = Faculty_Info
+    template_name = 'iips_site/sidebar.html'   
+
+class ResearchCenterView(ListView):
+    model = Research_Center
+    template_name = 'iips_site/sidebar.html'
+
+class DevelopementCenterView(ListView):
+    model = Developement_Center
+    template_name = 'iips_site/sidebar.html'    
+
+class PubliationView(ListView):
+    model = Publiation
+    template_name = 'iips_site/sidebar.html'   
+
+def contact(request):
+    return render(request, 'iips_site/contact.html')
