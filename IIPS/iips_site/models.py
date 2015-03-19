@@ -185,4 +185,50 @@ class News(models.Model):
 		now = timezone.now()
 		return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
-    
+class Notification(models.Model):
+	Title = models.CharField(max_length=100)
+	Link = models.URLField()
+	pub_date = models.DateTimeField('date published')
+	
+	def __unicode__(self):  # Python 3: def __str__(self):
+		return self.Title
+
+	def was_published_recently(self):
+		now = timezone.now()
+		return now - datetime.timedelta(days=1) <= self.pub_date <= now
+
+class Calendar(models.Model):
+	pass
+
+class Technical_Placement(models.Model):
+	Company = models.CharField(max_length=30)
+	Courses = models.CharField(max_length=12, default='MCA/M.Tech')
+	Offers = models.PositiveSmallIntegerField()
+	Package = models.DecimalField(max_digits=4, decimal_places=2)
+
+class Technical_Placement(models.Model):
+	Company = models.CharField(max_length=30)
+	Specialization = models.CharField(max_length=25)
+	Offers = models.PositiveSmallIntegerField()
+	Package = models.DecimalField(max_digits=4, decimal_places=2)
+
+class Placement_Detail(models.Model):
+	TECHNICAL = 'TC'
+	MANAGEMENT = ''
+	DISCIPLINE_CHOICES = (
+        (TECHNICAL, 'Technical'),
+        (MANAGEMENT, 'Management'),
+    )
+    Discipline = models.CharField(max_length=2,
+                                      choices=DISCIPLINE_CHOICES,
+                                      default=MANAGEMENT)
+    Detail = models.CharField(max_length=50)
+
+class Research_Cell(models,Model):
+	pass
+
+class Development_Center(models.Model):
+	pass
+
+class Publication(models.Model):
+	pass

@@ -88,8 +88,8 @@ class FacultyInfoView(ListView):
     model = Faculty_Info
     template_name = 'iips_site/sidebar.html'   
 
-class ResearchCenterView(ListView):
-    model = Research_Center
+class ResearchCellView(ListView):
+    model = Research_Cell
     template_name = 'iips_site/sidebar.html'
 
 class DevelopementCenterView(ListView):
