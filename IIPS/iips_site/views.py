@@ -10,12 +10,11 @@ from django.views.generic.list import ListView
 
 
 class IndexView(ListView):
-    context_object_name= 'item_list'
+    model = Course
     template_name = 'iips_site/gallery.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(IndexView, self).get_context_data(**kwargs)
-        ctx['course_list'] = Course.objects.all()
         ctx['photo_list'] = Gallary.objects.all()
         ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
         ctx['syllabus_list'] = Syllabus.objects.all()
@@ -25,7 +24,7 @@ class IndexView(ListView):
         return ctx
 
 class HomeView(ListView):
-    context_object_name= 'item_list'
+    model = Course
     template_name = 'iips_site/index.html'
 
     def get_context_data(self, **kwargs):
