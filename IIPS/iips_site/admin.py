@@ -69,7 +69,7 @@ admin.site.register(Staff_Info)
 admin.site.register(Faculty_Info)
 admin.site.register(Gallary)
 admin.site.register(News,NewsAdmin)
-admin.site.register(Placement)
+#admin.site.register(Placement)
 
 #admin.site.register(Course)
 

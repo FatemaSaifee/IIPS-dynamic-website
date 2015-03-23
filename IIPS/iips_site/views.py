@@ -96,9 +96,6 @@ class CalendarView(ListView):
     def get_queryset(self):
         return Calendar.objects.all()
 
-class PlacementView(ListView):
-    context_object_name= 'item_list'
-    template_name = 'iips_site/sidebar.html'
 
     def get_queryset(self):
         return Placement.objects.all
