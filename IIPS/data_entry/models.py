@@ -37,13 +37,12 @@ class LoginForm(ModelForm):
         fields = '__all__'
 
 	def clean(self):
+		cleaned_data = super(LoginForm, self).clean()
 
-        cleaned_data = super(LoginForm, self).clean()
+		if not cleaned_data:
+			raise forms.ValidationError("Fields are required.")
 
-        if not cleaned_data:
-            raise forms.ValidationError("Fields are required.")
-
-        return cleaned_data
+		return cleaned_data
 
 
 class User_Temp(models.Model):
@@ -97,13 +96,11 @@ class User_TempForm(ModelForm):
 '''
 
 	def clean(self):
+		cleaned_data = super(User_TempForm, self).clean()
+		if not cleaned_data:
+			raise forms.ValidationError("Fields are required.")
 
-        cleaned_data = super(User_TempForm, self).clean()
-
-        if not cleaned_data:
-            raise forms.ValidationError("Fields are required.")
-
-        return cleaned_data
+		return cleaned_data
 
 '''
 CREATE TABLE IF NOT EXISTS `Student_Info` (

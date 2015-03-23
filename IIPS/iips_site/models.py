@@ -214,17 +214,16 @@ class Technical_Placement(models.Model):
 
 class Placement_Detail(models.Model):
 	TECHNICAL = 'TC'
-	MANAGEMENT = ''
+	MANAGEMENT = 'MN'
 	DISCIPLINE_CHOICES = (
         (TECHNICAL, 'Technical'),
         (MANAGEMENT, 'Management'),
     )
-    Discipline = models.CharField(max_length=2,
-                                      choices=DISCIPLINE_CHOICES,
-                                      default=MANAGEMENT)
-    Detail = models.CharField(max_length=50)
-
-class Research_Cell(models,Model):
+    
+	Discipline = models.CharField(max_length=2, choices=DISCIPLINE_CHOICES, default=MANAGEMENT)
+	Detail = models.CharField(max_length=50)
+'''
+class Research_Cell(models.Model):
 	pass
 
 class Development_Center(models.Model):
@@ -232,3 +231,4 @@ class Development_Center(models.Model):
 
 class Publication(models.Model):
 	pass
+'''

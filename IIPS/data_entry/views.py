@@ -23,11 +23,13 @@ def login(request):
         'form': form,
     })
 
+
+
 def user_temp(request):
     if request.method == 'POST': # If the form has been submitted...
         # ContactForm was defined in the previous section
         form = User_TempForm(request.POST) # A form bound to the POST data
-        if form.is_valid(): # All validat ion rules pass
+        if form.is_valid(): # All validation rules pass
             # Process the data in form.cleaned_data
             # ...
             return HttpResponseRedirect('/thanks/') # Redirect after POST
@@ -37,6 +39,33 @@ def user_temp(request):
     return render(request, 'data_entry/user_temp_form.html', {
         'form': form,
     })
+
+def user_temp_post(self, request, roll_number):
+
+    # Get the profile information from form, validate the data and update the profile
+    form = User_TempForm(request.POST)
+
+    if form.is_valid():
+        account_type = form.cleaned_data['account_type']
+        company = form.cleaned_data['company']
+        company_size = form.cleaned_data['company_size']
+        address = form.cleaned_data['address']
+        billing_address = form.cleaned_data['billing_address']
+
+        # Update the client information
+        client = Client.objects.filter(user_id=user_id).update(account_type=account_type, company=company,
+                                        company_size=company_size, address=address, billing_address=billing_address)        
+
+        # Use the message framework to pass the message profile successfully updated
+        #messages.success(request, 'Profile details updated.')
+        return HttpResponseRedirect('/')
+
+
+    else:
+        profile_form = ProfileForm()
+        return render(request, 'website/profile.html', {'form': profile_form})
+
+
 
 '''
 @login_required(login_url='/') #if not logged in redirect to /
@@ -84,3 +113,4 @@ def create_a_my_model(request):
 '''
 
 #MyModel : field1, field2
+
