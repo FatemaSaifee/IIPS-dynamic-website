@@ -36,6 +36,15 @@ class LoginForm(ModelForm):
         model = Login
         fields = '__all__'
 
+	def clean(self):
+
+        cleaned_data = super(LoginForm, self).clean()
+
+        if not cleaned_data:
+            raise forms.ValidationError("Fields are required.")
+
+        return cleaned_data
+
 
 class User_Temp(models.Model):
 	#Temp_Transaction_ID=  models.CharField(max_length=20,null =False)#'This is a temporary transaction id of the user.',
@@ -86,6 +95,15 @@ class User_TempForm(ModelForm):
             },
         }
 '''
+
+	def clean(self):
+
+        cleaned_data = super(User_TempForm, self).clean()
+
+        if not cleaned_data:
+            raise forms.ValidationError("Fields are required.")
+
+        return cleaned_data
 
 '''
 CREATE TABLE IF NOT EXISTS `Student_Info` (
