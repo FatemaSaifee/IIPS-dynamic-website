@@ -5,7 +5,7 @@ import string
 from data_entry.models import *
 
 
-from django.forms import ModelForm
+
 
 
 # Create the form class.

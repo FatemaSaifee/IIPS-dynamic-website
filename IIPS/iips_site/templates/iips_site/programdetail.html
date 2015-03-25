@@ -1,0 +1,17 @@
+{% extends iips_site/program.html" %}
+
+{% block content1 %}
+
+{% load url from future %}
+<h1>{{ program.name }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+jfskdmlkml
+
+{% for course in Program.Course_set.all %}
+    <h3>{{course.name}}</h3>
+    <p> {{course.description}}
+{% endfor %}
+
+
+{% endblock %}

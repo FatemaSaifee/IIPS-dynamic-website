@@ -4,19 +4,28 @@ import datetime
 
 # Create your models here.
 
-
+class Program(models.Model):
+	name=models.CharField(max_length=30)
+	def __unicode__(self):  # Python 3: def __str__(self)
+		return self.name
 
 class Course(models.Model):
+
+	DISCIPLINE_CHOICES = (
+        ('TECHNICAL', 'Technical'),
+        ('MANAGEMENT', 'Management'),
+    )
+    
+	
 	course_name = models.CharField(max_length=200)
-	program_name = models.CharField(max_length=200)
+	program_name = models.ForeignKey('Program')
 	number_of_semester = models.PositiveSmallIntegerField(null=True)
-	discipline = models.TextField(max_length=200,null=True) #computer or management
+	Discipline = models.CharField(max_length=12, choices=DISCIPLINE_CHOICES, default='MANAGEMENT')
 	description = models.TextField(max_length=1000,null=True)
 	objective = models.TextField(max_length=1000,null=True)
 	learning_outcomes = models.TextField(max_length=1000,null=True)
 	
-	def __unicode__(self):  # Python 3: def __str__(self)
-		return self.course_name
+	
 
 # Table structure for table Sylabus
 

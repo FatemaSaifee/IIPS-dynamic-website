@@ -62,10 +62,18 @@ class AdmissionView(ListView):
 
 class ProgramView(ListView):
     context_object_name= 'item_list'
-    template_name = 'iips_site/sidebar.html'
+    template_name = 'iips_site/program.html'
 
     def get_queryset(self):
-        return Course.objects.all()
+        return Program.objects.all()
+
+class ProgramDetailView(generic.DetailView):
+    model = Program
+    template_name = 'iips_site/program.html'
+
+    def get_queryset(self):
+        
+        return Program.objects.all()
 
 class NewsView(ListView):
     context_object_name= 'item_list'

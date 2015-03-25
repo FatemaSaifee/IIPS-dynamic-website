@@ -37,6 +37,15 @@ class SubjectInline(NestedStackedInline):
     fk_name = 'Course'
     inlines = [CourseContentInLine]
 
+class CourseInLine(admin.StackedInline):
+	model = Course
+	extra = 1
+
+
+class ProgramAdmin(admin.ModelAdmin):
+	inlines = [CourseInLine]
+
+
 class CourseAdmin(admin.ModelAdmin):
 	##if we want to decide order of fields in the admin form
 	#fields = ['course_name','number_of_semester']
@@ -65,7 +74,7 @@ class Placement_DetailAdmin(admin.ModelAdmin):
 	inlines = [PlacementInLine]
 
 
-admin.site.register(Course, CourseAdmin)
+admin.site.register(Program, ProgramAdmin)
 admin.site.register(Syllabus,SyllabusAdmin)
 admin.site.register(Admission,AdmissionAdmin)
 admin.site.register(Fee_Structure,Fee_StructureAdmin)
