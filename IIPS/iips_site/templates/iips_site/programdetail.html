@@ -8,9 +8,9 @@
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 jfskdmlkml
 
-{% for course in Program.Course_set.all %}
+{% for course in Program.Course %}
     <h3>{{course.name}}</h3>
-    <p> {{course.description}}
+    <p> {{course.description}}</p>
 {% endfor %}
 
 
