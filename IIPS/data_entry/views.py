@@ -6,7 +6,8 @@ from django.http import HttpResponseRedirect
 
 from django.forms.models import modelformset_factory
 
-from data_entry.models import Login,LoginForm, User_TempForm
+from data_entry.models import *
+from data_entry.forms import *
 
 def login(request):
     if request.method == 'POST': # If the form has been submitted...

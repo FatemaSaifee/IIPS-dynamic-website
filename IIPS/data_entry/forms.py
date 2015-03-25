@@ -1,31 +1,46 @@
 from django import forms
+from django.forms import ModelForm
+from data_entry.models import *
 
-class LoginForm(forms.Form):
-    '''
-    name = forms.CharField(max_length=100)
-    title = forms.CharField(max_length=3,
-                widget=forms.Select(choices=TITLE_CHOICES))
-    birth_date = forms.DateField(required=False)'''
 
-    Roll_Number = forms.CharField(max_length=40)
-	Password = forms.CharField(max_length=40)
+class LoginForm(ModelForm):
+    class Meta:
+        model = Login
+        fields = '__all__'
 
-class User_TempForm(forms.Form):
-    '''name = forms.CharField(max_length=100)
-    authors = forms.ModelMultipleChoiceField(queryset=Author.objects.all())'''
+	def clean(self):
+		cleaned_data = super(LoginForm, self).clean()
 
-    Temp_Transaction_ID = forms.CharField(max_length=40)
-	First_Name= forms.CharField(max_length=20,null =False)
-	
-	Last_Name =forms.CharField(max_length=25,null =False)
-	Father_Name =forms.CharField(max_length=50)
-	Mother_Name =forms.CharField(max_length=50)
-	Email =forms.CharField(max_length=50)
-	Type =forms.CharField(max_length=50)
-	DOB= forms.DateField()
-	Local_Address =forms.CharField(max_length=200,null=True)
-	Permanent_Address =forms.CharField(max_length=200,null=True)
-	Mobile_Number =forms.CharField(max_length=15)
-	Telephone_Number =forms.CharField(max_length=200,null=True)
-	Roll_Number =forms.CharField(max_length=200,null=True)
-	Enrollment_Number =forms.CharField(max_length=200,null=True)
+		if not cleaned_data:
+			raise forms.ValidationError("Fields are required.")
+
+		return cleaned_data
+
+class User_TempForm(ModelForm):
+	class Meta:
+		model = User_Temp
+		#fields = ['Temp_Transaction_ID','First_Name','Full_name','Last_Name','Father_Name','Mother_Name','Email','Type','DOB','Local_Address','Permanent_Address','Mobile_Number','Telephone_Number','Roll_Number','Enrollment_Number']
+		exclude = ['Full_Name']
+		'''
+		 widgets = {
+            'name': Textarea(attrs={'cols': 80, 'rows': 20}),
+        }
+        labels = {
+            'name': _('Writer'),
+        }
+        help_texts = {
+            'name': _('Some useful help text.'),
+        }
+        error_messages = {
+            'name': {
+                'max_length': _("This writer's name is too long."),
+            },
+        }
+'''
+
+	def clean(self):
+		cleaned_data = super(User_TempForm, self).clean()
+		if not cleaned_data:
+			raise forms.ValidationError("Fields are required.")
+
+		return cleaned_data

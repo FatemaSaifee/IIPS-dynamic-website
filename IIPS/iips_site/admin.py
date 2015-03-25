@@ -57,7 +57,12 @@ class SyllabusAdmin(NestedModelAdmin):
 	model = Syllabus
 	inlines = [SubjectInline]
 
+class PlacementInLine(admin.TabularInline):
+    model = Placement
+    extra = 4
 
+class Placement_DetailAdmin(admin.ModelAdmin):
+	inlines = [PlacementInLine]
 
 
 admin.site.register(Course, CourseAdmin)
@@ -69,7 +74,7 @@ admin.site.register(Staff_Info)
 admin.site.register(Faculty_Info)
 admin.site.register(Gallary)
 admin.site.register(News,NewsAdmin)
-#admin.site.register(Placement)
+admin.site.register(Placement_Detail,Placement_DetailAdmin)
 
 #admin.site.register(Course)
 

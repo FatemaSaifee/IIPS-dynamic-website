@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
     #'nested_inlines',
+    #'django_admin_bootstrapped',#to make admin bootstrapped
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
