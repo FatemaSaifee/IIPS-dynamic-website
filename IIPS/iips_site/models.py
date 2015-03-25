@@ -17,13 +17,14 @@ class Course(models.Model):
     )
     
 	
-	course_name = models.CharField(max_length=200)
-	program_name = models.ForeignKey('Program')
+	name = models.CharField(max_length=200)
+	program = models.ForeignKey('Program')
 	number_of_semester = models.PositiveSmallIntegerField(null=True)
 	Discipline = models.CharField(max_length=12, choices=DISCIPLINE_CHOICES, default='MANAGEMENT')
 	description = models.TextField(max_length=1000,null=True)
 	objective = models.TextField(max_length=1000,null=True)
 	learning_outcomes = models.TextField(max_length=1000,null=True)
+	
 	
 	
 

@@ -10,7 +10,7 @@ from django.views.generic.list import ListView
 
 
 class IndexView(ListView):
-    model = Course
+    model = Program
     template_name = 'iips_site/gallery.html'
 
     def get_context_data(self, **kwargs):
@@ -24,7 +24,7 @@ class IndexView(ListView):
         return ctx
 
 class HomeView(ListView):
-    model = Course
+    model = Program
     template_name = 'iips_site/index.html'
 
     def get_context_data(self, **kwargs):
@@ -67,9 +67,11 @@ class ProgramView(ListView):
     def get_queryset(self):
         return Program.objects.all()
 
+
+
 class ProgramDetailView(generic.DetailView):
     model = Program
-    template_name = 'iips_site/program.html'
+    template_name = 'iips_site/programdetail.html'
 
     def get_queryset(self):
         
@@ -104,8 +106,7 @@ class CalendarView(ListView):
         return Calendar.objects.all()
 
 
-    def get_queryset(self):
-        return Placement.objects.all
+   
 
 class StaffInfoView(ListView):
     context_object_name= 'item_list'
@@ -126,7 +127,7 @@ class ResearchCellView(ListView):
     template_name = 'iips_site/sidebar.html'
 
     def get_queryset(self):
-        return Research_Cell.objects.all
+        return Research_Cell.objects.all()
 
 class DevelopementCenterView(ListView):
     context_object_name= 'item_list'

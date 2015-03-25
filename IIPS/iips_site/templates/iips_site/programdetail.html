@@ -1,4 +1,4 @@
-{% extends iips_site/program.html" %}
+{% extends "iips_site/program.html" %} 
 
 {% block content1 %}
 
@@ -6,9 +6,8 @@
 <h1>{{ program.name }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-jfskdmlkml
 
-{% for course in Program.Course %}
+{% for course in program.course_set.all %}
     <h3>{{course.name}}</h3>
     <p> {{course.description}}</p>
 {% endfor %}
