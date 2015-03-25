@@ -1,41 +1,15 @@
 <!DOCTYPE html>
+<!-- {% extends "iips_site/base.html" %} -->
+
+
 {% load staticfiles %}
-<html lang="en">
 
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="INTERNATIONAL INSTITUTE OF PROFESSIONAL STUDIES">
-    <meta name="author" content="">
-
-    <title>IIPS|DYNAMIC</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="{% static 'iips_site/mb/css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{% static 'iips_site/mb/css/modern-business.css' %}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="{% static 'iips_site/mb/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css'%}">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
+{% block title %}COLLEGE|DYNAMIC{% endblock %}
 
     <img border="0" src="../img/1920/purple.jpg" u="image" style="width: 1300px; height: 500px; top: 0px; left: 0px; position: absolute;" jssor-content="true"></img>
 
-
+<body>
+{% block content %}
 <!-- it works the same with all jquery version from 1.x to 2.x -->
 
     <script type="text/javascript" src="{% static 'iips_site/js/jquery-1.9.1.min.js' %}"></script>
@@ -235,102 +209,7 @@
 
 
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">HOME</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                  
-                    
-                    
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admissions <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href=#> Entrance-Exam-CET</a>
-                            </li>
-                            <li>
-                                <a href=#>Eligibility</a>
-                            </li>
-                            <li>
-                                <a href=#>Councelling</a>
-                            </li>
-                            <li>
-                                <a href=#>How to Apply</a>
-                            </li>
-                            <li>
-                                <a href=#>Fees Srtucture</a>
-                            </li>
-                            
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Programs <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="blog-home-1.html">Under Graduate</a>
-                            </li>
-                            <li>
-                                <a href="blog-home-2.html">Integrated</a>
-                            </li>
-                            <li>
-                                <a href="blog-post.html">Post Graduate</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Academics<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="full-width.html">Calender</a>
-                            </li>
-                            <li>
-                                <a href="sidebar.html">Notifications</a>
-                            </li>
-                            <li>
-                                <a href="faq.html">Syllabus</a>
-                            </li>
-                            <li>
-                                <a href="404.html">News</a>
-                            </li>
-                            
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="full-width.html">Placements</a>
-                            </li>
-                            <li>
-                                <a href="sidebar.html">Staff Information</a>
-                            </li>
-                            <li>
-                                <a href="faq.html">Faculty Information</a>
-                            </li>
-                                                        
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+    
 
 
 
@@ -344,202 +223,54 @@
                     Welcome to IIPS
                 </h1>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-check"></i> Bootstrap v3.2.0</h4>
+                        <h4><i class="fa fa-fw fa-check"></i> News </h4>
                     </div>
                     <div class="panel-body">
-                        <p>Let's make it Dynamic</p>
-                        <a href="#" class="btn btn-default">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-gift"></i> Free &amp; Open Source</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>Trying</p>
-                        <a href="#" class="btn btn-default">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-compass"></i> Easy to Use</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>Feeling sleepy</p>
-                        <a href="#" class="btn btn-default">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
+                        
+                        {% if news_list %}
+                        <ul>
+                            {% for news in news_list %}
+                            {{news.Title}} </br>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                            <p>No News are available.</p>
+                        {% endif %}
 
-        <!-- Portfolio Section -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Portfolio Heading</h2>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="E:\IIPS-dynamic-website\IIPS\media\documents\gallary\hqdefalut" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Features Section -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Modern Business Features</h2>
+                    </div>
+                </div>
             </div>
             <div class="col-md-6">
-                <p>The Modern Business template by Start Bootstrap includes:</p>
-                <ul>
-                    <li><strong>Bootstrap v3.2.0</strong>
-                    </li>
-                    <li>jQuery v1.11.0</li>
-                    <li>Font Awesome v4.1.0</li>
-                    <li>Working PHP contact form with validation</li>
-                    <li>Unstyled page elements for easy customization</li>
-                    <li>17 HTML pages</li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-gift"></i> Notification </h4>
+                    </div>
+                    <div class="panel-body">
+                        
+                        {% if notification_list %}
+                        <ul>
+                            {% for notification in notification_list %}
+                            {{notification.Title}} </br>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                            <p>No Notification are available.</p>
+                        {% endif %}
+
+
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6">
-                <img class="img-responsive" src="http://placehold.it/700x450" alt="">
-            </div>
+            
         </div>
         <!-- /.row -->
 
-        <hr>
-
-        <!-- Call to Action Section -->
-        <div class="well">
-            <div class="row">
-                <div class="col-md-3 col-xs-6">
-                    <a href=#> <h2>Admissions</h2> </a><br>
-                    <a href=#> Entrance-Exam-CET </a><br>
-                    <a href=#> Eligibility </a><br>
-                    <a href=#> Councelling </a><br>
-                    <a href=#> How to Apply </a><br>
-                    <a href=#> Fees Structure </a><br>
-                </div>
-            
-            
-                <div class="col-md-3 col-xs-6">
-                    <a href=#> <h2>Programs</h2> </a><br>
-                    <a href=#> Under Graduate </a><br>
-                    <a href=#> Integrated </a><br>
-                    <a href=#> Post Graduate</a><br> 
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <a href=#> <h2>Research</h2> </a><br>
-                    <a href=#> Development Center </a><br>
-                    <a href=#> Research Center </a><br>
-                    <a href=#> Publications</a><br> 
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <a href=#> <h2>Placement Information </h2> </a><br>
-                    <a href=#> About PI</a><br>
-                    <a href=#> Placements </a><br>
-                    <a href=#> Companies</a><br> 
-                </div>
-                 
-            </div>
-        </div>
-                
-            </div>
-        </div>
-
-        <div >
-            
-            <center>
-
-                
-            </div>
         
 
-        <hr>
 
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-
-                    <ul class="list-unstyled list-inline list-social-icons">
-                    <li>
-                        <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-linkedin-square fa-2x"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-google-plus-square fa-2x"></i></a>
-                    </li>
-                    </ul>
-                    
-                </div>
-            </div>
-        </footer>
-
-    </div>
-    <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="{% static 'iips_site/mb/js/jquery.js' %}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{% static 'iips_site/mb/js/bootstrap.min.js' %} "></script>
-
-    <!-- Script to Activate the Carousel -->
-    <script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
-    </script>
-
-
- <!-- jQuery -->
-    
-    <!-- Contact Form JavaScript -->
-    <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-    <script src="{% static 'iips_site/mb/js/jqBootstrapValidation.js' %}"></script>
-    <script src="{% static 'iips_site/mb/js/contact_me.js' %}"></script>
+{% endblock %}
 </body>
-
-</html>
+</html> 
