@@ -200,28 +200,27 @@ class Notification(models.Model):
 class Calendar(models.Model):
 	pass
 
-class Technical_Placement(models.Model):
+class Placement(models.Model):
 	Company = models.CharField(max_length=30)
-	Courses = models.CharField(max_length=12, default='MCA/M.Tech')
+	Course_Or_Specialization = models.CharField(max_length=20)
 	Offers = models.PositiveSmallIntegerField()
 	Package = models.DecimalField(max_digits=4, decimal_places=2)
+	Discipline = models.ForeignKey('Placement_Detail')
 
-class Technical_Placement(models.Model):
-	Company = models.CharField(max_length=30)
-	Specialization = models.CharField(max_length=25)
-	Offers = models.PositiveSmallIntegerField()
-	Package = models.DecimalField(max_digits=4, decimal_places=2)
+
 
 class Placement_Detail(models.Model):
-	TECHNICAL = 'TC'
-	MANAGEMENT = 'MN'
+	
+	
 	DISCIPLINE_CHOICES = (
-        (TECHNICAL, 'Technical'),
-        (MANAGEMENT, 'Management'),
+        ('TECHNICAL', 'Technical'),
+        ('MANAGEMENT', 'Management'),
     )
     
-	Discipline = models.CharField(max_length=2, choices=DISCIPLINE_CHOICES, default=MANAGEMENT)
-	Detail = models.CharField(max_length=50)
+	Discipline = models.CharField(max_length=12, choices=DISCIPLINE_CHOICES, default='MANAGEMENT')
+	Detail = models.TextField(max_length=50)
+	def __unicode__(self):  # Python 3: def __str__(self):
+		return self.Discipline
 '''
 class Research_Cell(models.Model):
 	pass
