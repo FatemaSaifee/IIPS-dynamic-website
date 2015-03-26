@@ -32,9 +32,9 @@
             <!-- Sidebar Column -->
             <div class="col-md-3">
                 <div class="list-group">
-                	{% for item in item_list%}
+                	{% for item in program_list%}
 
-                    	<a href="{% url 'iips_site:programd' %}etail' item.id %}" class="list-group-item">{{ item.name }}</a>
+                    	<a href="{% url 'iips_site:programdetail' item.id %}" class="list-group-item">{{ item.name }}</a>
                     {% endfor %}	
                 </div>
             </div>

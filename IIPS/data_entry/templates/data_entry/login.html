@@ -1,5 +1,5 @@
 {% load url from future %}
-<form action="{% url "user_temp" %}"method="post" enctype="multipart/form-data">{% csrf_token %}
+<form action="{% url "data_entry:user_temp" %}"method="post" enctype="multipart/form-data">{% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="Submit" />
 </form>

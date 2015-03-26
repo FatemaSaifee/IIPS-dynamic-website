@@ -1,8 +1,22 @@
 {% extends "iips_site/program.html" %} 
 
+
 {% block content1 %}
 
 {% load url from future %}
+
+
+
+<div class="col-md-3">
+                <div class="list-group">
+                	{% for item in page_obj%}
+
+                    	<a href="{% url 'iips_site:programdetail' item.id %}" class="list-group-item">{{ item.name }}</a>
+                    {% endfor %}	
+                </div>
+            </div>
+
+
 <h1>{{ program.name }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
