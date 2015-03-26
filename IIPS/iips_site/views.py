@@ -87,7 +87,7 @@ class ProgramDetailView(SingleObjectMixin, ListView):
 
     def get_queryset(self):
         return self.object.course_set.all()
-
+'''
 class ProgramCourseDetailView(SingleObjectMixin, ListView):
     #paginate_by = 2
     template_name = "iips_site/programcoursedetail.html"
@@ -106,7 +106,7 @@ class ProgramCourseDetailView(SingleObjectMixin, ListView):
 
     def get_queryset(self):
         return self.object.course_set.all()
-'''
+
 
 class ProgramDetailView(generic.DetailView):
     model = Program
