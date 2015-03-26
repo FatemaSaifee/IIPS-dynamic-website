@@ -13,22 +13,23 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
+<ul class="nav nav-tabs">
+
 {% for course in program.course_set.all %}
 
-
-
-<ul class="nav nav-tabs">
-	{% if course.id == 1 %}
-  <li role="presentation" class="active"><a href="#">Home</a></li>
+{% if course.id == 1 %}
+  <li role="presentation" class="active"><a href="{% url 'iips_site:programcoursedetail' course.id %}">{{ course.name }}</a></li>
   {% else %}
-  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="{% url 'iips_site:programcoursedetail' course.id %}">{{ course.name }}</a></li>
   {% endif %}
-  <li role="presentation"><a href="#">Messages</a></li>
-</ul>
+  
 
-    <h3>{{course.name}}</h3>
-    <p> {{course.description}}</p>
 {% endfor %}
+    
+ </ul>  
+
+ {% block content2 %}{% endblock %}
+
 
 
 {% endblock %}

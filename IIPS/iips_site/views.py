@@ -71,7 +71,7 @@ class ProgramView(ListView):
 
 
 class ProgramDetailView(SingleObjectMixin, ListView):
-    #paginate_by = 2
+    
     template_name = "iips_site/programdetail.html"
 
     def get(self, request, *args, **kwargs):
@@ -82,6 +82,25 @@ class ProgramDetailView(SingleObjectMixin, ListView):
         context = super(ProgramDetailView, self).get_context_data(**kwargs)
         context['program'] = self.object
         context['program_list'] = Program.objects.all()
+
+        return context
+
+    def get_queryset(self):
+        return self.object.course_set.all()
+
+class ProgramCourseDetailView(SingleObjectMixin, ListView):
+    #paginate_by = 2
+    template_name = "iips_site/programcoursedetail.html"
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object(queryset=Course.objects.all())
+        return super(ProgramCourseDetailView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(ProgramCourseDetailView, self).get_context_data(**kwargs)
+        context['course'] = self.object
+        context['program_list'] = Program.objects.all()
+        context['course_list'] = Course.objects.all()
 
         return context
 
