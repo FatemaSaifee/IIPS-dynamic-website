@@ -8,6 +8,8 @@ from django.utils import timezone
 from django.views.generic.list import ListView
 from django.views.generic.detail import SingleObjectMixin
 # Create your views here.
+def tabs(request):
+    return render(request, 'iips_site/tabs.html')
 
 
 class IndexView(ListView):
@@ -54,11 +56,45 @@ class exampleanjeeView(ListView):
         return ctx
 
 '''
-class AdmissionView(ListView):
-    context_object_name= 'item_list'
-    template_name = 'iips_site/sidebar.html'
+class AdmissionView(generic.ListView):
+    model = Admission
+    template_name = 'iips_site/admission.html'
 
     def get_queryset(self):
+        
+        return Admission.objects.all()
+
+class AdmissionCounclingView(generic.ListView):
+    model = Admission
+    template_name = 'iips_site/admissioncouncling.html'
+
+    def get_queryset(self):
+        
+        return Admission.objects.all()
+
+
+class AdmissionCETView(generic.ListView):
+    model = Admission
+    template_name = 'iips_site/admissioncet.html'
+
+    def get_queryset(self):
+        
+        return Admission.objects.all()
+
+class AdmissionHowToApplyView(generic.ListView):
+    model = Admission
+    template_name = 'iips_site/admissionhow_to_apply.html'
+
+    def get_queryset(self):
+        
+        return Admission.objects.all()
+
+class AdmissionEligiblityView(generic.ListView):
+    model = Admission
+    template_name = 'iips_site/admissioneligiblity.html'
+
+    def get_queryset(self):
+        
         return Admission.objects.all()
 
 class ProgramView(ListView):

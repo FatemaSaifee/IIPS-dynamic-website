@@ -1,18 +1,18 @@
-{% extends "iips_site/program.html" %}
+
 
 
 {% load staticfiles %}
-
-{% block content1 %}
-
 
 <html lang="us">
 <head>
 	<meta charset="utf-8">
 	<title>jQuery UI Example Page</title>
 	<link href="{% static 'iips_site/js/jquery-ui.css' %}" rel="stylesheet">
-<style>
-	
+	<style>
+	body{
+		font: 62.5% "Trebuchet MS", sans-serif;
+		margin: 50px;
+	}
 	.demoHeaders {
 		margin-top: 2em;
 	}
@@ -57,19 +57,22 @@
 
 
 <!-- Tabs -->
-
+<h2 class="demoHeaders">Tabs</h2>
 <div id="tabs">
 	<ul>
-
-		{% for course in program.course_set.all %}
-		<li><a href="#tabs-{{ course.id }}">{{ course.name }}</a></li>
-		{% endfor %}
+		<li><a href="#tabs-1">First</a></li>
+		<li><a href="#tabs-2">Second</a></li>
+		<li><a href="#tabs-3">Third</a></li>
 	</ul>
-	{% for course in program.course_set.all %}
-	<div id="tabs-{{ course.id }}">{{ course.description }}</div>
-	{% endfor %}
-	
+	<div id="tabs-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+	<div id="tabs-2">Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.</div>
+	<div id="tabs-3">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
 </div>
+
+
+
+
+
 
 
 <script src="{% static 'iips_site/js/external/jquery/jquery.js' %}"></script>
@@ -154,4 +157,3 @@ $( "#dialog-link, #icons li" ).hover(
 </script>
 </body>
 </html>
-{% endblock %}

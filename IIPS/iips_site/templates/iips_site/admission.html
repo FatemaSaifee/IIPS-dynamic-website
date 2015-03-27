@@ -1,13 +1,6 @@
 {% extends "iips_site/base.html" %}
 
 
-{% load staticfiles %}
-
-
-{% block title %}COLLEGE|PROGRAMS{% endblock %}
-
-
-{% load url from future %}
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
@@ -24,7 +17,7 @@
                 <ol class="breadcrumb">
                     <li><a href="{% url 'iips_site:home' %}">Home</a>
                     </li>
-                    <li class="active">Programs</li>
+                    <li class="active">Admissions</li>
                 </ol>
             </div>
         </div>
@@ -35,10 +28,13 @@
             <!-- Sidebar Column -->
             <div class="col-md-3">
                 <div class="list-group">
-                	{% for item in program_list%}
+                	
 
-                    	<a href="{% url 'iips_site:programdetail' item.id %}" class="list-group-item">{{ item.name }}</a>
-                    {% endfor %}	
+                    <a href="{% url 'iips_site:admissioncet' %}" class="list-group-item"> Common Entrance Exam (CET)</a>
+                    <a href="{% url 'iips_site:admissioneligiblity' %}" class="list-group-item"> Eligiblity</a>
+                    <a href="{% url 'iips_site:admissionhowtoapply' %}" class="list-group-item"> How To Apply</a>
+                    <a href="{% url 'iips_site:admissioncouncling' %}" class="list-group-item"> Councling </a>
+                    
                 </div>
             </div>
             <!-- Content Column -->
@@ -51,6 +47,7 @@
 </div>
 
         <hr>
+
+
 {% endblock %}
-        
 
