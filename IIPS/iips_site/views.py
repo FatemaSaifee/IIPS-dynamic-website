@@ -125,8 +125,6 @@ class SyllabusDetailView(generic.DetailView):
     def get(self, request, *args, **kwargs):
         self.object = self.get_object(queryset=Course.objects.all())
         return super(SyllabusDetailView, self).get(request, *args, **kwargs)
-    def get_queryset(self):
-        return self.object.syllabus_set.all()
 
     def get_context_data(self, **kwargs):
         context = super(SyllabusDetailView, self).get_context_data(**kwargs)
@@ -134,6 +132,10 @@ class SyllabusDetailView(generic.DetailView):
         context['course_list'] = Course.objects.all()
 
         return context
+
+    def get_queryset(self):
+        return self.object.syllabus_set.all()
+
 
 
     

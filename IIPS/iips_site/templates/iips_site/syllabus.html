@@ -35,9 +35,8 @@
             <!-- Sidebar Column -->
             <div class="col-md-3">
                 <div class="list-group">
-                	{% for item in course_list%}
-
-                    	<a href="{% url 'iips_site:syllabusdetail' item.id %}" class="list-group-item">{{ item.name }}</a>
+                	{% for course in course_list %}
+                    {{ course.name }} : {{ course.id }}
                     {% endfor %}	
                 </div>
             </div>
