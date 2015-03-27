@@ -64,38 +64,25 @@ class AdmissionView(generic.ListView):
         
         return Admission.objects.all()
 
-class AdmissionCounclingView(generic.ListView):
-    model = Admission
-    template_name = 'iips_site/admissioncouncling.html'
+class AdmissionDetailView(SingleObjectMixin, ListView):
+    
+    template_name = "iips_site/admissiondetail.html"
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object(queryset=Admission.objects.all())
+        return super(AdmissionDetailView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(AdmissionDetailView, self).get_context_data(**kwargs)
+        context['admission'] = self.object
+        context['admission_list'] = Admission.objects.all()
+
+        return context
 
     def get_queryset(self):
-        
-        return Admission.objects.all()
+        return self.object.admissionblock_set.all()
 
 
-class AdmissionCETView(generic.ListView):
-    model = Admission
-    template_name = 'iips_site/admissioncet.html'
-
-    def get_queryset(self):
-        
-        return Admission.objects.all()
-
-class AdmissionHowToApplyView(generic.ListView):
-    model = Admission
-    template_name = 'iips_site/admissionhow_to_apply.html'
-
-    def get_queryset(self):
-        
-        return Admission.objects.all()
-
-class AdmissionEligiblityView(generic.ListView):
-    model = Admission
-    template_name = 'iips_site/admissioneligiblity.html'
-
-    def get_queryset(self):
-        
-        return Admission.objects.all()
 
 class ProgramView(ListView):
     model = Program
@@ -123,35 +110,34 @@ class ProgramDetailView(SingleObjectMixin, ListView):
 
     def get_queryset(self):
         return self.object.course_set.all()
-'''
-class ProgramCourseDetailView(SingleObjectMixin, ListView):
-    #paginate_by = 2
-    template_name = "iips_site/programcoursedetail.html"
+
+
+class SyllabusView(ListView):
+    model = Course
+    template_name = 'iips_site/syllabus.html'
+
+    def get_queryset(self):
+        return Course.objects.all()
+
+class SyllabusDetailView(generic.DetailView):
+    template_name = "iips_site/syllabusdetail.html"
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object(queryset=Course.objects.all())
-        return super(ProgramCourseDetailView, self).get(request, *args, **kwargs)
+        return super(SyllabusDetailView, self).get(request, *args, **kwargs)
+    def get_queryset(self):
+        return self.object.syllabus_set.all()
 
     def get_context_data(self, **kwargs):
-        context = super(ProgramCourseDetailView, self).get_context_data(**kwargs)
+        context = super(SyllabusDetailView, self).get_context_data(**kwargs)
         context['course'] = self.object
-        context['program_list'] = Program.objects.all()
         context['course_list'] = Course.objects.all()
 
         return context
 
-    def get_queryset(self):
-        return self.object.course_set.all()
 
+    
 
-class ProgramDetailView(generic.DetailView):
-    model = Program
-    template_name = 'iips_site/programdetail.html'
-
-    def get_queryset(self):
-        
-        return Program.objects.all()
-'''
 
 class NewsView(ListView):
     context_object_name= 'item_list'
@@ -167,12 +153,7 @@ class NotificationView(ListView):
     def get_queryset(self):
         return Notification.objects.all()
 
-class SyllabusView(ListView):
-    context_object_name= 'item_list'
-    template_name = 'iips_site/sidebar.html'
 
-    def get_queryset(self):
-        return Syllabus.objects.all()
 
 class CalendarView(ListView):
     context_object_name= 'item_list'

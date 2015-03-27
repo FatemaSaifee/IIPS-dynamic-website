@@ -25,6 +25,9 @@ class Course(models.Model):
 	objective = models.TextField(max_length=1000,null=True)
 	learning_outcomes = models.TextField(max_length=1000,null=True)
 	
+	def __unicode__(self):  # Python 3: def __str__(self)
+		return self.name
+
 	
 	
 
@@ -128,33 +131,19 @@ class Faculty_Info(models.Model):
 
 #Table structure for Admission Module
 
+
 class Admission(models.Model):
-#Entrance_Exam_CET
-	CET = models.TextField(max_length=1000,default=None)
-	List_Of_Criteria_For_Admission = models.TextField(max_length=1000,default=None)
-	Admission_Process_In_Affiliated_Colleges_If_Department_Is_Monitoring= models.TextField(max_length=1000,default=None)
-	Student_Profile_Analysis = models.TextField(max_length=1000,default=None)
-	Admission_To_NRI_PIO = models.TextField(max_length=1000,default=None)
-	Entrance_Test = models.TextField(max_length=1000,default=None)
-	Reservation_Policy_Conversion_Of_Seats=models.TextField(max_length=1000,default=None)
-	
-	Refund_Of_Fee=models.TextField(max_length=1000,default=None)
-	Other_Important_points=models.TextField(max_length=1000,default=None)
-	Hostel_Accomodation=models.TextField(max_length=1000,default=None)
-	Note=models.TextField(max_length=1000,default=None)
-	How_To_Apply=models.TextField(max_length=1000,default=None)
-	
-#Eligiblity
-	Minimum_Percentage_For_Admissions_Eligibility_or_Appearing_In_Entrance_Test=models.TextField(max_length=1000,default=None)
-	Age_Limit = models.TextField(max_length=1000,default=None)
-	Non_Eligiblity_For_Admission=models.TextField(max_length=1000,default=None)
-#Councling
-	Councling=models.TextField(max_length=1000,default=None)
+	Block = models.CharField(max_length=25)
+	def __unicode__(self):  # Python 3: def __str__(self)
+		return self.Block
 
+
+class Admissionblock(models.Model):
+	Block = models.ForeignKey('Admission')
+	Heading = models.CharField(max_length=50)
+	Description = models.TextField(max_length=1000)
 	def __unicode__(self):  # Python 3: def __str__(self):
-		return str(self.id)
-
-
+		return self.Heading
 
 class Fee_Structure(models.Model):
 	Course_Name=models.CharField(max_length=40,primary_key=True)

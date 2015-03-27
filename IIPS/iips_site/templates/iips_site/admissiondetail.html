@@ -1,0 +1,17 @@
+{% extends "iips_site/admission.html" %}
+
+
+{% load staticfiles %}
+
+{% block content1 %}
+
+
+
+{% for item in admission.admissionblock_set.all %}
+	<h3> {{ item.Heading }}</h3>
+
+    	<p>{{ item.Description }}</p>
+
+{% endfor %}
+	
+{% endblock %}
