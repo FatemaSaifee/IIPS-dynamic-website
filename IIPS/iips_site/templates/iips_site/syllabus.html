@@ -4,7 +4,7 @@
 {% load staticfiles %}
 
 
-{% block title %}COLLEGE|PROGRAMS{% endblock %}
+{% block title %}COLLEGE|syllabus{% endblock %}
 
 
 {% load url from future %}
@@ -18,13 +18,13 @@
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Syllabus 
-                    
+                <h1 class="page-header">syllabus 
+                    <small>We Offer </small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="{% url 'iips_site:home' %}">Home</a>
                     </li>
-                    <li class="active">Programs</li>
+                    <li class="active">syllabus</li>
                 </ol>
             </div>
         </div>
@@ -35,9 +35,10 @@
             <!-- Sidebar Column -->
             <div class="col-md-3">
                 <div class="list-group">
-                	{% for course in course_list %}
-                    {{ course.name }} : {{ course.id }}
-                    {% endfor %}	
+                    {% for item in course_list%}
+
+                        <a href="{% url 'iips_site:syllabusdetail' item.id %}" class="list-group-item">{{ item.name }}</a>
+                    {% endfor %}    
                 </div>
             </div>
             <!-- Content Column -->
