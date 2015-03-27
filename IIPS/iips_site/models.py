@@ -21,9 +21,9 @@ class Course(models.Model):
 	program = models.ForeignKey('Program')
 	number_of_semester = models.PositiveSmallIntegerField(null=True)
 	Discipline = models.CharField(max_length=12, choices=DISCIPLINE_CHOICES, default='MANAGEMENT')
-	description = models.TextField(max_length=1000,null=True)
-	objective = models.TextField(max_length=1000,null=True)
-	learning_outcomes = models.TextField(max_length=1000,null=True)
+	description = models.TextField(max_length=2000,null=True)
+	objective = models.TextField(max_length=2000,null=True)
+	learning_outcomes = models.TextField(max_length=2000,null=True)
 	
 	def __unicode__(self):  # Python 3: def __str__(self)
 		return self.name
