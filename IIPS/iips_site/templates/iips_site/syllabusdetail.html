@@ -60,15 +60,13 @@
 <!-- Tabs -->
 	
 	
-
-
-
-{% for syllabus in course.syllabus_set.all %}
-			{{ syllabus.id }}
-		{% endfor %}
-
+bxbn
+{% for course in course.syllabus_set.all %}
+	<div id="tabs-{{ course.id }}">{{ ccourse.id }} bhjbjh</div>
+	{% endfor %}
+gfjg
 <!-- Accordion -->
-
+<!--
 <div id="accordion">
 
 	<h3>First</h3>
@@ -79,8 +77,8 @@
 	<div>Nam dui erat, auctor a, dignissim quis.</div>
 </div>
 
-
-
+-->
+adfkz
 
 <script src="{% static 'iips_site/js/external/jquery/jquery.js' %}"></script>
 <script src="{% static 'iips_site/js/jquery-ui.js' %}"></script>

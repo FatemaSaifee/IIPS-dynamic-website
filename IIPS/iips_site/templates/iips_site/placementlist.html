@@ -1,0 +1,64 @@
+{% extends 'iips_site/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Placements 
+                    
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'iips_site:home' %}">Home</a>
+                    </li>
+                    <li class="active">Placements</li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Content Row -->
+        <div class="row">
+            <!-- Sidebar Column -->
+            <div class="col-md-3">
+                <div class="list-group">
+                    
+
+                        <a href="{% url 'iips_site:placement' %}" class="list-group-item">Placement Cell</a>
+                        <a href="{% url 'iips_site:placementlist' %}" class="list-group-item">Placements</a>
+                        <a href="{% url 'iips_site:placementcompany' %}" class="list-group-item">Companies</a>
+                    
+                </div>
+            </div>
+            <!-- Content Column -->
+            <div class="col-md-9">
+                
+                <!-- Page Content -->
+
+                {% for field in placement_detail_list %}
+                <h4>{{ field.Discipline }}</h4>
+                <table border="1">
+                    <tr>
+                        <th> S.No. </th>
+                        <th> Company </th>
+                        <th> Courses </th>
+                        <th> Offers </th>
+                        <th> Packages(Lac/Yrs) </th>
+                    </tr>
+                {% for item in field.placement_set.all %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.Company }}</td>
+                        <td>{{ item.Course_Or_Specialization }}</td>
+                        <td>{{ item.Offers }}</td>
+                        <td>{{ item.Package }}</td>
+                    </tr>
+                {% endfor %}
+                </table>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

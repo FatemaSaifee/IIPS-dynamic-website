@@ -89,6 +89,8 @@ admin.site.register(Faculty_Info)
 admin.site.register(Gallary)
 admin.site.register(News,NewsAdmin)
 admin.site.register(Placement_Detail,Placement_DetailAdmin)
+admin.site.register(Placement_Cell)
+admin.site.register(Placement_Company)
 
 #admin.site.register(Course)
 

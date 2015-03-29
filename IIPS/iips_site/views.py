@@ -111,6 +111,20 @@ class ProgramDetailView(SingleObjectMixin, ListView):
     def get_queryset(self):
         return self.object.course_set.all()
 
+class PlacementView(ListView):
+    model = Placement_Cell
+    template_name = "iips_site/placement.html"
+
+    
+class PlacementCompanyView(ListView):
+    model = Placement_Company
+    template_name = "iips_site/placementcompany.html"
+
+class PlacementListView(ListView):
+    model = Placement_Detail
+    template_name = "iips_site/placementlist.html"
+
+    
 
 class SyllabusView(ListView):
     model = Course
@@ -130,6 +144,7 @@ class SyllabusDetailView(generic.DetailView):
         context = super(SyllabusDetailView, self).get_context_data(**kwargs)
         context['course'] = self.object
         context['course_list'] = Course.objects.all()
+        
 
         return context
 

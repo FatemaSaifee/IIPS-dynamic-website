@@ -220,6 +220,27 @@ class Placement_Detail(models.Model):
 	Detail = models.TextField(max_length=50)
 	def __unicode__(self):  # Python 3: def __str__(self):
 		return self.Discipline
+
+class Placement_Company(models.Model):
+	
+	Logo = models.ImageField(upload_to='documents/placement_company_logo/')
+
+	def __unicode__(self):  # Python 3: def __str__(self):
+		return self.Logo.name 
+
+class Placement_Cell(models.Model):
+	Name = models.CharField(max_length=50)
+	Photo = models.ImageField(upload_to='documents/placementcell/')
+	Designation = models.CharField(max_length=30)
+	Contact_No = models.CharField(max_length=18)
+	Email = models.EmailField()
+
+	def __unicode__(self):  # Python 3: def __str__(self):
+		return self.Name 
+
+
+
+
 '''
 class Research_Cell(models.Model):
 	pass
