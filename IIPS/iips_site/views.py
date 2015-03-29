@@ -7,6 +7,9 @@ from django.utils import timezone
 
 from django.views.generic.list import ListView
 from django.views.generic.detail import SingleObjectMixin
+
+from reportlab.pdfgen import canvas
+
 # Create your views here.
 def tabs(request):
     return render(request, 'iips_site/tabs.html')
@@ -36,7 +39,7 @@ class HomeView(ListView):
         ctx['photo_list'] = Gallary.objects.all()
         ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
         ctx['syllabus_list'] = Syllabus.objects.all()
-        ctx['admission_list'] = Admission.objects.get(id = 1)
+        ctx['admission_list'] = Admission.objects.all()
         ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
@@ -155,13 +158,36 @@ class SyllabusDetailView(generic.DetailView):
 
     
 
+'''
+def some_view(request):
+    # Create the HttpResponse object with the appropriate PDF headers.
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="somefilename.pdf"'
 
+    # Create the PDF object, using the response object as its "file."
+    p = canvas.Canvas(response)
+
+    # Draw things on the PDF. Here's where the PDF generation happens.
+    # See the ReportLab documentation for the full list of functionality.
+    p.drawString(100, 100, "Hello world.")
+
+    # Close the PDF object cleanly, and we're done.
+    p.showPage()
+    p.save()
+    return response
+
+'''
 class NewsView(ListView):
     context_object_name= 'item_list'
     template_name = 'iips_site/sidebar.html'
 
     def get_queryset(self):
         return News.objects.all()
+
+class NewsDetail(generic.DetailView):
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="../../media/"'
+    
 
 class NotificationView(ListView):
     context_object_name= 'item_list'

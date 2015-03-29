@@ -166,7 +166,7 @@
             */
             .jssorb21 div, .jssorb21 div:hover, .jssorb21 .av
             {
-                background: url(../img/b21.png) no-repeat;
+                background: url({% static 'iips_site/img/img/b21.png' %}) no-repeat;
                 overflow:hidden;
                 cursor: pointer;
             }
@@ -198,7 +198,7 @@
                 position: absolute;
                 cursor: pointer;
                 display: block;
-                background: url(../img/a21.png) center center no-repeat;
+                background: url({% static 'iips_site/img/img/a21.png' %}) center center no-repeat;
                 overflow: hidden;
             }
             .jssora21l { background-position: -3px -33px; }
@@ -245,7 +245,7 @@
                         {% if news_list %}
                         <ul>
                             {% for news in news_list %}
-                            {{news.Title}} </br>
+                            <a href="{ url 'iips_site:newsdetail' news.id}">{{news.Title}} </br>
                             {% endfor %}
                         </ul>
                         {% else %}
