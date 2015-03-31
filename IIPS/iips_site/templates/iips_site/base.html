@@ -49,7 +49,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                  
+                    
                     <li>
                         <a href="{% url 'iips_site:programdetail' 1 %}">Programs</a>
                     </li>
@@ -91,20 +91,26 @@
                                                         
                         </ul>
                     </li>
-                
-                    <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="full-width.html">About University</a>
-                                </li>
-                                <li>
-                                    <a href="sidebar.html">About IIPS</a>
-                                </li>
-                                <li>
-                            <a href="contact.html">Contact</a>
-                               </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{% url 'iips_site:aboutiips' %}">About IIPS</a>
+                            </li>
+                            <li>
+                                <a href="sidebar.html">About University</a>
+                            </li>
+                            <li>
+                                <a href="faq.html">Contact</a>
+                            </li>
+                                                        
+                        </ul>
                     </li>
+                    <li>
+                        <a href="/admin">Login</a>
+                    </li>
+
+                    
                     
                 </ul>
             </div>
@@ -122,19 +128,20 @@
         <div class="well">
             <div class="row">
                 <div class="col-md-3 col-xs-6">
-                    <a href=#> <h3>Admissions</h3> </a><br>
+                    <a href="{% url 'iips_site:admissiondetail' 1 %}"> <h3>Admissions</h3> </a><br>
                     {% for block in admission_list %}
-                    <a href=#> {{ block.Block }} </a><br>
+                    <a href="{% url 'iips_site:admissiondetail' block.id %}"> {{ block.Block }} </a><br>
                     {% endfor %}
                     
                 </div>
             
             
                 <div class="col-md-3 col-xs-6">
-                    <a href=#> <h3>Programs</h3> </a><br>
-                    <a href=#> Under Graduate </a><br>
-                    <a href=#> Integrated </a><br>
-                    <a href=#> Post Graduate</a><br> 
+                    <a href="{% url 'iips_site:programdetail' 1 %}"> <h3>Programs</h3> </a><br>
+                    {% for block in program_list %}
+                    <a href="{% url 'iips_site:programdetail' block.id %}"> {{ block.name }} </a><br>
+                    {% endfor %}
+                    
                 </div>
                 <div class="col-md-3 col-xs-6">
                     <a href=#> <h3>Research</h3> </a><br>

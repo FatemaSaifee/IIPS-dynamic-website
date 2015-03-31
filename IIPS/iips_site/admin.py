@@ -78,6 +78,9 @@ class PlacementInLine(admin.TabularInline):
 class Placement_DetailAdmin(admin.ModelAdmin):
 	inlines = [PlacementInLine]
 
+class Anti_RaggingAdmin(admin.ModelAdmin):
+	list_display = ('Name','Designation','Contact_No')
+
 
 admin.site.register(Program, ProgramAdmin)
 admin.site.register(Syllabus,SyllabusAdmin)
@@ -91,6 +94,11 @@ admin.site.register(News,NewsAdmin)
 admin.site.register(Placement_Detail,Placement_DetailAdmin)
 admin.site.register(Placement_Cell)
 admin.site.register(Placement_Company)
+admin.site.register(About_IIPS)
+admin.site.register(Director)
+admin.site.register(Director_Message)
+admin.site.register(Anti_Ragging,Anti_RaggingAdmin)
+admin.site.register(Vision_Mission_Goal)
 
 #admin.site.register(Course)
 

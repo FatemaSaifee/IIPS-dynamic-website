@@ -1,0 +1,17 @@
+{% extends 'iips_site/about-iips-base.html' %}
+{% load staticfiles %}
+{% block content1 %}
+<!-- Intro Content -->
+        
+            
+                <img class="img-responsive" src="{% static 'iips_site/img/college.JPG' %}" alt="">
+           
+            
+            	{% for item in about_iips_list %}
+                <h2>{{ item.Heading }}</h2>
+                <p>{{ item.Description|linebreaks }}</p>
+                {% endfor %}
+            
+        
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'iips_site/about-iips-base.html' %}
+{% block content1 %}
+	<h4>IIPS Anti-Ragging Committee</h4>
+	{% for item in anti_ragging_list %}
+		<ul>
+			<li>{{ item.Name }},{{ item.Designation }}, {{item.Contact_No }}</li>
+		</ul>
+	{% endfor %}
+{% endblock %}

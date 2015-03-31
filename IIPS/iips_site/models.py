@@ -238,7 +238,44 @@ class Placement_Cell(models.Model):
 	def __unicode__(self):  # Python 3: def __str__(self):
 		return self.Name 
 
+class About_IIPS(models.Model):
+	Heading = models.CharField(max_length=50)
+	Description = models.TextField(max_length=1000)
+	def __unicode__(self):  
+		return self.Heading
 
+class Director(models.Model):
+	Name = models.CharField(max_length=40)
+	Working_Period = models.CharField(max_length=40)
+
+	def __unicode__(self):  # Python 3: def __str__(self):
+		return self.Name
+
+class Director_Message(models.Model):
+	Director = models.CharField(max_length=40)
+	Message = models.TextField(max_length=1000)
+	pub_date = models.DateTimeField('date published')
+
+	def __unicode__(self):  # Python 3: def __str__(self):
+		return self.Director
+
+	def was_published_recently(self):
+		now = timezone.now()
+		return now - datetime.timedelta(days=1) <= self.pub_date <= now
+	
+class Vision_Mission_Goal(models.Model):
+	Heading = models.CharField(max_length=50)
+	Description = models.TextField(max_length=1000)
+	def __unicode__(self):  # Python 3: def __str__(self):
+		return self.Heading
+
+class Anti_Ragging(models.Model):
+	Name = models.CharField(max_length=50)
+	Designation = models.CharField(max_length=50)
+	Contact_No = models.CharField(max_length=50)
+
+	def __unicode__(self):  # Python 3: def __str__(self):
+		return self.Name
 
 
 '''

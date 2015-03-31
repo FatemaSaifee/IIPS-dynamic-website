@@ -56,7 +56,7 @@
 
 
 
-<!-- Tabs -->
+<!-- Tabs 
 
 <div id="tabs">
 	<ul>
@@ -66,10 +66,46 @@
 		{% endfor %}
 	</ul>
 	{% for course in program.course_set.all %}
-	<div id="tabs-{{ course.id }}">{{ course.description }}</div>
+	<div id="tabs-{{ course.id }}">{{ course.description|linebreaks }}</div>
 	{% endfor %}
 	
 </div>
+-->
+
+		<div class="row">
+            
+            
+
+                <ul id="myTab" class="nav nav-tabs nav-justified">
+                	{% for course in program.course_set.all %}
+                	{% if course.id == 1 %}
+					<li class="active"><a href="#tabs-{{ course.id }}" data-toggle="tab"><i class="fa fa-tree"></i>{{ course.name }}</a></li>
+					{% else %}
+					<li class=""><a href="#tabs-{{ course.id }}"data-toggle="tab"><i class="fa fa-tree"></i>{{ course.name }}</a></li>
+					{% endif %}
+					{% endfor %}
+                    
+                </ul>
+
+                <div id="myTabContent" class="tab-content">
+                	{% for course in program.course_set.all %}
+                	{% if course.id == 1 %}
+					<div class="tab-pane fade active in" id="tabs-{{ course.id }}">
+					<h4>{{ course.name }}</h4>
+					<p>{{ course.description|linebreaks }}</p></div>
+					{% else %}
+					<div class="tab-pane fade" id="tabs-{{ course.id }}">
+					<h4>{{ course.name }}</h4>
+					<p>{{ course.description|linebreaks }}</p></div>
+					{% endif %}
+					{% endfor %}
+                    
+                </div>
+
+            
+        </div>
+
+         
 
 
 <script src="{% static 'iips_site/js/external/jquery/jquery.js' %}"></script>

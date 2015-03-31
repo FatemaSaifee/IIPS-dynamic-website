@@ -26,6 +26,7 @@ class IndexView(ListView):
         ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.get(id = 1)
         ctx['fee_structure_list'] = Fee_Structure.objects.all()
+        ctx['program_list'] = Program.objects.all()
 
         return ctx
 
@@ -35,6 +36,7 @@ class HomeView(ListView):
 
     def get_context_data(self, **kwargs):
         ctx = super(HomeView, self).get_context_data(**kwargs)
+        ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
         ctx['photo_list'] = Gallary.objects.all()
         ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
@@ -63,9 +65,7 @@ class AdmissionView(generic.ListView):
     model = Admission
     template_name = 'iips_site/admission.html'
 
-    def get_queryset(self):
-        
-        return Admission.objects.all()
+   
 
 class AdmissionDetailView(SingleObjectMixin, ListView):
     
@@ -76,11 +76,17 @@ class AdmissionDetailView(SingleObjectMixin, ListView):
         return super(AdmissionDetailView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(AdmissionDetailView, self).get_context_data(**kwargs)
-        context['admission'] = self.object
-        context['admission_list'] = Admission.objects.all()
+        ctx = super(AdmissionDetailView, self).get_context_data(**kwargs)
+        ctx['admission'] = self.object
+        ctx['admission_list'] = Admission.objects.all()
+        ctx['program_list'] = Program.objects.all()
+        ctx['course_list'] = Course.objects.all()
+        ctx['photo_list'] = Gallary.objects.all()
+        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
+        ctx['syllabus_list'] = Syllabus.objects.all()
+        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
-        return context
+        return ctx
 
     def get_queryset(self):
         return self.object.admissionblock_set.all()
@@ -105,27 +111,132 @@ class ProgramDetailView(SingleObjectMixin, ListView):
         return super(ProgramDetailView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(ProgramDetailView, self).get_context_data(**kwargs)
-        context['program'] = self.object
-        context['program_list'] = Program.objects.all()
+        ctx = super(ProgramDetailView, self).get_context_data(**kwargs)
+        ctx['admission'] = self.object
+        ctx['admission_list'] = Admission.objects.all()
+        ctx['program_list'] = Program.objects.all()
+        ctx['course_list'] = Course.objects.all()
+        ctx['photo_list'] = Gallary.objects.all()
+        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
+        ctx['syllabus_list'] = Syllabus.objects.all()
+        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
-        return context
-
+        return ctx
     def get_queryset(self):
         return self.object.course_set.all()
+
+class AboutIIPSView(ListView):
+    model = About_IIPS
+    template_name = "iips_site/about-iips.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super(AboutIIPSView, self).get_context_data(**kwargs)
+        ctx['program_list'] = Program.objects.all()
+        ctx['course_list'] = Course.objects.all()
+        ctx['photo_list'] = Gallary.objects.all()
+        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
+        ctx['syllabus_list'] = Syllabus.objects.all()
+        ctx['admission_list'] = Admission.objects.all()
+        ctx['fee_structure_list'] = Fee_Structure.objects.all()
+
+        return ctx
+
+class AboutIIPSAntiraggingView(ListView):
+    model = Anti_Ragging
+    template_name = "iips_site/anti-ragging.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super(AboutIIPSAntiraggingView, self).get_context_data(**kwargs)
+        ctx['program_list'] = Program.objects.all()
+        ctx['course_list'] = Course.objects.all()
+        ctx['photo_list'] = Gallary.objects.all()
+        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
+        ctx['syllabus_list'] = Syllabus.objects.all()
+        ctx['admission_list'] = Admission.objects.all()
+        ctx['fee_structure_list'] = Fee_Structure.objects.all()
+
+        return ctx
+
+class AboutIIPSDirectorView(ListView):
+    model = Director_Message
+    template_name = "iips_site/director.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super(AboutIIPSDirectorView, self).get_context_data(**kwargs)
+        ctx['program_list'] = Program.objects.all()
+        ctx['course_list'] = Course.objects.all()
+        ctx['photo_list'] = Gallary.objects.all()
+        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
+        ctx['syllabus_list'] = Syllabus.objects.all()
+        ctx['admission_list'] = Admission.objects.all()
+        ctx['fee_structure_list'] = Fee_Structure.objects.all()
+
+        return ctx
+
+class AboutIIPSVisionView(ListView):
+    model = Vision_Mission_Goal
+    template_name = "iips_site/vision.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super(AboutIIPSVisionView, self).get_context_data(**kwargs)
+        ctx['program_list'] = Program.objects.all()
+        ctx['course_list'] = Course.objects.all()
+        ctx['photo_list'] = Gallary.objects.all()
+        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
+        ctx['syllabus_list'] = Syllabus.objects.all()
+        ctx['admission_list'] = Admission.objects.all()
+        ctx['fee_structure_list'] = Fee_Structure.objects.all()
+
+        return ctx
 
 class PlacementView(ListView):
     model = Placement_Cell
     template_name = "iips_site/placement.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super(PlacementView, self).get_context_data(**kwargs)
+        ctx['program_list'] = Program.objects.all()
+        ctx['course_list'] = Course.objects.all()
+        ctx['photo_list'] = Gallary.objects.all()
+        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
+        ctx['syllabus_list'] = Syllabus.objects.all()
+        ctx['admission_list'] = Admission.objects.all()
+        ctx['fee_structure_list'] = Fee_Structure.objects.all()
+
+        return ctx
 
     
 class PlacementCompanyView(ListView):
     model = Placement_Company
     template_name = "iips_site/placementcompany.html"
 
+    def get_context_data(self, **kwargs):
+        ctx = super(PlacementCompanyView, self).get_context_data(**kwargs)
+        ctx['program_list'] = Program.objects.all()
+        ctx['course_list'] = Course.objects.all()
+        ctx['photo_list'] = Gallary.objects.all()
+        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
+        ctx['syllabus_list'] = Syllabus.objects.all()
+        ctx['admission_list'] = Admission.objects.all()
+        ctx['fee_structure_list'] = Fee_Structure.objects.all()
+
+        return ctx
+
 class PlacementListView(ListView):
     model = Placement_Detail
     template_name = "iips_site/placementlist.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super(PlacementListView, self).get_context_data(**kwargs)
+        ctx['program_list'] = Program.objects.all()
+        ctx['course_list'] = Course.objects.all()
+        ctx['photo_list'] = Gallary.objects.all()
+        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
+        ctx['syllabus_list'] = Syllabus.objects.all()
+        ctx['admission_list'] = Admission.objects.all()
+        ctx['fee_structure_list'] = Fee_Structure.objects.all()
+
+        return ctx
 
     
 
@@ -156,7 +267,9 @@ class SyllabusDetailView(generic.DetailView):
 
 
 
-    
+
+
+
 
 '''
 def some_view(request):

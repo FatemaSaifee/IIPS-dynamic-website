@@ -1,6 +1,15 @@
 {% extends 'iips_site/base.html' %}
 {% load staticfiles %}
 {% block content %}
+<style type="text/css">
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th,td {
+    padding: 2%;
+}
+</style>
 <!-- Page Content -->
     <div class="container">
 
@@ -39,7 +48,7 @@
 
                 {% for field in placement_detail_list %}
                 <h4>{{ field.Discipline }}</h4>
-                <table border="1">
+                <table border="1" width=100%>
                     <tr>
                         <th> S.No. </th>
                         <th> Company </th>
