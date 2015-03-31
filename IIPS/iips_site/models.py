@@ -277,6 +277,28 @@ class Anti_Ragging(models.Model):
 	def __unicode__(self):  # Python 3: def __str__(self):
 		return self.Name
 
+class About_University(models.Model):
+	Heading = models.CharField(max_length=50)
+	Description = models.TextField(max_length=1000)
+	def __unicode__(self):  # Python 3: def __str__(self):
+		return self.Heading
+
+class Contact(models.Model):
+	HEADING_CHOICES = (
+        ('Address','Address'),
+        ('Contact_No','Contact No.'),
+        ('Email_Address','Email Address'),
+        ('Hours','Working Hours'),
+        ('Facebook','Facebook'),
+        ('Linkedin','Linkedin'),
+        ('Google+','Google+'),
+        ('Twitter','Twitter'),
+    )
+
+	Heading = models.CharField(max_length=50,choices=HEADING_CHOICES, default='Address')
+	Description = models.TextField(max_length=100)
+	def __unicode__(self):  # Python 3: def __str__(self):
+		return self.Heading
 
 '''
 class Research_Cell(models.Model):

@@ -189,6 +189,57 @@ class AboutIIPSVisionView(ListView):
 
         return ctx
 
+class AboutUniversityView(ListView):
+    model = About_University
+    template_name = "iips_site/about-university.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super(AboutUniversityView, self).get_context_data(**kwargs)
+        ctx['program_list'] = Program.objects.all()
+        ctx['course_list'] = Course.objects.all()
+        ctx['photo_list'] = Gallary.objects.all()
+        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
+        ctx['syllabus_list'] = Syllabus.objects.all()
+        ctx['admission_list'] = Admission.objects.all()
+        ctx['fee_structure_list'] = Fee_Structure.objects.all()
+
+        return ctx
+
+class AboutUniversityDetailView(generic.DetailView):
+    template_name = "iips_site/aboutuniversitydetail.html"
+    model = About_University
+
+    def get_context_data(self, **kwargs):
+        ctx = super(AboutUniversityDetailView, self).get_context_data(**kwargs)
+        ctx['program_list'] = Program.objects.all()
+        ctx['course_list'] = Course.objects.all()
+        ctx['photo_list'] = Gallary.objects.all()
+        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
+        ctx['syllabus_list'] = Syllabus.objects.all()
+        ctx['admission_list'] = Admission.objects.all()
+        ctx['fee_structure_list'] = Fee_Structure.objects.all()
+        ctx['about_university_list'] = About_University.objects.all()
+
+        return ctx
+    '''
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object(queryset=Course.objects.all())
+        return super(SyllabusDetailView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(SyllabusDetailView, self).get_context_data(**kwargs)
+        context['course'] = self.object
+        context['course_list'] = Course.objects.all()
+        
+
+        return context
+
+    def get_queryset(self):
+        return self.object.syllabus_set.all()
+
+    '''
+
 class PlacementView(ListView):
     model = Placement_Cell
     template_name = "iips_site/placement.html"
@@ -356,7 +407,8 @@ class PubliationView(ListView):
     def get_queryset(self): 
         return Publiation.objects.all()
 
-def contact(request):
-    return render(request, 'iips_site/contact.html')
+class ContactView(ListView):
+    model = Contact
+    template_name = 'iips_site/contact.html'    
 
 

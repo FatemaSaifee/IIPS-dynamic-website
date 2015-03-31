@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'IIPS.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^admin/', include(admin.site.urls),name='admin'),
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^iips/', include('iips_site.urls',namespace = "iips_site")),
     url(r'^data_entry/', include('data_entry.urls', namespace = 'data_entry')),
     #url(r'^temp_table/$', 'data_entry.views.temp_table',name='home'),

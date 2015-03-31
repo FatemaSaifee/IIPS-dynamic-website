@@ -1,0 +1,18 @@
+{% extends "iips_site/about-university.html" %}
+
+
+{% load staticfiles %}
+
+{% block content1 %}
+	{% if about_university.Heading == "About University" %}
+	<img src="{% static 'iips_site/img/university.jpg' %}">
+	{% endif %}
+
+
+	<h3> {{ about_university.Heading }}</h3>
+
+    <p>{{ about_university.Description|linebreaks }}</p>
+
+
+	
+{% endblock %}
