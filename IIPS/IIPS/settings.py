@@ -40,6 +40,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'iips_site',
     'data_entry',
+    'happenings',
+    
 )
 
 MIDDLEWARE_CLASSES = (
@@ -93,3 +95,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a # trailing slash. 
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/" 
 MEDIA_URL = '/media/'
+'''
+TEMPLATE_CONTEXT_PROCESSORS = (
+    
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+
+)
+'''

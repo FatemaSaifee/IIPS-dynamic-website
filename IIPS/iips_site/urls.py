@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, include, url
 from iips_site import views
 from django.views.generic import ListView
 
@@ -21,7 +21,9 @@ urlpatterns = patterns('',
      url(r'^about-iips/vision-mission-goal$',views.AboutIIPSVisionView.as_view(), name='visionmissiongoal'),
      url(r'^about-university/$',views.AboutUniversityView.as_view(), name='aboutuniversity'),
      url(r'^about-university/(?P<pk>\d+)/$', views.AboutUniversityDetailView.as_view(), name='aboutuniversitydetail'),
-     url(r'^calendar/$', views.CalendarView.as_view(), name='calendar'),
+     #url(r'^calendar/', include('calendarium.urls')),
+     url(r'^calendar/', include('happenings.urls', namespace='calendar')),
+     #url(r'^calendar/$', views.CalendarView.as_view(), name='calendar'),
      url(r'^contact/$', views.ContactView.as_view(), name='contact'),
      url(r'^staff_info/$', views.StaffInfoView.as_view(), name='staff_info'),
      url(r'^faculty_info/$', views.FacultyInfoView.as_view(), name='faculty_info'),
