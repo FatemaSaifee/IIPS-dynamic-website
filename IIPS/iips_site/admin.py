@@ -1,13 +1,18 @@
 from django.contrib import admin
-from iips_site.models import *
-from django.contrib import admin 
+from iips_site.models import * 
 from nested_inline.admin import NestedStackedInline, NestedModelAdmin, NestedTabularInline 
 #from example.models import *
 
-
+from django.db.models.loading import cache as model_cache
+if not model_cache.loaded:
+    model_cache.get_models()
 
 # Register your models here 
 class NewsAdmin(admin.ModelAdmin):
+	list_display = ('Title','pub_date')
+	list_filter = ['pub_date']
+
+class NotificationAdmin(admin.ModelAdmin):
 	list_display = ('Title','pub_date')
 	list_filter = ['pub_date']
 
@@ -90,10 +95,11 @@ admin.site.register(Syllabus,SyllabusAdmin)
 admin.site.register(Admission,AdmissionAdmin)
 admin.site.register(Fee_Structure,Fee_StructureAdmin)
 admin.site.register(User_Temp)
-admin.site.register(Staff_Info)
+admin.site.register(StaffInfo)
 admin.site.register(Faculty_Info)
 admin.site.register(Gallary)
 admin.site.register(News,NewsAdmin)
+admin.site.register(Notification,NotificationAdmin)
 admin.site.register(Placement_Detail,Placement_DetailAdmin)
 admin.site.register(Placement_Cell)
 admin.site.register(Placement_Company)

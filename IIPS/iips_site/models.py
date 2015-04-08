@@ -90,8 +90,9 @@ class User_Temp(models.Model):
 	
 
 #Table structure for table `Staff_Info`
-class Staff_Info(models.Model):
+class StaffInfo(models.Model):
 	User_ID=models.SmallIntegerField(max_length=6)
+	Name=models.CharField(max_length=40)
 	Post=models.CharField(max_length=40)
 	Responsibility=models.CharField(max_length=40)
 	Web_Link=models.CharField(max_length=40,default=None)
@@ -103,7 +104,7 @@ class Staff_Info(models.Model):
 	Twitter_Link=models.CharField(max_length=40,default=None)
 	Picture=models.CharField(max_length=40,default=None)
 	def __unicode__(self):  # Python 3: def __str__(self):
-		return str(self.User_ID)
+		return self.Name
 
 #Table structure for table `Faculty_Info`
 

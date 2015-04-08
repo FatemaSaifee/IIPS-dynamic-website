@@ -1,0 +1,13 @@
+{% extends 'iips_site/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<h1>News</h1>
+<hr>
+<ul>
+	{% for news in news_list %}
+	<li>
+		<a href="../../media/{{news.Docfile}}">{{ news.Title }} </a> {{ news.pub_date }}
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}

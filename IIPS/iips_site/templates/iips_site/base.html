@@ -63,16 +63,16 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Academics<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="full-width.html">Calender</a>
+                                <a href="/iips/calendar">Calendar</a>
                             </li>
                             <li>
-                                <a href="sidebar.html">Notifications</a>
+                                <a href="{% url 'iips_site:notification' %}">Notifications</a>
                             </li>
                             <li>
                                 <a href="{% url 'iips_site:syllabus' %}">Syllabus</a>
                             </li>
                             <li>
-                                <a href="404.html">News</a>
+                                <a href="{% url 'iips_site:news' %}">News</a>
                             </li>
                             
                         </ul>
@@ -84,10 +84,10 @@
                                 <a href="{% url 'iips_site:placement' %}">Placements</a>
                             </li>
                             <li>
-                                <a href="sidebar.html">Staff Information</a>
+                                <a href="{% url 'iips_site:staffinfo' %}">Staff Information</a>
                             </li>
                             <li>
-                                <a href="faq.html">Faculty Information</a>
+                                <a href="{% url 'iips_site:facultyinfo' %}">Faculty Information</a>
                             </li>
                                                         
                         </ul>
@@ -127,35 +127,53 @@
     <footer>
         <!-- Call to Action Section -->
         <div class="well">
+            <h5>Quick Links </h5>
+            <hr>
             <div class="row">
-                <div class="col-md-3 col-xs-6">
-                    <a href="{% url 'iips_site:admissiondetail' 1 %}"> <h3>Admissions</h3> </a><br>
+                <div class="col-md-2 col-xs-6">
+                    <h4> <u>About us</u> </h4><br>
+                    <a href="{% url 'iips_site:aboutiips' %}"> About IIPS </a><br>
+                    <a href="{% url 'iips_site:aboutuniversitydetail' 1 %}"> About University </a><br>
+                    <a href="{% url 'iips_site:contact' %}"> Contact </a><br> 
+                </div>
+                
+            
+            
+                <div class="col-md-2 col-xs-6">
+                    <h4> <u>Programs</u> </h4><br>
+                    {% for block in program_list %}
+                    <a href="{% url 'iips_site:programdetail' block.id %}"> {{ block.name }} </a><br>
+                    
+                    {% endfor %}
+                    
+                </div>
+                <div class="col-md-2 col-xs-6">
+                    <h4><u>Academics</u></h4><br>
+                    <a href=#>Calender</a><br>
+                    <a href="{% url 'iips_site:notification' %}">Notifications</a><br>
+                    <a href="{% url 'iips_site:syllabus' %}">Syllabus</a><br>
+                    <a href="{% url 'iips_site:news' %}">News</a><br>
+                </div>
+                <div class="col-md-2 col-xs-6">
+                    <h4> <u>Admissions</u> </h4><br>
                     {% for block in admission_list %}
                     <a href="{% url 'iips_site:admissiondetail' block.id %}"> {{ block.Block }} </a><br>
                     {% endfor %}
                     
                 </div>
-            
-            
-                <div class="col-md-3 col-xs-6">
-                    <a href="{% url 'iips_site:programdetail' 1 %}"> <h3>Programs</h3> </a><br>
-                    {% for block in program_list %}
-                    <a href="{% url 'iips_site:programdetail' block.id %}"> {{ block.name }} </a><br>
-                    {% endfor %}
-                    
+                
+                <div class="col-md-2 col-xs-6">
+                    <h4> <u>Placements</u> </h4><br>
+                    <a href="{% url 'iips_site:placement' %}"> Placement Cell</a><br>
+                    <a href="{% url 'iips_site:placementlist' %}"> Placements </a><br>
+                    <a href="{% url 'iips_site:placementcompany' %}"> Companies</a><br> 
                 </div>
-                <div class="col-md-3 col-xs-6">
-                    <a href=#> <h3>Research</h3> </a><br>
-                    <a href=#> Development Center </a><br>
-                    <a href=#> Research Center </a><br>
-                    <a href=#> Publications</a><br> 
+                <div class="col-md-2 col-xs-6">
+                    <h4> <u>Miscelaneous</u> </h4><br>
+                    <a href="sidebar.html">Staff Information</a><br>
+                    <a href="faq.html">Faculty Information</a>
                 </div>
-                <div class="col-md-3 col-xs-6">
-                    <a href=#> <h3>Placement Information </h3> </a><br>
-                    <a href=#> About PI</a><br>
-                    <a href=#> Placements </a><br>
-                    <a href=#> Companies</a><br> 
-                </div>
+
                  
             </div>
         </div>

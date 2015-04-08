@@ -9,6 +9,20 @@ from django.forms.models import modelformset_factory
 from data_entry.models import *
 from data_entry.forms import *
 
+'''
+from django.shortcuts import render
+from app_name.forms import AllocationPlanForm
+
+def add(request):
+    if request.method == 'POST':
+        form = AllocatinPlanForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return render(request, 'page.html', {
+    'form': AllocationPlanForm()
+})
+'''
+
 def login(request):
     if request.method == 'POST': # If the form has been submitted...
         # ContactForm was defined in the previous section
@@ -16,6 +30,7 @@ def login(request):
         if form.is_valid(): # All validat ion rules pass
             # Process the data in form.cleaned_data
             # ...
+            form.save()
             return HttpResponseRedirect('/thanks/') # Redirect after POST
     else:
         form = LoginForm() # An unbound form
@@ -33,12 +48,13 @@ def user_temp(request):
         if form.is_valid(): # All validation rules pass
             # Process the data in form.cleaned_data
             # ...
+            form.save()
             return HttpResponseRedirect('/thanks/') # Redirect after POST
     else:
         form = User_TempForm() # An unbound form
 
     return render(request, 'data_entry/user_temp_form.html', {
-        'form': form,
+        'form': User_TempForm(),
     })
 
 def user_temp_post(self, request, roll_number):
