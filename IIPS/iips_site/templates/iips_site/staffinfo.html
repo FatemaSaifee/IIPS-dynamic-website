@@ -1,45 +1,39 @@
 {% extends 'iips_site/base.html' %}
 {% block content %}
-{% if staff_info_list %}
-{% for item in staffinfo_list %}
+{% if item_list %}
 
 		<div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">Our Team</h2>
+                <h2 class="page-header">Our Staff</h2>
             </div>
+            {% for item in item_list %}
+
             <div class="col-md-4 text-center">
                 <div class="thumbnail">
-                    <img class="img-responsive" src="{{ item.Picture }}" alt="">
+                    <img class="img-responsive" src="{{ item.Picture }}" alt=""  width=50%>
                     <div class="caption">
-                        <h3>{{ item.Post }}<br>
-                            <small>{{ item.Responsiblity }}</small>
+                        <h3>{{ item.Name }}<br>
+                            <small>{{ item.Post }}</small>
                         </h3>
-                        
+                        {{ item.Responsibility }}
                         <ul class="list-inline">
-                            <li><a href="{{ item.Facebook_Link }}"><i class="fa fa-2x fa-facebook-square"></i></a>
+                            <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
                             </li>
                             <li><a href="{{ item.Linkedin_Link }}"><i class="fa fa-2x fa-linkedin-square"></i></a>
                             </li>
                             <li><a href="{{ item.Twitter_Link }}"><i class="fa fa-2x fa-twitter-square"></i></a>
                             </li>
+                            <li><a href="#"><i class="fa fa-2x fa-google-plus-square"></i>
+</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </div>
- {% endfor %}
+
+            
+{% endfor %}
+
  {% else %}
  no member
  {% endif %}
 {% endblock %}
-User_ID=models.SmallIntegerField(max_length=6)
-	Post=models.CharField(max_length=40)
-	Responsibility=models.CharField(max_length=40)
-	Web_Link=models.CharField(max_length=40,default=None)
-	Blog_Link=models.CharField(max_length=40,default=None)
-	Alternate_Email=models.CharField(max_length=40,default=None)
-	Linkedin_Link=models.CharField(max_length=40,default=None)
-	Facebook_Link=models.CharField(max_length=40,default=None)
-	Googleplus_Link=models.CharField(max_length=40,default=None)
-	Twitter_Link=models.CharField(max_length=40,default=None)
-	Picture=models.CharField(m

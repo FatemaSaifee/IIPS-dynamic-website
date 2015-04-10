@@ -8,10 +8,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 from django.db.models.loading import cache as model_cache
+'''
 if not model_cache.loaded:
     model_cache.get_models()
-
-    
+'''    
 admin.autodiscover()
 
 
@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'IIPS.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
+    url(r'^calendar/', include('happenings.urls', namespace='calendar')),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^iips/', include('iips_site.urls',namespace = "iips_site")),

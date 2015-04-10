@@ -401,8 +401,11 @@ class CalendarView(ListView):
    
 
 class StaffInfoView(ListView):
-    model = 'StaffInfo'
-    template_name = 'iips_site/staffinfo.html'
+    context_object_name= 'item_list'
+    template_name = 'iips_site/staffinfo.html'   
+
+    def get_queryset(self):
+        return StaffInfo.objects.all()
 
     
 
@@ -420,10 +423,10 @@ class StaffInfoView(ListView):
 
 class FacultyInfoView(ListView):
     context_object_name= 'item_list'
-    template_name = 'iips_site/sidebar.html'   
+    template_name = 'iips_site/facultyinfo.html'   
 
     def get_queryset(self):
-        return Faculty_Info.objects.all
+        return Faculty_Info.objects.all()
 
     def get_context_data(self, **kwargs):
         ctx = super(FacultyInfoView, self).get_context_data(**kwargs)

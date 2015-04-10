@@ -92,7 +92,7 @@ class User_Temp(models.Model):
 #Table structure for table `Staff_Info`
 class StaffInfo(models.Model):
 	User_ID=models.SmallIntegerField(max_length=6)
-	Name=models.CharField(max_length=40)
+	Name=models.CharField(max_length=50)
 	Post=models.CharField(max_length=40)
 	Responsibility=models.CharField(max_length=40)
 	Web_Link=models.CharField(max_length=40,default=None)
@@ -102,7 +102,7 @@ class StaffInfo(models.Model):
 	Facebook_Link=models.CharField(max_length=40,default=None)
 	Googleplus_Link=models.CharField(max_length=40,default=None)
 	Twitter_Link=models.CharField(max_length=40,default=None)
-	Picture=models.CharField(max_length=40,default=None)
+	Picture=models.CharField(max_length=100,default=None)
 	def __unicode__(self):  # Python 3: def __str__(self):
 		return self.Name
 
@@ -110,10 +110,12 @@ class StaffInfo(models.Model):
 
 class Faculty_Info(models.Model):
 	User_ID=models.SmallIntegerField(max_length=6)#This is the user_id from User_master table.
+	Name=models.CharField(max_length=50)
 	Discipline =models.CharField(max_length=200)
-	Post=models.CharField(max_length=200)
+	Designation=models.CharField(max_length=200)
 	Responsibility=models.CharField(max_length=200)
 	DOJ=models.DateField() 		#Date of Joining
+	Qualification=models.CharField(max_length=200)
 	Area_Of_Interest=models.CharField(max_length=200)
 	Previous_Job=models.CharField(max_length=200)
 	Web_Link=models.CharField(max_length=40,default=None)
@@ -123,11 +125,10 @@ class Faculty_Info(models.Model):
 	Facebook_Link=models.CharField(max_length=40,default=None)
 	Googleplus_Link=models.CharField(max_length=40,default=None)
 	Twitter_Link=models.CharField(max_length=40,default=None)
-	Picture=models.CharField(max_length=40,default=None)
+	Picture=models.CharField(max_length=100,default=None)
 	Resume =models.CharField(max_length=40,default=None)#Link to resume
 	def __unicode__(self):  # Python 3: def __str__(self):
-		return str(self.User_ID)
-	#PRIMARY KEY (`Pitcture`)
+		return self.Name
 
 
 #Table structure for Admission Module
