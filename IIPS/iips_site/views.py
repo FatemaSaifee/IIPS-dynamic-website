@@ -21,14 +21,10 @@ class IndexView(ListView):
 
     def get_context_data(self, **kwargs):
         ctx = super(IndexView, self).get_context_data(**kwargs)
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
+        ctx['phto_list'] = Gallary.objects.all()
         ctx['admission_list'] = Admission.objects.get(id = 1)
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
         ctx['program_list'] = Program.objects.all()
-        ctx['notification_list'] = Notification.objects.all()
-
+        
         return ctx
 
 class HomeView(ListView):
@@ -39,13 +35,8 @@ class HomeView(ListView):
         ctx = super(HomeView, self).get_context_data(**kwargs)
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
-        ctx['notification_list'] = Notification.objects.all()
-
+        
         return ctx
 '''
 class exampleanjeeView(ListView):
@@ -54,11 +45,7 @@ class exampleanjeeView(ListView):
 
     def get_context_data(self, **kwargs):
         ctx = super(exampleanjeeView, self).get_context_data(**kwargs)
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.get(id = 1)
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
 
@@ -83,10 +70,6 @@ class AdmissionDetailView(SingleObjectMixin, ListView):
         ctx['admission_list'] = Admission.objects.all()
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
 
@@ -118,10 +101,6 @@ class ProgramDetailView(SingleObjectMixin, ListView):
         ctx['admission_list'] = Admission.objects.all()
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
     def get_queryset(self):
@@ -135,11 +114,7 @@ class AboutIIPSView(ListView):
         ctx = super(AboutIIPSView, self).get_context_data(**kwargs)
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
 
@@ -151,11 +126,7 @@ class AboutIIPSAntiraggingView(ListView):
         ctx = super(AboutIIPSAntiraggingView, self).get_context_data(**kwargs)
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
 
@@ -167,11 +138,7 @@ class AboutIIPSDirectorView(ListView):
         ctx = super(AboutIIPSDirectorView, self).get_context_data(**kwargs)
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
 
@@ -183,11 +150,7 @@ class AboutIIPSVisionView(ListView):
         ctx = super(AboutIIPSVisionView, self).get_context_data(**kwargs)
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
 
@@ -199,11 +162,7 @@ class AboutUniversityView(ListView):
         ctx = super(AboutUniversityView, self).get_context_data(**kwargs)
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
 
@@ -215,11 +174,7 @@ class AboutUniversityDetailView(generic.DetailView):
         ctx = super(AboutUniversityDetailView, self).get_context_data(**kwargs)
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
         ctx['about_university_list'] = About_University.objects.all()
 
         return ctx
@@ -250,11 +205,7 @@ class PlacementView(ListView):
         ctx = super(PlacementView, self).get_context_data(**kwargs)
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
 
@@ -267,11 +218,7 @@ class PlacementCompanyView(ListView):
         ctx = super(PlacementCompanyView, self).get_context_data(**kwargs)
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
 
@@ -283,11 +230,7 @@ class PlacementListView(ListView):
         ctx = super(PlacementListView, self).get_context_data(**kwargs)
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
 
@@ -308,16 +251,16 @@ class SyllabusDetailView(generic.DetailView):
         return super(SyllabusDetailView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(SyllabusDetailView, self).get_context_data(**kwargs)
-        context['course'] = self.object
-        context['course_list'] = Course.objects.all()
-        
+        ctx = super(SyllabusDetailView, self).get_context_data(**kwargs)
+        ctx['course'] = self.object
+        ctx['admission_list'] = Admission.objects.all()
+        ctx['program_list'] = Program.objects.all()
+        ctx['course_list'] = Course.objects.all()
 
-        return context
+        return ctx
 
     def get_queryset(self):
         return self.object.syllabus_set.all()
-
 
 
 
@@ -351,11 +294,7 @@ class NewsView(ListView):
         ctx = super(NewsView, self).get_context_data(**kwargs)
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
 
@@ -371,11 +310,7 @@ class NotificationView(ListView):
         ctx = super(NotificationView, self).get_context_data(**kwargs)
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
 
@@ -391,11 +326,7 @@ class CalendarView(ListView):
         ctx = super(CalendarView, self).get_context_data(**kwargs)
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
    
@@ -413,11 +344,7 @@ class StaffInfoView(ListView):
         ctx = super(StaffInfoView, self).get_context_data(**kwargs)
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
 
@@ -432,11 +359,7 @@ class FacultyInfoView(ListView):
         ctx = super(FacultyInfoView, self).get_context_data(**kwargs)
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx
 '''
@@ -469,11 +392,7 @@ class ContactView(ListView):
         ctx = super(ContactView, self).get_context_data(**kwargs)
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
-        ctx['photo_list'] = Gallary.objects.all()
-        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
-        ctx['syllabus_list'] = Syllabus.objects.all()
         ctx['admission_list'] = Admission.objects.all()
-        ctx['fee_structure_list'] = Fee_Structure.objects.all()
 
         return ctx   
 

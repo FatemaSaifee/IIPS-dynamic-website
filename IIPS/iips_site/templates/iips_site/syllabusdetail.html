@@ -1,168 +1,28 @@
 {% extends "iips_site/syllabus.html" %}
 
 
-
 {% load staticfiles %}
 
 {% block content1 %}
 
+	<div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header"> {{ course.Name }}
+                    <small>Syllabus</small>
+                </h1>
+    </div>
 
-<html lang="us">
-<head>
-	<meta charset="utf-8">
-	<title>jQuery UI Example Page</title>
-	<link href="{% static 'iips_site/js/jquery-ui.css' %}" rel="stylesheet">
-<style>
+	{% for course in course.syllabus_set.all %}
 	
-	.demoHeaders {
-		margin-top: 2em;
-	}
-	#dialog-link {
-		padding: .4em 1em .4em 20px;
-		text-decoration: none;
-		position: relative;
-	}
-	#dialog-link span.ui-icon {
-		margin: 0 5px 0 0;
-		position: absolute;
-		left: .2em;
-		top: 50%;
-		margin-top: -8px;
-	}
-	#icons {
-		margin: 0;
-		padding: 0;
-	}
-	#icons li {
-		margin: 2px;
-		position: relative;
-		padding: 4px 0;
-		cursor: pointer;
-		float: left;
-		list-style: none;
-	}
-	#icons span.ui-icon {
-		float: left;
-		margin: 0 4px;
-	}
-	.fakewindowcontain .ui-widget-overlay {
-		position: absolute;
-	}
-	select {
-		width: 200px;
-	}
-	</style>
-</head>
-<body>
+		<div class="row">
+            <div class="col-md-4 img-portfolio">
+                <a href="#">
+                    Semester {{ course.Semester }}
+                </a>
+                
+            </div>
+         
 
+    {% endfor %}
 
-
-<!-- Tabs -->
-	
-	
-
-
-
-<!-- Accordion -->
-<div id="accordion">
-
-	{% for item in course.syllabus_set.all %}
-	<h3> Semester {{ item.Semester }}</h3>
-	<div></div>
-	{% endfor %}
-
-	<h3>First</h3>
-	<div>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</div>
-	<h3>Second</h3>
-	<div>Phasellus mattis tincidunt nibh.</div>
-	<h3>Third</h3>
-	<div>Nam dui erat, auctor a, dignissim quis.</div>
-</div>
-
-
-
-
-<script src="{% static 'iips_site/js/external/jquery/jquery.js' %}"></script>
-<script src="{% static 'iips_site/js/jquery-ui.js' %}"></script>
-<script>
-$( "#accordion" ).accordion();
-
-
-$( "#tabs" ).tabs();
-
-
-
-$( "#dialog" ).dialog({
-	autoOpen: false,
-	width: 400,
-	buttons: [
-		{
-			text: "Ok",
-			click: function() {
-				$( this ).dialog( "close" );
-			}
-		},
-		{
-			text: "Cancel",
-			click: function() {
-				$( this ).dialog( "close" );
-			}
-		}
-	]
-});
-
-// Link to open the dialog
-$( "#dialog-link" ).click(function( event ) {
-	$( "#dialog" ).dialog( "open" );
-	event.preventDefault();
-});
-
-
-
-$( "#datepicker" ).datepicker({
-	inline: true
-});
-
-
-
-$( "#slider" ).slider({
-	range: true,
-	values: [ 17, 67 ]
-});
-
-
-
-$( "#progressbar" ).progressbar({
-	value: 20
-});
-
-
-
-$( "#spinner" ).spinner();
-
-
-
-$( "#menu" ).menu();
-
-
-
-$( "#tooltip" ).tooltip();
-
-
-
-$( "#selectmenu" ).selectmenu();
-
-
-// Hover states on the static widgets
-$( "#dialog-link, #icons li" ).hover(
-	function() {
-		$( this ).addClass( "ui-state-hover" );
-	},
-	function() {
-		$( this ).removeClass( "ui-state-hover" );
-	}
-);
-</script>
-</body>
-</html>
 {% endblock %}
