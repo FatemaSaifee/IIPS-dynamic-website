@@ -44,7 +44,7 @@ class CourseContentInLine(NestedTabularInline):
 class SubjectInline(NestedStackedInline):
     model = Subject
     extra = 1
-    fk_name = 'Course'
+    fk_name = 'Batch'
     inlines = [CourseContentInLine]
 
 class CourseInLine(admin.StackedInline):

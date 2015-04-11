@@ -10,14 +10,22 @@
                 <h1 class="page-header"> {{ course.Name }}
                     <small>Syllabus</small>
                 </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'iips_site:home' %}">Home</a>
+                    </li>
+                    <li><a href="{% url 'iips_site:syllabus' %}">Syllabus</a>
+                    </li>
+                    <li class="active">Subjects</li>
+                </ol>
+            </div>
     </div>
 
-	{% for item in course.syllabus_set.all %}
+	{% for item in syllabus.subject_set.all %}
 	
 		<div class="row">
             <div class="col-md-4 img-portfolio">
-                <a href="{% url 'iips_site:syllabus' %}">
-                    Semester {{ item.Semester }}
+                <a href="">
+                     {{ item.Subject_Name }}
                 </a>
                 
             </div>

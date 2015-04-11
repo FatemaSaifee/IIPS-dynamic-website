@@ -21,7 +21,7 @@ class IndexView(ListView):
 
     def get_context_data(self, **kwargs):
         ctx = super(IndexView, self).get_context_data(**kwargs)
-        ctx['phto_list'] = Gallary.objects.all()
+        ctx['photo_list'] = Gallary.objects.all()
         ctx['admission_list'] = Admission.objects.get(id = 1)
         ctx['program_list'] = Program.objects.all()
         
@@ -36,6 +36,9 @@ class HomeView(ListView):
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
         ctx['admission_list'] = Admission.objects.all()
+        ctx['news_list'] = News.objects.order_by('-pub_date')[:5]
+        ctx['notification_list']= Notification.objects.order_by('-pub_date')[:5]
+
         
         return ctx
 '''
@@ -235,7 +238,7 @@ class PlacementListView(ListView):
         return ctx
 
     
-
+# Syllabus..
 class SyllabusView(ListView):
     model = Course
     template_name = 'iips_site/syllabus.html'
@@ -243,7 +246,8 @@ class SyllabusView(ListView):
     def get_queryset(self):
         return Course.objects.all()
 
-class SyllabusDetailView(generic.DetailView):
+class SyllabusDetailView(SingleObjectMixin, ListView):
+    
     template_name = "iips_site/syllabusdetail.html"
 
     def get(self, request, *args, **kwargs):
@@ -252,20 +256,34 @@ class SyllabusDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         ctx = super(SyllabusDetailView, self).get_context_data(**kwargs)
-        ctx['course'] = self.object
+        ctx['admission'] = self.object
         ctx['admission_list'] = Admission.objects.all()
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
 
         return ctx
-
     def get_queryset(self):
         return self.object.syllabus_set.all()
 
 
+class SyllabusSubjectView(SingleObjectMixin, ListView):
+    
+    template_name = "iips_site/syllabussubject.html"
 
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object(queryset=Syllabus.objects.all())
+        return super(SyllabusSubjectView, self).get(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        ctx = super(SyllabusSubjectView, self).get_context_data(**kwargs)
+        ctx['admission'] = self.object
+        ctx['admission_list'] = Admission.objects.all()
+        ctx['program_list'] = Program.objects.all()
+        ctx['course_list'] = Course.objects.all()
 
+        return ctx
+    def get_queryset(self):
+        return self.object.subject_set.all()
 
 '''
 def some_view(request):

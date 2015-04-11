@@ -42,14 +42,14 @@ class Syllabus(models.Model):
 
 
 class Subject(models.Model):
-	Course=models.ForeignKey(Syllabus)
+	Subject_ID=models.CharField(max_length=10,unique=True)
+	Batch=models.ForeignKey(Syllabus) #Batch
 	Subject_Name=models.CharField(max_length=40)
-	Subject_ID=models.CharField(max_length=10,primary_key=True)
 	Aim_Of_course=models.TextField(max_length=400)
 	Objective=models.TextField(max_length=400)
 
 	def __unicode__(self):  # Python 3: def __str__(self)
-		return self.Course
+		return self.Subject_Name
 
 	
 
