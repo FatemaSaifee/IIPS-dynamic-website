@@ -17,12 +17,24 @@ def tabs(request):
 
 class IndexView(ListView):
     model = Program
-    template_name = 'iips_site/gallery.html'
+    template_name = 'iips_site/gallary.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(IndexView, self).get_context_data(**kwargs)
         ctx['photo_list'] = Gallary.objects.all()
-        ctx['admission_list'] = Admission.objects.get(id = 1)
+        ctx['admission_list'] = Admission.objects.all
+        ctx['program_list'] = Program.objects.all()
+        
+        return ctx
+
+class GallaryView(ListView):
+    model = Program
+    template_name = 'iips_site/gallary.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(GallaryView, self).get_context_data(**kwargs)
+        ctx['photo_list'] = Gallary.objects.all()
+        ctx['admission_list'] = Admission.objects.all
         ctx['program_list'] = Program.objects.all()
         
         return ctx

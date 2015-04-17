@@ -37,10 +37,11 @@ class Course(models.Model):
 class Syllabus(models.Model):
 	Semester=models.CharField(max_length=15)
 	Course=models.ForeignKey('Course')
+	Docfile = Docfile = models.FileField(upload_to='documents/syllabus/')
 	def __unicode__(self):  # Python 3: def __str__(self)
 		return str(self.Semester)
 
-
+'''
 class Subject(models.Model):
 	Subject_ID=models.CharField(max_length=10,unique=True)
 	Batch=models.ForeignKey(Syllabus) #Batch
@@ -61,7 +62,7 @@ class Course_Content(models.Model):
 	def __unicode__(self):  # Python 3: def __str__(self)
 		return self.Subject
 
-
+'''
 #Table structure for table `User_Temp`
 
 class User_Temp(models.Model):

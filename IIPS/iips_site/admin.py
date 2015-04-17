@@ -34,7 +34,7 @@ class AdmissionAdmin(admin.ModelAdmin):
 		
 	]'''
 	inlines = [AdmissionDetailInLine]
-
+'''
 #class CourseContentInLine(admin.StackedInline):
 class CourseContentInLine(NestedTabularInline):
 	model = Course_Content
@@ -46,7 +46,7 @@ class SubjectInline(NestedStackedInline):
     extra = 1
     fk_name = 'Batch'
     inlines = [CourseContentInLine]
-
+'''
 class CourseInLine(admin.StackedInline):
 	model = Course
 	extra = 1
@@ -68,6 +68,8 @@ class CourseAdmin(admin.ModelAdmin):
 		(None,		{'fields': ['course_name','program_name','number_of_semester']}),
 		('About course',{'fields': ['description','objective','learning_outcomes'], 'classes':['collapse']}),
 	]
+
+'''
 class SyllabusAdmin(NestedModelAdmin):
 	list_display = ('Semester','Course')
 	list_filter = ['Course','Semester']
@@ -75,6 +77,8 @@ class SyllabusAdmin(NestedModelAdmin):
 
 	model = Syllabus
 	inlines = [SubjectInline]
+'''
+
 
 class PlacementInLine(admin.TabularInline):
     model = Placement
@@ -91,7 +95,7 @@ class ContactAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Program, ProgramAdmin)
-admin.site.register(Syllabus,SyllabusAdmin)
+admin.site.register(Syllabus)
 admin.site.register(Admission,AdmissionAdmin)
 admin.site.register(Fee_Structure,Fee_StructureAdmin)
 admin.site.register(User_Temp)
