@@ -12,17 +12,20 @@
                 </h1>
     </div>
 
-	{% for item in course.syllabus_set.all %}
+	
 	
 		<div class="row">
+        {% for item in course.syllabus_set.all %}
             <div class="col-md-4 img-portfolio">
+                <span class= 'glyphicon glyphicon-download-alt'></span>
                 <a href="../../../media/{{item.Docfile}}">
                     Semester {{ item.Semester }}
                 </a>
                 
             </div>
+        {% endfor %}
+
         </div> 
 
-    {% endfor %}
-
+    
 {% endblock %}

@@ -16,9 +16,9 @@
                 	
                 	{% for course in program.course_set.all %}
                 	{% if forloop.counter == 1 %}
-					<li class="active"><a href="#tabs-{{ course.id }}" data-toggle="tab"><i class="fa fa-tree"></i>{{ course.name }}</a></li>
+					<li class="active"><a href="#tabs-{{ course.id }}" data-toggle="tab"><i  class="glyphicon glyphicon-education glyphicon-align-left"></i> {{ course.name }}</a></li>
 					{% else %}
-					<li class=""><a href="#tabs-{{ course.id }}"data-toggle="tab"><i class="fa fa-tree"></i>{{ course.name }}</a></li>
+					<li class=""><a href="#tabs-{{ course.id }}"data-toggle="tab"><i class="glyphicon glyphicon-education glyphicon-align-left"></i> {{ course.name }}</a></li>
 					{% endif %}
 					{% endfor %}
 					

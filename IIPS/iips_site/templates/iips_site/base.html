@@ -54,7 +54,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="{% url 'iips_site:aboutiips' %}">About IIPS</a>
+                                <a href="{% url 'iips_site:aboutiips' %}">About College</a>
                             </li>
                             <li>
                                 <a href="{% url 'iips_site:aboutuniversitydetail' 1 %}">About University</a>
@@ -63,7 +63,7 @@
                                 <a href="{% url 'iips_site:contact' %}">Contact</a>
                             </li>
                             <li>
-                                <a href="{% url 'iips_site:gallary' %}">Gallary</a>
+                                <a href="{% url 'iips_site:gallary' %}">Gallery</a>
                             </li>
                                                         
                         </ul>
@@ -81,13 +81,13 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Academics<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="/iips/calendar">Calendar</a>
+                                <a href="/calendar">Calendar</a>
                             </li>
                             <li>
                                 <a href="{% url 'iips_site:notification' %}">Notifications</a>
                             </li>
                             <li>
-                                <a href="{% url 'iips_site:syllabus' %}">Syllabus</a>
+                                <a href="{% url 'iips_site:syllabusdetail' 2 %}">Syllabus</a>
                             </li>
                             <li>
                                 <a href="{% url 'iips_site:news' %}">News</a>
@@ -136,9 +136,11 @@
             <div class="row">
                 <div class="col-md-2 col-xs-6">
                     <h4> <u>About us</u> </h4><br>
-                    <a href="{% url 'iips_site:aboutiips' %}"> About IIPS </a><br>
+                    <a href="{% url 'iips_site:aboutiips' %}"> About College </a><br>
                     <a href="{% url 'iips_site:aboutuniversitydetail' 1 %}"> About University </a><br>
                     <a href="{% url 'iips_site:contact' %}"> Contact </a><br> 
+                    <a href="{% url 'iips_site:gallary' %}">Gallery</a>
+
                 </div>
                 
             
@@ -155,7 +157,7 @@
                     <h4><u>Academics</u></h4><br>
                     <a href=#>Calender</a><br>
                     <a href="{% url 'iips_site:notification' %}">Notifications</a><br>
-                    <a href="{% url 'iips_site:syllabus' %}">Syllabus</a><br>
+                    <a href="{%url 'iips_site:syllabusdetail' 2 %}">Syllabus</a><br>
                     <a href="{% url 'iips_site:news' %}">News</a><br>
                 </div>
                 <div class="col-md-2 col-xs-6">
@@ -173,7 +175,7 @@
                     <a href="{% url 'iips_site:placementcompany' %}"> Companies</a><br> 
                 </div>
                 <div class="col-md-2 col-xs-6">
-                    <h4> <u>Miscelaneous</u> </h4><br>
+                    <h4> <u>Miscellaneous</u> </h4><br>
                     <a href="sidebar.html">Staff Information</a><br>
                     <a href="faq.html">Faculty Information</a>
                 </div>
@@ -194,7 +196,7 @@
         
             <div class="row">
                 <div class="col-lg-9">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Website 2015</p>
                 </div>
             
                 <div class="col-lg-3" align="right ">

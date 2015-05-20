@@ -8,7 +8,7 @@ from django.utils import timezone
 from django.views.generic.list import ListView
 from django.views.generic.detail import SingleObjectMixin
 
-from reportlab.pdfgen import canvas
+#from reportlab.pdfgen import canvas
 
 # Create your views here.
 def tabs(request):
@@ -130,6 +130,7 @@ class AboutIIPSView(ListView):
         ctx['program_list'] = Program.objects.all()
         ctx['course_list'] = Course.objects.all()
         ctx['admission_list'] = Admission.objects.all()
+        ctx['director_list'] = Director.objects.all()
 
         return ctx
 

@@ -11,7 +11,22 @@
                 <h2>{{ item.Heading }}</h2>
                 <p>{{ item.Description|linebreaks }}</p>
                 {% endfor %}
-            
-        
 
+                 <table class="table table-striped">
+				    <thead>
+				      <tr>
+				        <th>Director</th>
+				        <th>Working Period</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				    {% for item in director_list %}
+				      <tr>
+				        <td>{{item.Name}}</td>
+				        <td>{{item.Working_Period}}</td>
+				      </tr>
+				    {% endfor %}
+				    </tbody>
+				  </table>
+   
 {% endblock %}

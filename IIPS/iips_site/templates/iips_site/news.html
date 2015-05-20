@@ -1,12 +1,22 @@
 {% extends 'iips_site/base.html' %}
 {% load staticfiles %}
 {% block content %}
-<h1>News</h1>
-<hr>
+<div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">News
+                    
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'iips_site:home' %}">Home</a>
+                    </li>
+                    <li class="active">News</li>
+                </ol>
+            </div>
+        </div><hr>
 <ul>
 	{% for news in news_list %}
 	<li>
-		<a href="../../media/{{news.Docfile}}">{{ news.Title }} </a> {{ news.pub_date }}
+		<a href="../../media/{{news.Docfile}}" target="_blank">{{ news.Title }} </a> {{ news.pub_date }}
 	</li>
 	{% endfor %}
 </ul>

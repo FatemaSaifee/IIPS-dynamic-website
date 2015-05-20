@@ -232,20 +232,21 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    Welcome to IIPS
+                    Welcome to College
                 </h1>
             </div>
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-check"></i> News </h4>
+                        <h4><i class="glyphicon glyphicon-inbox"></i> News </h4>
                     </div>
                     <div class="panel-body">
                         
                         {% if news_list %}
                         <ul>
                             {% for news in news_list %}
-                            <a href="../../media/{{news.Docfile}}">{{news.Title}} </a></br>
+                            <span class = 'glyphicon glyphicon-circle-arrow-right'></span>
+                            <a href="../../media/{{news.Docfile}}" target="_blank">{{news.Title}} </a></br>
                             {% endfor %}
                         </ul>
                         {% else %}
@@ -258,14 +259,16 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-gift"></i> Notification </h4>
+                        <h4><i class="glyphicon glyphicon-bullhorn"></i>  Notification </h4>
                     </div>
                     <div class="panel-body">
                         
                         {% if notification_list %}
                         <ul>
+
                             {% for notification in notification_list %}
-                            <a href="{{notification.Link}}">{{ notification.Title  }} </a></br>
+                            <span class='glyphicon glyphicon-pushpin' ></span>
+                            <a href="{{notification.Link}}" target="_blank">{{ notification.Title }} </a></br>
                             {% endfor %}
                         </ul>
                         {% else %}

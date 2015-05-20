@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'iips_site',
-    'data_entry',
+    #'data_entry',
     'happenings',
     
 )

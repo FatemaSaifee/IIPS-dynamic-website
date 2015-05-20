@@ -1,6 +1,6 @@
 from django.contrib import admin
 from iips_site.models import * 
-from nested_inline.admin import NestedStackedInline, NestedModelAdmin, NestedTabularInline 
+#from nested_inline.admin import NestedStackedInline, NestedModelAdmin, NestedTabularInline 
 #from example.models import *
 
 from django.db.models.loading import cache as model_cache
@@ -69,15 +69,14 @@ class CourseAdmin(admin.ModelAdmin):
 		('About course',{'fields': ['description','objective','learning_outcomes'], 'classes':['collapse']}),
 	]
 
-'''
-class SyllabusAdmin(NestedModelAdmin):
+
+class SyllabusAdmin(admin.ModelAdmin):
 	list_display = ('Semester','Course')
 	list_filter = ['Course','Semester']
 	search_fields = ['Semester']
 
-	model = Syllabus
-	inlines = [SubjectInline]
-'''
+	
+
 
 
 class PlacementInLine(admin.TabularInline):
@@ -92,10 +91,11 @@ class Anti_RaggingAdmin(admin.ModelAdmin):
 
 class ContactAdmin(admin.ModelAdmin):
 	list_display = ('Heading','Description')
-
+class DirectorAdmin(admin.ModelAdmin):
+	list_display = ('Name','Working_Period')
 
 admin.site.register(Program, ProgramAdmin)
-admin.site.register(Syllabus)
+admin.site.register(Syllabus,SyllabusAdmin)
 admin.site.register(Admission,AdmissionAdmin)
 admin.site.register(Fee_Structure,Fee_StructureAdmin)
 admin.site.register(User_Temp)
@@ -108,7 +108,7 @@ admin.site.register(Placement_Detail,Placement_DetailAdmin)
 admin.site.register(Placement_Cell)
 admin.site.register(Placement_Company)
 admin.site.register(About_IIPS)
-admin.site.register(Director)
+admin.site.register(Director,DirectorAdmin)
 admin.site.register(Director_Message)
 admin.site.register(Anti_Ragging,Anti_RaggingAdmin)
 admin.site.register(Vision_Mission_Goal)
