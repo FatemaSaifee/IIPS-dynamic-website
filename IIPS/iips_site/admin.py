@@ -4,8 +4,8 @@ from iips_site.models import *
 #from example.models import *
 
 from django.db.models.loading import cache as model_cache
-if not model_cache.loaded:
-    model_cache.get_models()
+#if not model_cache.loaded:
+#   model_cache.get_models()
 
 # Register your models here 
 class NewsAdmin(admin.ModelAdmin):

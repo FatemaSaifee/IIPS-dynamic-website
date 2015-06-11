@@ -92,7 +92,7 @@ class User_Temp(models.Model):
 
 #Table structure for table `Staff_Info`
 class StaffInfo(models.Model):
-	User_ID=models.SmallIntegerField(max_length=6)
+	User_ID=models.SmallIntegerField()
 	Name=models.CharField(max_length=50)
 	Post=models.CharField(max_length=40)
 	Responsibility=models.CharField(max_length=40)
@@ -110,7 +110,7 @@ class StaffInfo(models.Model):
 #Table structure for table `Faculty_Info`
 
 class Faculty_Info(models.Model):
-	User_ID=models.SmallIntegerField(max_length=6)#This is the user_id from User_master table.
+	User_ID=models.SmallIntegerField()#This is the user_id from User_master table.
 	Name=models.CharField(max_length=50)
 	Discipline =models.CharField(max_length=200)
 	Designation=models.CharField(max_length=200)
