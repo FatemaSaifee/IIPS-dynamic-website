@@ -1,0 +1,17 @@
+{% extends 'iips_site/base.html' %}
+{% block content %}
+{{ block.super }}
+<br>
+<br>
+{% if forms.error %}
+<p class="error">Sorry, thats not a valid username or passwword</p>
+{% endif %}
+
+<form action="/student/auth" method="post" >{% csrf_token %}
+<label for="username"></label>
+<input type="text" name="username" value="" id="username">
+<label for="password">Password</label>
+<input type="password" name="password" value="" id="password">
+<input type="submit" value="login" />
+</form>
+{% endblock %}

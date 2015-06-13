@@ -46,23 +46,3 @@
  {% endif %}
 {% endblock %}
 
-class Faculty_Info(models.Model):
-	User_ID=models.SmallIntegerField(max_length=6)#This is the user_id from User_master table.
-	Name=models.CharField(max_length=50)
-	Discipline =models.CharField(max_length=200)
-	Designation=models.CharField(max_length=200)
-	Responsibility=models.CharField(max_length=200)
-	DOJ=models.DateField() 		#Date of Joining
-	Qualification=models.CharField(max_length=200)
-	Area_Of_Interest=models.CharField(max_length=200)
-	Previous_Job=models.CharField(max_length=200)
-	Web_Link=models.CharField(max_length=40,default=None)
-	Blog_Link=models.CharField(max_length=40,default=None)
-	Alternate_Email=models.CharField(max_length=40,default=None)
-	Linkedin_Link=models.CharField(max_length=40,default=None)
-	Facebook_Link=models.CharField(max_length=40,default=None)
-	Googleplus_Link=models.CharField(max_length=40,default=None)
-	Twitter_Link=models.CharField(max_length=40,default=None)
-	Picture=models.CharField(max_length=100,default=None)
-	Resume =models.CharField(max_length=40,default=None)#Link to resume
-	def __unicode__(self):

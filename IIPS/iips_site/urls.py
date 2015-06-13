@@ -34,7 +34,15 @@ urlpatterns = patterns('',
      url(r'^placement/$', views.PlacementView.as_view(), name='placement'),
      url(r'^placement/list$', views.PlacementListView.as_view(), name='placementlist'),
      url(r'^placement/complanies$', views.PlacementCompanyView.as_view(), name='placementcompany'),
-     url(r'^tab/$',views.tabs),
+     
+     #url(r'^student$', views.studentView, name='student'),
+     #url(r'^student/login$', views.studentLoginView, name='studentlogin'),
+     #url(r'^student/logout$', views.studentLogoutView, name='studentlogout'),
+     #url(r'^student/auth$', views.studentAuthView, name='studentauth'),
+     #url(r'^student/invalid$', views.studentInvalidView, name='studentinvalid'),
+     #url(r'^staff$', views.staffView, name='staff'),
+     #url(r'^faculty$', views.facultyView, name='faculty'),
+
 
 
 )

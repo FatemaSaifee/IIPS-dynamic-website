@@ -2,9 +2,9 @@
 {% block content1 %}
 	{% for item in vision_mission_goal_list %}
 	<div>
-		<h4>{{ item.Heading }}</h4>
+		<h4>{{ item.Heading|safe }}</h4>
 		<hr>
-		<p>{{ item.Description }}</p>
+		<p>{{ item.Description|safe }}</p>
 	</div>
 	{% endfor %}
 {% endblock %}

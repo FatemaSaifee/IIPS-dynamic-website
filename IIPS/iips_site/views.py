@@ -8,6 +8,9 @@ from django.utils import timezone
 from django.views.generic.list import ListView
 from django.views.generic.detail import SingleObjectMixin
 
+from django.core.context_processors import csrf
+from django.shortcuts import render_to_response
+
 #from reportlab.pdfgen import canvas
 
 # Create your views here.
@@ -393,6 +396,52 @@ class FacultyInfoView(ListView):
         ctx['admission_list'] = Admission.objects.all()
 
         return ctx
+
+def staffView(request):
+    return render(request, 'iips_site/staff.html')
+
+def facultyView(request):
+    return render(request, 'iips_site/faculty.html')
+
+def studentView(request):
+    return render(request, 'iips_site/student.html')
+
+class ContactView(ListView):
+    model = Contact
+    template_name = 'iips_site/contact.html' 
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ContactView, self).get_context_data(**kwargs)
+        ctx['program_list'] = Program.objects.all()
+        ctx['course_list'] = Course.objects.all()
+        ctx['admission_list'] = Admission.objects.all()
+
+        return ctx   
+
+
+def studentLoginView(request):
+    c= {}
+    c.update(csrf(request))
+    return render_to_response('iips_site/student_login.html', c)
+
+def studentAuthView(request):
+    username = request.POST.get('username','')
+    password = request.POST.get('password','')
+    user = auth.authenticate(username=username,password=password)
+
+    if user is not None:
+        auth.login(request, user)
+        return HttpResponseRedirect('/student')
+    else:
+        return HttpResponseRedirect('/student/invalid')
+
+def studentInvalidView(request):
+    return render_to_response('iips_site/student_invalid.html')
+
+def studentLogoutView(request):
+    auth.logout(request)
+    return render_to_response('iips_site/student_logout.html')
+
 '''
 class ResearchCellView(ListView):
     context_object_name= 'item_list'
@@ -415,16 +464,3 @@ class PubliationView(ListView):
     def get_queryset(self): 
         return Publiation.objects.all()
 '''
-class ContactView(ListView):
-    model = Contact
-    template_name = 'iips_site/contact.html' 
-
-    def get_context_data(self, **kwargs):
-        ctx = super(ContactView, self).get_context_data(**kwargs)
-        ctx['program_list'] = Program.objects.all()
-        ctx['course_list'] = Course.objects.all()
-        ctx['admission_list'] = Admission.objects.all()
-
-        return ctx   
-
-

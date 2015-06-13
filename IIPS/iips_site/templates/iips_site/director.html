@@ -3,7 +3,7 @@
 {% for item in director_message_list %}
 <div class="well">
                 <h2>{{ item.Director }}</h2>
-                <p>{{ item.Message|linebreaks }}</p>
+                <p>{{ item.Message|linebreaks|safe }}</p>
 </div>
 {% endfor %}
 {% endblock %}

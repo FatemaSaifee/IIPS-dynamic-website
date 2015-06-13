@@ -10,7 +10,7 @@
 {% for item in admission.admissionblock_set.all %}
 	<h3> {{ item.Heading }}</h3>
 
-    	<p>{{ item.Description|linebreaks }}</p>
+    	<p>{{ item.Description|linebreaks|safe }}</p>
 
 {% endfor %}
 	
