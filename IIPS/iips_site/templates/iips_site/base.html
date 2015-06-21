@@ -34,6 +34,12 @@
 </head>
 
 <body>
+
+
+
+
+
+
 <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -54,6 +60,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
+                                <a href="{% url 'iips_site:gallary' %}">Gallery</a>
+                            </li>
+                            <li>
                                 <a href="{% url 'iips_site:aboutiips' %}">About College</a>
                             </li>
                             <li>
@@ -62,9 +71,7 @@
                             <li>
                                 <a href="{% url 'iips_site:contact' %}">Contact</a>
                             </li>
-                            <li>
-                                <a href="{% url 'iips_site:gallary' %}">Gallery</a>
-                            </li>
+                            
                                                         
                         </ul>
                     </li>
@@ -116,6 +123,16 @@
                             <li>
                                 <a href="faculty">Faculty</a>
                             </li>
+
+
+
+<li class="dropdown-submenu">
+    <a tabindex="-1" href="#">More options</a>
+    <ul class="dropdown-menu">
+       <li><a href="#">link 1</a></li>
+    </ul>
+
+</li>
                             <li>
                                 <a href="student">Student</a>
                             </li>
