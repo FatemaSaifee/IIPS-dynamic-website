@@ -1,27 +1,32 @@
+from __future__ import unicode_literals
+
+import datetime
+
 from django.db import models
+from django.core.urlresolvers import reverse
+from django.core.exceptions import ValidationError
+from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
+from django.utils.encoding import python_2_unicode_compatible
+
+#from .managers import EventManager
+
+auth_user_model = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 
 # Create your models here.
 
-
 class Event(models.Model):
-	title = models.CharField(_("title"), max_length=255)
-	description = models.CharField(max_length=1500)
-	more_info = models.CharField(max_length=30)
-	start_date = models.DateTimeField(verbose_name=_("start date"))
+    start_date = models.DateTimeField(verbose_name=_("start date"))
     end_date = models.DateTimeField(_("end date"))
     all_day = models.BooleanField(_("all day"), default=False)
-    repeat = models.CharField(
-        _("repeat"), max_length=15, choices=REPEAT_CHOICES, default='NEVER'
-    )
-    end_repeat = models.DateField(_("end repeat"), null=True, blank=True)
+    title = models.CharField(_("title"), max_length=255)
+    more_info = models.CharField(max_length=30)
     description = models.TextField(_("description"))
     location = models.ManyToManyField(
         'Location', verbose_name=_('locations'), blank=True
     )
-    #objects = EventManager()
-    created_by = models.ForeignKey(
-        auth_user_model, verbose_name=_("created by"), related_name='events'
-    )
+    
     categories = models.ManyToManyField(
         'Category', verbose_name=_('categories'), blank=True
     )
@@ -140,7 +145,7 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
-class Gallary(models.Model):
+class Gallery(models.Model):
 	photo = models.ImageField(upload_to='documents/gallary/')
 	event = models.ForeignKey('Event')
 
@@ -158,5 +163,86 @@ class Cancellation(models.Model):
     def __str__(self):
         return self.event.title + ' - ' + str(self.date)
 
+class Organising_Committee_Member(models.Model):
+    event = models.ForeignKey('Event')
+    name = models.CharField(max_length=50)
+    roll_number = models.CharField(max_length=12)
+
+    def __unicode__(self):  # Python 3: def __str__(self)
+        return self.name
+
+class Sub_Event(models.Model):
+    event =models.ForeignKey('Event')
+    name = models.CharField(max_length=20)
+    winner_score = models.PositiveSmallIntegerField(null=True)
+    first_runnerup_score = models.PositiveSmallIntegerField(null=True)
+    second_runnerup_score = models.PositiveSmallIntegerField(null=True)
+    start_date = models.DateTimeField(verbose_name=_("start date"))
+    end_date = models.DateTimeField(_("end date"))
+    all_day = models.BooleanField(_("all day"), default=False)
+    tags = models.ManyToManyField('Tag', verbose_name=_('tags'), blank=True)
+    location = models.ManyToManyField(
+        'Location', verbose_name=_('locations'), blank=True
+    )
+    categories = models.ManyToManyField(
+        'Category', verbose_name=_('categories'), blank=True
+    )
+
+    def __unicode__(self):  # Python 3: def __str__(self)
+        return self.name
+
 class Team(models.Model):
-	event = models.ForeignKey(Event
+    COLORS = [
+        ('eeeeee', _('gray')),
+        ('ff0000', _('red')),
+        ('0000ff', _('blue')),
+        ('00ff00', _('green')),
+        ('000000', _('black')),
+        ('ffffff', _('white')),
+    ]
+
+    try:
+        COLORS += USER_COLORS
+    except Exception:
+        pass
+
+	event = models.ForeignKey('Event')
+    name = models.CharField(max_length=50)
+    leader_1 = models.CharField(max_length=50, null=True)
+    leader_2 = models.CharField(max_length=50, null=True)
+    color = models.CharField(
+        max_length=10, choices=COLORS, default='eeeeee', null=True
+    )
+    slogan = models.CharField(max_length=150, null=True)
+
+    def __unicode__(self):  # Python 3: def __str__(self)
+        return self.name
+
+class Team_Member(models.Model):
+    team = models.ForeignKey('Team')
+    name = models.CharField(max_length=50)
+    roll_number = models.CharField(max_length=12)
+    college = models.CharField(max_length=50, default='IIPS')
+
+    def __unicode__(self):  # Python 3: def __str__(self)
+        return self.name
+
+class Score(models.Model):
+    team = models.ForeignKey('Team')
+    sub_event = models.ForeignKey('Sub_Event')
+    score = models.PositiveSmallIntegerField()
+
+    def __unicode__(self):  # Python 3: def __str__(self)
+        return self.score
+
+class Winner(models.Model):
+    RANKS = [
+        (1, _('First')),
+        (2, _('First Runner-up')),
+        (3, _('Second Runner-up')),
+    ]
+    team = models.ForeignKey('Team')
+    rank = models.PositiveSmallIntegerField(choices=RANKS)
+
+    def __unicode__(self):  # Python 3: def __str__(self)
+        return self.team

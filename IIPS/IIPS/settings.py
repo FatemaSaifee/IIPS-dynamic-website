@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'iips_site',
     #'data_entry',
     'happenings',
+    #'events',
     
 )
 
