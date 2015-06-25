@@ -199,9 +199,6 @@ class Notification(models.Model):
 		now = timezone.now()
 		return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
-class Calendar(models.Model):
-	pass
-
 class Placement(models.Model):
 	Company = models.CharField(max_length=30)
 	Course_Or_Specialization = models.CharField(max_length=20)
@@ -212,8 +209,6 @@ class Placement(models.Model):
 
 
 class Placement_Detail(models.Model):
-	
-	
 	DISCIPLINE_CHOICES = (
         ('TECHNICAL', 'Technical'),
         ('MANAGEMENT', 'Management'),
@@ -224,15 +219,16 @@ class Placement_Detail(models.Model):
 	def __unicode__(self):  # Python 3: def __str__(self):
 		return self.Discipline
 
+		
 class Placement_Company(models.Model):
-	
 	Logo = models.ImageField(upload_to='documents/placement_company_logo/')
-
+	#Picture=models.CharField(max_length=100,default=None)
 	def __unicode__(self):  # Python 3: def __str__(self):
 		return self.Logo.name 
 
 class Placement_Cell(models.Model):
 	Name = models.CharField(max_length=50)
+	#Picture=models.CharField(max_length=100,default=None)
 	Photo = models.ImageField(upload_to='documents/placementcell/')
 	Designation = models.CharField(max_length=30)
 	Contact_No = models.CharField(max_length=18)
