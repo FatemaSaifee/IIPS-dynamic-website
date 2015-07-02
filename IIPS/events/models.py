@@ -17,10 +17,10 @@ auth_user_model = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 # Create your models here.
 
 class Event(models.Model):
+    title = models.CharField(_("title"), max_length=255, unique=True)
     start_date = models.DateTimeField(verbose_name=_("start date"))
     end_date = models.DateTimeField(_("end date"))
-    all_day = models.BooleanField(_("all day"), default=False)
-    title = models.CharField(_("title"), max_length=255)
+    photo = models.ImageField(upload_to='documents/event/')
     more_info = models.CharField(max_length=30)
     description = models.TextField(_("description"))
     location = models.ManyToManyField(
@@ -86,8 +86,7 @@ class Event(models.Model):
 
     def clean(self):
         self.clean_start_end_dates()
-        self.clean_repeat()
-        self.clean_colors()
+        
 
     def clean_start_end_dates(self):
         if self.start_date and self.end_date:
@@ -164,7 +163,7 @@ class Cancellation(models.Model):
         return self.event.title + ' - ' + str(self.date)
 
 class Organising_Committee_Member(models.Model):
-    event = models.ForeignKey('Event')
+    event = models.ForeignKey('Event', unique=True)
     name = models.CharField(max_length=50)
     roll_number = models.CharField(max_length=12)
 
@@ -173,20 +172,18 @@ class Organising_Committee_Member(models.Model):
 
 class Sub_Event(models.Model):
     event =models.ForeignKey('Event')
-    name = models.CharField(max_length=20)
-    winner_score = models.PositiveSmallIntegerField(null=True)
-    first_runnerup_score = models.PositiveSmallIntegerField(null=True)
-    second_runnerup_score = models.PositiveSmallIntegerField(null=True)
+    name = models.CharField(max_length=20, unique=True)
+    description = models.TextField(_("description"))
     start_date = models.DateTimeField(verbose_name=_("start date"))
     end_date = models.DateTimeField(_("end date"))
-    all_day = models.BooleanField(_("all day"), default=False)
     tags = models.ManyToManyField('Tag', verbose_name=_('tags'), blank=True)
+    photo = models.ImageField(upload_to='documents/event/',null=True, blank=True)
     location = models.ManyToManyField(
         'Location', verbose_name=_('locations'), blank=True
     )
-    categories = models.ManyToManyField(
-        'Category', verbose_name=_('categories'), blank=True
-    )
+    winner_score = models.PositiveSmallIntegerField(null=True, blank=True)
+    first_runnerup_score = models.PositiveSmallIntegerField(null=True, blank=True)
+    second_runnerup_score = models.PositiveSmallIntegerField(null=True, blank=True)
 
     def __unicode__(self):  # Python 3: def __str__(self)
         return self.name
@@ -207,7 +204,7 @@ class Team(models.Model):
         pass
 
 	event = models.ForeignKey('Event')
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     leader_1 = models.CharField(max_length=50, null=True)
     leader_2 = models.CharField(max_length=50, null=True)
     color = models.CharField(
@@ -220,7 +217,7 @@ class Team(models.Model):
 
 class Team_Member(models.Model):
     team = models.ForeignKey('Team')
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     roll_number = models.CharField(max_length=12)
     college = models.CharField(max_length=50, default='IIPS')
 
