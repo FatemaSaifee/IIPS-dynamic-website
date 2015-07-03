@@ -1,165 +1,68 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-
+{% load staticfiles %}<!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="INTERNATIONAL INSTITUTE OF PROFESSIONAL STUDIES">
-    <meta name="author" content="">
-    
-    <title>{% block title %} COLLEGE|DYNAMIC {% endblock %}</title>
     
 
-    <!-- Bootstrap Core CSS -->
+    
+
     <link href="{% static 'iips_site/mb/css/bootstrap.min.css' %}" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="{% static 'iips_site/mb/css/modern-business.css' %}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="{% static 'iips_site/mb/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
- <link href="{% static 'iips_site/mb/css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{% static 'iips_site/mb/css/modern-business.css' %}" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="{% static 'iips_site/mb/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 
-    <link href=" {% static 'happenings/css/calendar.css' %}" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!-- Custom CSS -->
+    <link href="{% static 'events/css/agency.css' %}" rel="stylesheet">
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip({
+            placement : 'top'
+        });
+    });
+    </script>
+    <style type="text/css">
+        .bs-example{
+            margin: 100px 50px;
+        }
+    </style>
 
 </head>
 
-<body>
 
+<body id="page-top" class="index">
 
-
-
-
-
-<!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+            <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{% url 'iips_site:home' %}">HOME</a>
+                <a class="navbar-brand page-scroll" href="#page-top">Events</a>
             </div>
+
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="{% url 'iips_site:gallary' %}">Gallery</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'iips_site:aboutiips' %}">About College</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'iips_site:aboutuniversitydetail' 1 %}">About University</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'iips_site:contact' %}">Contact</a>
-                            </li>
-                            
-                                                        
-                        </ul>
+                
+                    <li class="hidden">
+                        <a href="#page-top"></a>
                     </li>
-                    
+                    {% for item in category_list %}
                     <li>
-                        <a href="{% url 'iips_site:programdetail' 1 %}">Programs</a>
+                        <a class="page-scroll" href="#{{ item.title }}">{{ item.title }}</a>
                     </li>
-                    
-                    <li>
-                        <a href="{% url 'iips_site:admissiondetail' 1 %}">Admissions</a>
-                    </li>
-                    
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Academics<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="/calendar">Calendar</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'iips_site:notification' %}">Notifications</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'iips_site:syllabusdetail' 2 %}">Syllabus</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'iips_site:news' %}">News</a>
-                            </li>
-                            
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="{% url 'iips_site:placement' %}">Placements</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'iips_site:staffinfo' %}">Staff Information</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'iips_site:facultyinfo' %}">Faculty Information</a>
-                            </li>
-                                                        
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="faculty">Faculty</a>
-                            </li>
-
-
-
-<li class="dropdown-submenu">
-    <a tabindex="-1" href="#">More options</a>
-    <ul class="dropdown-menu">
-       <li><a href="#">link 1</a></li>
-    </ul>
-
-</li>
-                            <li>
-                                <a href="student">Student</a>
-                            </li>
-                            <li>
-                                <a href="staff">Staff</a>
-                            </li>
-                            <li>
-                                <a href="admin">Admin</a>
-                            </li>
-                                                        
-                        </ul>
-                    </li>
-                   
-                    
-                    
+                    {% endfor %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
+        <!-- /.container-fluid -->
     </nav>
 
     <div id="content">
@@ -282,9 +185,9 @@
     <!-- Contact Form JavaScript -->
     <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <script src="{% static 'iips_site/mb/js/jqBootstrapValidation.js' %}"></script>
-    <script src="{% static 'iips_site/mb/js/contact_me.js' %}"></script>
 
-    <script src="{% static 'happenings/js/calendar.js' %}"></script>
+    <script src="{% static 'events/js/jquery.min.js' %}"></script>
+
 
 </body>
 </html>

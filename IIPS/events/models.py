@@ -9,7 +9,7 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
-
+from django.forms import ModelForm
 #from .managers import EventManager
 
 auth_user_model = getattr(settings, "AUTH_USER_MODEL", "auth.User")
@@ -243,3 +243,36 @@ class Winner(models.Model):
 
     def __unicode__(self):  # Python 3: def __str__(self)
         return self.team
+
+
+class Team_Form(ModelForm):
+    class Meta:
+        model = Team
+        exclude = ['event']
+        error_messages = {
+            NON_FIELD_ERRORS: {
+                'unique_together': "%(model_name)s's %(field_labels)s are not unique.",
+            }
+    def clean_name(self):
+        # custom validation for the name field
+        ...
+
+from django.forms.models import inlineformset_factory
+>>> BookFormSet = inlineformset_factory(Author, Book, fields=('title',))
+>>> author = Author.objects.get(name='Mike Royko')
+>>> formset = BookFormSet(instance=author)
+
+def register(request, author_id):
+    Team = Team.objects.get(pk=author_id)
+    BookInlineFormSet = inlineformset_factory(Team, Team_Member, fields=('title',))
+    if request.method == "POST":
+        formset = BookInlineFormSet(request.POST, request.FILES, instance=author)
+        if formset.is_valid():
+            formset.save()
+            # Do something. Should generally end with a redirect. For example:
+            return HttpResponseRedirect(author.get_absolute_url())
+    else:
+        formset = BookInlineFormSet(instance=author)
+    return render_to_response("manage_books.html", {
+        "formset": formset,
+    })
