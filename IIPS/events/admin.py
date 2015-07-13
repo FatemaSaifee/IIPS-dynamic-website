@@ -4,7 +4,7 @@ from django.contrib import admin
 from events.models import *
 # Register your models here.
 
-class GalleryInline(admin.TabularInline):
+class GalleryInline(admin.StackedInline):
     model = Gallery
     extra = 0
 
@@ -12,11 +12,16 @@ class Sub_EventInline(admin.TabularInline):
     model = Sub_Event
     extra = 0
 
+class TeamInline(admin.TabularInline):
+    model = Team
+    extra = 0
+
+
 class EventAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
-            'fields': ('start_date', 'end_date', 'photo', 'more_info',
-                       'title', 'description',
+            'fields': ('title','start_date', 'end_date', 'photo', 'team_size', 'more_info',
+                        'description',
                        )
         }),
         ('Location', {
@@ -38,7 +43,7 @@ class EventAdmin(admin.ModelAdmin):
     list_filter = ['start_date']
     search_fields = ['title']
     date_hierarchy = 'start_date'
-    inlines = [GalleryInline , Sub_EventInline]
+    inlines = [GalleryInline , Sub_EventInline, TeamInline]
     
 admin.site.register(Event, EventAdmin)
 admin.site.register(Location)

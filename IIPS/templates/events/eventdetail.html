@@ -3,7 +3,7 @@
 {% block content %}
 
 
-	 <!-- Portfolio Modals -->
+	<!-- Portfolio Modals -->
     <!-- Use the modals below to showcase details about your portfolio projects! -->
 
 
@@ -289,78 +289,8 @@
 <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+<a href="{% url 'events:teamregisteration' item.id %}"><button class="btn btn-primary">Register New page</button></a>
 
-<section id="portfolio" class="bg-light-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#register" class="portfolio-link" data-toggle="modal">
-                        <button class="btn btn-primary">Register</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-<div class="portfolio-modal modal fade" id="register" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-
-                            <!-- Contact Form -->
-						    <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-						    <div class="row">
-						        <div class="col-md-8">
-						            <h3 align="left">Registeration Form</h3>
-
-						            <form name="sentMessage" id="contactForm" novalidate>
-						                <div class="control-group form-group">
-						                    <div class="controls">
-						                        <label>Full Name:</label>
-						                        <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
-						                        <p class="help-block"></p>
-						                    </div>
-						                </div>
-						                <div class="control-group form-group">
-						                    <div class="controls">
-						                        <label>Roll Number</label>
-						                        <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your roll number.">
-						                    </div>
-						                </div>
-						                <div class="control-group form-group">
-						                    <div class="controls">
-						                        <label>University/College</label>
-						                        <input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your University/College.">
-						                    </div>
-						                </div>
-						                
-						                <div id="success"></div>
-
-						                <!-- For success/fail messages -->
-						                <button type="submit" class="btn btn-primary">Register</button>
-						                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Cancels</button>
-
-						            </form>
-						        </div>
-
-						    </div>
-						    <!-- /.row -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 {% endfor %}
 {% endblock %}
-   
+   <a href="{% url 'events:inlineteamregisteration' item.id %}"><button class="btn btn-primary">Inline Register </button></a>

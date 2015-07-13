@@ -11,7 +11,7 @@ from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
 from django.forms import ModelForm
 #from .managers import EventManager
-
+from django.core.exceptions import NON_FIELD_ERRORS
 auth_user_model = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 
 # Create your models here.
@@ -21,6 +21,7 @@ class Event(models.Model):
     start_date = models.DateTimeField(verbose_name=_("start date"))
     end_date = models.DateTimeField(_("end date"))
     photo = models.ImageField(upload_to='documents/event/')
+    team_size = models.PositiveSmallIntegerField()
     more_info = models.CharField(max_length=30)
     description = models.TextField(_("description"))
     location = models.ManyToManyField(
@@ -99,10 +100,15 @@ class Event(models.Model):
                     "Only events spanning 7 days or less are supported."
                 )
 
-    
+    def team_size_list(self):
+        return range(1,self.team_size+1)
+
+
     class Meta:
         verbose_name = _('event')
         verbose_name_plural = _('events')
+
+
 
 
 @python_2_unicode_compatible
@@ -145,7 +151,7 @@ class Tag(models.Model):
         return self.name
 
 class Gallery(models.Model):
-	photo = models.ImageField(upload_to='documents/gallary/')
+	photo = models.ImageField(upload_to='documents/event/gallery')
 	event = models.ForeignKey('Event')
 
 	def __unicode__(self):  # Python 3: def __str__(self):
@@ -177,7 +183,8 @@ class Sub_Event(models.Model):
     start_date = models.DateTimeField(verbose_name=_("start date"))
     end_date = models.DateTimeField(_("end date"))
     tags = models.ManyToManyField('Tag', verbose_name=_('tags'), blank=True)
-    photo = models.ImageField(upload_to='documents/event/',null=True, blank=True)
+    team_size = models.PositiveSmallIntegerField()
+    photo = models.ImageField(upload_to='documents/event/sub_event',null=True, blank=True)
     location = models.ManyToManyField(
         'Location', verbose_name=_('locations'), blank=True
     )
@@ -212,6 +219,9 @@ class Team(models.Model):
     )
     slogan = models.CharField(max_length=150, null=True)
 
+    def get_absolute_url(self):
+        return reverse('events:event')#, kwargs={'pk': self.pk})
+
     def __unicode__(self):  # Python 3: def __str__(self)
         return self.name
 
@@ -220,9 +230,12 @@ class Team_Member(models.Model):
     name = models.CharField(max_length=50, unique=True)
     roll_number = models.CharField(max_length=12)
     college = models.CharField(max_length=50, default='IIPS')
+    contact_number = models.CharField(max_length=11, null=True, blank=True)
+    email_address = models.CharField(max_length=50, null=True, blank=True)
 
     def __unicode__(self):  # Python 3: def __str__(self)
         return self.name
+
 
 class Score(models.Model):
     team = models.ForeignKey('Team')
@@ -245,34 +258,43 @@ class Winner(models.Model):
         return self.team
 
 
-class Team_Form(ModelForm):
+class TeamForm(ModelForm):
     class Meta:
         model = Team
-        exclude = ['event']
+        exclude = ['event',]
+        #fields = '__all__'
         error_messages = {
             NON_FIELD_ERRORS: {
                 'unique_together': "%(model_name)s's %(field_labels)s are not unique.",
             }
-    def clean_name(self):
-        # custom validation for the name field
-        ...
+    }
+    def get_absolute_url(self):
+        return reverse('events:team-detail', kwargs={'pk': self.pk})
 
-from django.forms.models import inlineformset_factory
->>> BookFormSet = inlineformset_factory(Author, Book, fields=('title',))
->>> author = Author.objects.get(name='Mike Royko')
->>> formset = BookFormSet(instance=author)
+class TeamMemberForm(ModelForm):
+    class Meta:
+        model = Team_Member
+        exclude = ['team']
+        #fields = '__all__'
+        error_messages = {
+            NON_FIELD_ERRORS: {
+                'unique_together': "%(model_name)s's %(field_labels)s are not unique.",
+            }
+        }
+        labels = {
+            'name': _('Team Member'),
+        }
+        help_texts = {
+            'name': _('Write the full name of team member'),
+        }
+        error_messages = {
+            'name': {
+                'max_length': _("This team member's name is too long."),
+            },
+        }
+        def clean(self):
+            cleaned_data = super(TeamMemberForm, self).clean()
+            if not cleaned_data:
+                raise forms.ValidationError("Fields are required.")
 
-def register(request, author_id):
-    Team = Team.objects.get(pk=author_id)
-    BookInlineFormSet = inlineformset_factory(Team, Team_Member, fields=('title',))
-    if request.method == "POST":
-        formset = BookInlineFormSet(request.POST, request.FILES, instance=author)
-        if formset.is_valid():
-            formset.save()
-            # Do something. Should generally end with a redirect. For example:
-            return HttpResponseRedirect(author.get_absolute_url())
-    else:
-        formset = BookInlineFormSet(instance=author)
-    return render_to_response("manage_books.html", {
-        "formset": formset,
-    })
+            return cleaned_data
