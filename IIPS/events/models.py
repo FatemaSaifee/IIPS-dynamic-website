@@ -103,10 +103,15 @@ class Event(models.Model):
     def team_size_list(self):
         return range(1,self.team_size+1)
 
+    def is_active(self): 
+        if not self.start_date <= timezone.now() <= self.end_date :
+            return True
 
     class Meta:
         verbose_name = _('event')
         verbose_name_plural = _('events')
+
+
 
 
 
@@ -195,6 +200,13 @@ class Sub_Event(models.Model):
     def __unicode__(self):  # Python 3: def __str__(self)
         return self.name
 
+    def get_score(self, t):
+        if Score.objects.get(team = t,sub_event = self):
+            return Score.objects.get(team = t,sub_event = self)
+        else:
+            return 0
+        
+
 class Team(models.Model):
     COLORS = [
         ('eeeeee', _('gray')),
@@ -218,12 +230,24 @@ class Team(models.Model):
         max_length=10, choices=COLORS, default='eeeeee', null=True
     )
     slogan = models.CharField(max_length=150, null=True)
+    sub_event = models.ManyToManyField(
+        'Sub_Event', verbose_name=_('sub_events'), blank=True
+    )
 
     def get_absolute_url(self):
         return reverse('events:event')#, kwargs={'pk': self.pk})
 
     def __unicode__(self):  # Python 3: def __str__(self)
         return self.name
+
+
+    def total_score(self): #returns the total score
+        for score in self.score_set.all():
+            return score.get_score()
+
+    class Meta:
+        verbose_name_plural = 'teams'
+
 
 class Team_Member(models.Model):
     team = models.ForeignKey('Team')
@@ -232,18 +256,44 @@ class Team_Member(models.Model):
     college = models.CharField(max_length=50, default='IIPS')
     contact_number = models.CharField(max_length=11, null=True, blank=True)
     email_address = models.CharField(max_length=50, null=True, blank=True)
+    # sub_event = models.ManyToManyField(
+    #     'Sub_Event', verbose_name=_('sub_events'), blank=True
+    # )
 
     def __unicode__(self):  # Python 3: def __str__(self)
         return self.name
 
+    
+
 
 class Score(models.Model):
+    RANKS = [
+        (1, _('First')),
+        (2, _('First Runner-up')),
+        (3, _('Second Runner-up')),
+    ]
+
     team = models.ForeignKey('Team')
     sub_event = models.ForeignKey('Sub_Event')
-    score = models.PositiveSmallIntegerField()
+    rank = models.PositiveSmallIntegerField(choices=RANKS)
+    
+    def get_score(self):
+        if self.rank== 1:
+            return self.sub_event.winner_score
+        elif self.rank == 2:
+            return self.sub_event.first_runnerup_score
+        elif self.rank == 3:
+            return self.sub_event.second_runnerup_score
+        else:
+            return 0
 
     def __unicode__(self):  # Python 3: def __str__(self)
-        return self.score
+        return str(self.team) + ' ' + str(self.sub_event)
+
+    class Meta:
+        unique_together = ('team', 'sub_event',)
+
+
 
 class Winner(models.Model):
     RANKS = [

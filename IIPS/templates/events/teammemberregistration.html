@@ -32,10 +32,11 @@
 		
 		<form method="post" action="">
 			
-			    
+			      {{ team_member_form.management_form }} <!-- this is very ncessary in order to avoid errors, managemnet for m is an attribute of formse -->
 			      {% for form in team_member_form %}
 			      <table>
 			      	{% for field in form %}
+			      		{% csrf_token %}
 			      		<tr>
 			       			<td>{{ field.label }}</td>
 			       			<td>{{ field }}</td>
@@ -44,7 +45,7 @@
 			       <hr>
 			       </table>
 			      {% endfor %} 
-			      
+			      <input type="submit" value="Register" class="btn btn-primary"/>
 			
 		</form>
 		
@@ -52,7 +53,7 @@
         
 
             <!-- For success/fail messages -->
-            <input type="submit" value="Register" class="btn btn-primary"/>
+            
             <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
 
         </form>

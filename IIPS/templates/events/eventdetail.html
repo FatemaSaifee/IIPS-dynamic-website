@@ -289,8 +289,93 @@
 <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-<a href="{% url 'events:teamregisteration' item.id %}"><button class="btn btn-primary">Register New page</button></a>
+<a href="{% url 'events:teamregisteration' item.id %}"><button class="btn btn-primary">Register Team</button></a>
 
+{% if item.is_active %}
+<a href="#portfolioModal1" class="portfolio-link" data-toggle="modal"><button class="btn btn-primary">Score Board</button></a>
+
+<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2>Score Board</h2>
+                            <p class="item-intro text-muted"> {{ item.title }}</p>
+                            <table class="table table-striped">
+						    <thead>
+						      <tr>
+						      	<th>Team</th>
+						      	{% for subevent in item.sub_event_set.all %}
+							        <th>{{ subevent.name }}</th>
+						        {% endfor %} 
+						        
+						      </tr>
+						    </thead>
+						    <tbody>
+						    {% for team in item.team_set.all %}
+						      <tr>
+						        <td>{{team.name}}</td>
+						        {% for subevent in item.sub_event_set.all %}
+									{% if subevent in team.sub_event.all %}
+									
+									{% for s in team.score_set.all %}
+										
+											{% if s.sub_event == subevent %}
+
+											<td>{{ s.get_score }}</td>
+
+											{% endif %}
+
+									{% endfor %}
+										
+						        	{% else %}
+						        		<td>-</td>
+							        {% endif %}
+						        {% endfor %}
+
+						      </tr>
+						    {% endfor %}
+						    </tbody>
+						  </table>
+                            {% for team in item.team_set.all %}
+
+                            {% for subevent in item.sub_event_set.all %}
+
+									{% if subevent in team.sub_event.all %}
+
+										{% for s in team.score_set.all %}
+										
+											{% if s.sub_event == subevent %}
+
+											{{ s.get_score }}
+
+											{% endif %}
+
+										{% endfor %}
+
+
+							        {% endif %}
+						        {% endfor %}
+
+						      
+						    {% endfor %}
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
 {% endfor %}
 {% endblock %}
-   <a href="{% url 'events:inlineteamregisteration' item.id %}"><button class="btn btn-primary">Inline Register </button></a>
+   

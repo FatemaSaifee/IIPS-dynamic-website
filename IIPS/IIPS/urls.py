@@ -8,10 +8,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from . import views
 from django.db.models.loading import cache as model_cache
-'''
+
 if not model_cache.loaded:
     model_cache.get_models()
-'''    
+   
 admin.autodiscover()
 
 

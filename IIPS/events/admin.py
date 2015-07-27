@@ -2,28 +2,37 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 from events.models import *
+from nested_inline.admin import NestedTabularInline , NestedStackedInline, NestedModelAdmin 
 # Register your models here.
 
 class GalleryInline(admin.StackedInline):
     model = Gallery
     extra = 0
-
+    
 class Sub_EventInline(admin.TabularInline):
     model = Sub_Event
     extra = 0
 
-class TeamInline(admin.TabularInline):
-    model = Team
+class TeamMembertInLine(NestedTabularInline):
+    model = Team_Member
+    #fk_name = 'Team'
     extra = 0
 
+class TeamInline(NestedStackedInline):
+    inlines = [TeamMembertInLine]
+    model = Team
+    extra = 0
+    classes = ['collapse']
+    
 
-class EventAdmin(admin.ModelAdmin):
+class EventAdmin(NestedModelAdmin):
     fieldsets = (
         (None, {
             'fields': ('title','start_date', 'end_date', 'photo', 'team_size', 'more_info',
                         'description',
                        )
         }),
+
         ('Location', {
             'classes': ('collapse',),
             'fields': ('location',)
@@ -37,6 +46,7 @@ class EventAdmin(admin.ModelAdmin):
             'fields': ('tags',)
         }),
         
+        
     )
 
     list_display = ('title', 'start_date', 'end_date')
@@ -49,4 +59,6 @@ admin.site.register(Event, EventAdmin)
 admin.site.register(Location)
 admin.site.register(Category)
 admin.site.register(Tag)
+admin.site.register(Gallery)
+admin.site.register(Score)
 

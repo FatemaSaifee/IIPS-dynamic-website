@@ -1,18 +1,17 @@
-{% load staticfiles %}<!DOCTYPE html>
+{% load staticfiles %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
     
 
     
-
     <link href="{% static 'iips_site/mb/css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{% static 'iips_site/mb/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 
-    <!-- Custom CSS -->
-    <link href="{% static 'events/css/agency.css' %}" rel="stylesheet">
+    
 
     <script type="text/javascript">
     $(document).ready(function(){
@@ -26,6 +25,9 @@
             margin: 100px 50px;
         }
     </style>
+
+<!-- Custom CSS -->
+    <link href="{% static 'events/css/agency.css' %}" rel="stylesheet">
 
 </head>
 
@@ -125,9 +127,7 @@
             </div>
         </div>
                 
-            </div>
-        </div>
-
+            
         
         
 
@@ -163,7 +163,7 @@
 
         </footer>
 
-    </div>
+    
     <!-- /.container -->
 
     <!-- jQuery -->
@@ -171,6 +171,11 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static 'iips_site/mb/js/bootstrap.min.js' %} "></script>
+
+    <script src="{% static 'events/js/jquery.min.js' %}"></script>
+
+     <!-- Custom Theme JavaScript -->
+    <script src="{% static 'events/js/agency.js' %}"></script>
 
     <!-- Script to Activate the Carousel -->
     <script>
@@ -186,7 +191,7 @@
     <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <script src="{% static 'iips_site/mb/js/jqBootstrapValidation.js' %}"></script>
 
-    <script src="{% static 'events/js/jquery.min.js' %}"></script>
+    
 
 
 </body>

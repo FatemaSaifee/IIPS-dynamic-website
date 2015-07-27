@@ -1,0 +1,54 @@
+<h1>Team</h1>
+<fieldset>
+<form id="team-form" method="POST" enctype="multipart/form-data" action=".">
+{% csrf_token %}
+<div class="row">
+  {% for f in form %}
+
+    <div class="span3">
+      <table>
+    <tr><td>{{ f.label }}</td><td>{{ f }}</td>
+      {% if f.errors %}
+          {% for v in f.errors %}
+            <br /><span style="color:red;">{{ v }}</span>
+          {% endfor %}
+      {% endif %}
+      </tr>
+      </table>
+    </div>
+ {% endfor %}
+</div>
+</fieldset>
+
+<h2>Team Members:</h2>
+<fieldset>
+<table class="table-striped">
+ <table>
+ {%  for f2 in team_member_form %}
+ {% if forloop.counter == 1 %}
+ 
+         <tr> {% for i in f2 %}<td> {{ i.label }}</td>{% endfor %}</tr>
+         
+        {% endif %}
+   <tr id="{{ f2.prefix }}-row">
+      {% for i in f2 %}
+        
+        <td>
+           {{ i }}{% if i.errors %}<span style="color:red;">{{ i.errors }}</span>{% endif %}
+        </td>
+      {% endfor %}
+   </tr>
+ {% endfor %}
+</table>
+{{ team_member_form.management_form }}
+</fieldset>
+<br>
+<input type="submit" class="btn btn-primary" value="Register">
+</form>
+<script type="text/javascript">
+    $(function() {
+        $('#team-form tr').formset({
+            prefix: '{{ team_member_form.prefix }}'
+        });
+    })
+</script>
