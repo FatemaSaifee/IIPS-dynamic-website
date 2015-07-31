@@ -9,7 +9,7 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
-from django.forms import ModelForm
+from django.forms import ModelForm,CheckboxSelectMultiple
 #from .managers import EventManager
 from django.core.exceptions import NON_FIELD_ERRORS
 auth_user_model = getattr(settings, "AUTH_USER_MODEL", "auth.User")
@@ -104,7 +104,7 @@ class Event(models.Model):
         return range(1,self.team_size+1)
 
     def is_active(self): 
-        if not self.start_date <= timezone.now() <= self.end_date :
+        if self.start_date <= timezone.now() <= self.end_date :
             return True
 
     class Meta:
@@ -174,7 +174,7 @@ class Cancellation(models.Model):
         return self.event.title + ' - ' + str(self.date)
 
 class Organising_Committee_Member(models.Model):
-    event = models.ForeignKey('Event', unique=True)
+    event = models.ForeignKey('Event')
     name = models.CharField(max_length=50)
     roll_number = models.CharField(max_length=12)
 
@@ -255,7 +255,7 @@ class Team_Member(models.Model):
     roll_number = models.CharField(max_length=12)
     college = models.CharField(max_length=50, default='IIPS')
     contact_number = models.CharField(max_length=11, null=True, blank=True)
-    email_address = models.CharField(max_length=50, null=True, blank=True)
+    email_address = models.EmailField(max_length=50, null=True, blank=True)
     # sub_event = models.ManyToManyField(
     #     'Sub_Event', verbose_name=_('sub_events'), blank=True
     # )
@@ -317,7 +317,11 @@ class TeamForm(ModelForm):
             NON_FIELD_ERRORS: {
                 'unique_together': "%(model_name)s's %(field_labels)s are not unique.",
             }
-    }
+        }
+        widgets = {
+            'sub_event': CheckboxSelectMultiple(),
+        }
+    
     def get_absolute_url(self):
         return reverse('events:team-detail', kwargs={'pk': self.pk})
 
@@ -326,10 +330,20 @@ class TeamMemberForm(ModelForm):
         model = Team_Member
         exclude = ['team']
         #fields = '__all__'
+        #colors = forms.ModelMultipleChoiceField(queryset=Color.objects, widget=forms.CheckboxSelectMultiple(), required=False)
+        
         error_messages = {
             NON_FIELD_ERRORS: {
                 'unique_together': "%(model_name)s's %(field_labels)s are not unique.",
-            }
+            },
+            'name': {
+                'max_length': _("This team member's name is too long."),
+            },
+            'email_address': {
+                'required': _("Please enter your valid e-mail address"),
+                'invalid': 'Enter a valid value',
+            },
+
         }
         labels = {
             'name': _('Team Member'),
@@ -337,11 +351,7 @@ class TeamMemberForm(ModelForm):
         help_texts = {
             'name': _('Write the full name of team member'),
         }
-        error_messages = {
-            'name': {
-                'max_length': _("This team member's name is too long."),
-            },
-        }
+        
         def clean(self):
             cleaned_data = super(TeamMemberForm, self).clean()
             if not cleaned_data:

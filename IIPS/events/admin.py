@@ -24,6 +24,9 @@ class TeamInline(NestedStackedInline):
     extra = 0
     classes = ['collapse']
     
+class OrganisingCommitteeMemberInline(admin.TabularInline):
+    model = Organising_Committee_Member
+    extra = 0
 
 class EventAdmin(NestedModelAdmin):
     fieldsets = (
@@ -53,7 +56,7 @@ class EventAdmin(NestedModelAdmin):
     list_filter = ['start_date']
     search_fields = ['title']
     date_hierarchy = 'start_date'
-    inlines = [GalleryInline , Sub_EventInline, TeamInline]
+    inlines = [GalleryInline , Sub_EventInline, TeamInline, OrganisingCommitteeMemberInline]
     
 admin.site.register(Event, EventAdmin)
 admin.site.register(Location)

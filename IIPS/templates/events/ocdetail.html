@@ -1,0 +1,23 @@
+{% extends 'events/eventdetailbase.html' %}
+{% block content1 %}
+<br>
+jsbdjfdksjnvk
+{% load staticfiles %}
+fjsdlkgjlk
+{% for item in category.event_set.all %}
+	
+		<table class="table table-striped">
+			<thead>
+				<th>Name</th>
+				<th>Roll Number</th>
+			</thead>
+			{% for item in item.organising_committee_member_set.all %}
+				<tr>
+					<td>{{item.name}}</td>
+					<td>{{item.roll_number}}</td>
+				</tr>
+			{% endfor %}
+		</table>
+		
+{% endfor %}
+{% endblock %}

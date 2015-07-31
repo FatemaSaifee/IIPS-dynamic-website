@@ -1,0 +1,51 @@
+{% extends 'events/eventdetailbase.html' %}
+{% block content1 %}
+{% load staticfiles %}
+
+<div class="row">
+            
+            
+
+                <ul id="myTab" class="nav nav-tabs nav-justified">
+                	
+                	{% for subitem in item.sub_event_set.all %}
+                	{% if forloop.counter == 1 %}
+					<li class="active"><a href="#tabs-{{ course.id }}" data-toggle="tab"><i  class="glyphicon glyphicon-education glyphicon-align-left"></i> {{ subitem.name }}</a></li>
+					{% else %}
+					<li class=""><a href="#tabs-{{ course.id }}"data-toggle="tab"><i class="glyphicon glyphicon-education glyphicon-align-left"></i> {{ subitem.name }}</a></li>
+					{% endif %}
+					{% endfor %}
+					
+
+                    
+                </ul>
+
+                <div id="myTabContent" class="tab-content">
+                	{% for subitem in item.sub_event_set.all %}
+                	{% if forloop.counter == 1 %}
+					<div class="tab-pane fade active in" id="tabs-{{ course.id }}">
+					<br>
+					{{ subitem.description }}
+                    <br>
+                    <br>
+                    <ul class="list-inline">
+                        <li>Date: {{item.start_date}}</li>
+                        {% for subitem in item.location.all %}
+                        <li>Venue:<a href="#" data-toggle="tooltip" data-original-title="{{ subitem.address_line_1 }}, {{ subitem.address_line_2 }}, {{ subitem.address_line_3 }}, {{ subitem.city }}, {{ subitem.zip_code }}"> {{ subitem.name }} </a></li>
+                        {% endfor %}
+                        <li>Category: {% for subitem in item.categories.all %}{{ subitem.title }} {% endfor %}</li>
+                        <li>More Info.: <a href="{{item.more_info}}">{{item.more_info}}</a></li>
+                    </ul>
+                    {% endif %}
+					{% endfor %}
+                </div>
+
+            
+        </div>
+
+
+    
+        
+   
+    <!-- /.panel-group -->
+ {%endblock%}   

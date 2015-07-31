@@ -1,0 +1,59 @@
+{% extends "iips_site/base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<script type="text/javascript">
+	if({{load_after_register}})
+	{
+		window.onload = function()
+		{
+			alert("You are registered successfuly!")
+		}
+	}
+</script>
+	<!-- Portfolio Modals -->
+    <!-- Use the modals below to showcase details about your portfolio projects! -->
+
+
+    <!-- Portfolio Modal 1 -->
+    {% for item in category.event_set.all %}
+   
+    <!-- Page Heading/Breadcrumbs -->
+    	<div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">{{item.title}}
+                    <small>{% for subitem in item.tags.all %}{{ subitem.name }} {% endfor %} </small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'iips_site:home' %}">Home</a></li>
+                    <li><a href="{% url 'events:event' %}">Events</a></li>
+                    <li class="active">{{item.title}}</li>
+                </ol>
+            </div>
+        </div>
+       
+        <!-- /.row -->
+    <!-- Content Row -->
+       
+            <!-- Sidebar Column -->
+            <div class="col-md-3">
+                <div class="list-group">
+                	
+
+                    	<a href="{% url 'events:eventdetail' item.id %}" class="list-group-item">Description</a>
+                    	<a href="{% url 'events:subevent' item.id %}" class="list-group-item">Events</a>
+                    	<a href="{% url 'events:teamregisteration' item.id %}" class="list-group-item">Register</a>
+                    	<a href="{% url 'events:ocdetail' item.id %}" class="list-group-item">Organizing Committee</a>
+
+                    	
+                </div>
+            </div>
+            <!-- Content Column -->
+<div class="col-md-9"> 
+ {% block content1 %}{% endblock %}
+</div>
+        
+        <!-- /.row -->
+ <hr>
+ {% endfor %}
+ {% endblock %}

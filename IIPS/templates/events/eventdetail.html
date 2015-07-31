@@ -1,31 +1,14 @@
-{% extends "iips_site/base.html" %}
+{% extends 'events/eventdetailbase.html' %}
+{% block content1 %}
 {% load staticfiles %}
-{% block content %}
-
-
-	<!-- Portfolio Modals -->
-    <!-- Use the modals below to showcase details about your portfolio projects! -->
-
-
-    <!-- Portfolio Modal 1 -->
-    {% for item in category.event_set.all %}
-   
-    <!-- Page Heading/Breadcrumbs -->
-    	<div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">{{item.title}}
-                    <small>{% for subitem in item.tags.all %}{{ subitem.name }} {% endfor %} </small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="{% url 'iips_site:home' %}">Home</a></li>
-                    <li><a href="{% url 'events:event' %}">Events</a></li>
-                    <li class="active">{{item.title}}</li>
-                </ol>
-            </div>
-        </div>
-       
-        <!-- /.row -->
-            
+{% for item in category.event_set.all %}
+	{% if item.is_active %} 
+	<div align="right">
+	<a href="#portfolioModal1" class="portfolio-link" data-toggle="modal"><button class="btn btn-primary" >Score Board</button></a> 
+	</div>
+	
+	{% endif %} 
+	<br>    
     <p>{{item.description|safe}}</p>        
                             
                             
@@ -251,131 +234,23 @@
 
 
 
-<h1>Events In {{item.title}}</h1>
-<hr>
 
-<!-- Content Row -->
-<div class="row">
-<div class="col-lg-12">
-    <div class="panel-group" id="accordion">
-    {% for subitem in item.sub_event_set.all %}
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#{{ subitem.name }}">{{ subitem.name }}</a>
-                </h4>
-            </div>
-            <div id="{{ subitem.name }}" class="panel-collapse collapse">
-                <div class="panel-body">
-                    {{ subitem.description }}
-                    <br>
-                    <br>
-                    <ul class="list-inline">
-                        <li>Date: {{item.start_date}}</li>
-                        {% for subitem in item.location.all %}
-                        <li>Venue:<a href="#" data-toggle="tooltip" data-original-title="{{ subitem.address_line_1 }}, {{ subitem.address_line_2 }}, {{ subitem.address_line_3 }}, {{ subitem.city }}, {{ subitem.zip_code }}"> {{ subitem.name }} </a></li>
-                        {% endfor %}
-                        <li>Category: {% for subitem in item.categories.all %}{{ subitem.title }} {% endfor %}</li>
-                        <li>More Info.: <a href="{{item.more_info}}">{{item.more_info}}</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-    <!-- /.panel-group -->
-    
 </div>
 <!-- /.col-lg-12 -->
 </div>
-<!-- /.row -->
-<a href="{% url 'events:teamregisteration' item.id %}"><button class="btn btn-primary">Register Team</button></a>
-
-{% if item.is_active %}
-<a href="#portfolioModal1" class="portfolio-link" data-toggle="modal"><button class="btn btn-primary">Score Board</button></a>
-
-<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Score Board</h2>
-                            <p class="item-intro text-muted"> {{ item.title }}</p>
-                            <table class="table table-striped">
-						    <thead>
-						      <tr>
-						      	<th>Team</th>
-						      	{% for subevent in item.sub_event_set.all %}
-							        <th>{{ subevent.name }}</th>
-						        {% endfor %} 
-						        
-						      </tr>
-						    </thead>
-						    <tbody>
-						    {% for team in item.team_set.all %}
-						      <tr>
-						        <td>{{team.name}}</td>
-						        {% for subevent in item.sub_event_set.all %}
-									{% if subevent in team.sub_event.all %}
-									
-									{% for s in team.score_set.all %}
-										
-											{% if s.sub_event == subevent %}
-
-											<td>{{ s.get_score }}</td>
-
-											{% endif %}
-
-									{% endfor %}
-										
-						        	{% else %}
-						        		<td>-</td>
-							        {% endif %}
-						        {% endfor %}
-
-						      </tr>
-						    {% endfor %}
-						    </tbody>
-						  </table>
-                            {% for team in item.team_set.all %}
-
-                            {% for subevent in item.sub_event_set.all %}
-
-									{% if subevent in team.sub_event.all %}
-
-										{% for s in team.score_set.all %}
-										
-											{% if s.sub_event == subevent %}
-
-											{{ s.get_score }}
-
-											{% endif %}
-
-										{% endfor %}
+<!-- /.row 
+<a href="{% url 'events:teamregisteration' item.id %}?next={{ request.REQUEST.next|urlencode }}"><button class="btn btn-primary">Register Team</button></a-->
+<!--a href="{% url 'events:teamregisteration' item.id %}?from={{request.path|urlencode}}&nextp=fatemanext"><a href="{% url 'events:teamregisteration' item.id %}"><button class="btn btn-primary">Register Team</button></a>
+ < ?form will help to return to this page after successful team registration
+ request.get_full_path|urlencode :: use this To support full urls with param/values 
 
 
-							        {% endif %}
-						        {% endfor %}
+  -->
 
-						      
-						    {% endfor %}
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-{% endif %}
+
+
+
 {% endfor %}
 {% endblock %}
    
