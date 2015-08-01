@@ -311,7 +311,7 @@ class Winner(models.Model):
 class TeamForm(ModelForm):
     class Meta:
         model = Team
-        exclude = ['event',]
+        exclude = ['event']
         #fields = '__all__'
         error_messages = {
             NON_FIELD_ERRORS: {
@@ -328,7 +328,7 @@ class TeamForm(ModelForm):
 class TeamMemberForm(ModelForm):
     class Meta:
         model = Team_Member
-        exclude = ['team']
+        exclude = ['id','team']
         #fields = '__all__'
         #colors = forms.ModelMultipleChoiceField(queryset=Color.objects, widget=forms.CheckboxSelectMultiple(), required=False)
         

@@ -11,6 +11,6 @@ urlpatterns = patterns('',
 	#url(r'^register/(?P<pk>\d+)//$', views.TeamRegistrationView2.as_view(), name='teamregisteration2'),
 	url(r'^oc/(?P<pk>\d+)/$',views.OCView.as_view(), name='ocdetail'),
 	url(r'^event/(?P<pk>\d+)/$',views.SubEventView.as_view(), name='subevent'),
-	url(r'^register/team_member/(?P<pk>\d+)/$', views.TeamRegisterationView1.as_view(), name='teamregisteration'),
+	url(r'^register/team_member/(?P<pk>\d+)/$', views.TeamRegisterationView.as_view(), name='teamregisteration'),
     #url(r'^team_created$', views.teamCreatedView, name='team-created'),
 )	

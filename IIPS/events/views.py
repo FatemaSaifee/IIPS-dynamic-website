@@ -112,7 +112,7 @@ class SubEventView(SingleObjectMixin, ListView):
 
 
 class TeamRegisterationView(CreateView):
-    template_name = 'events/team.html'
+    template_name = 'events/team1.html'
     model = Team
     form_class = TeamForm # the parent object's form
 
@@ -360,96 +360,5 @@ class OCRegisterationView(CreateView):
             self.get_context_data(form=form,
                                   team_member_form=team_member_form))
 
-class TeamRegisterationView1(CreateView):
-    template_name = 'events/team.html'
-    model = Team
-    form_class = TeamForm # the parent object's form
 
-    #On successful form submission
-    def get_success_url(self):
-        #return reverse('events:team-created')
-        redirect_to = "/events/"+str(self.event.id) + "/"#self.request.GET.get('nextp') #request.GET.get('next','from')
-        return redirect_to
-
-    def get_context_data(self, **kwargs):
-        context=super(TeamRegisterationView1, self).get_context_data(**kwargs)
-        context['from']=self.request.GET.get('from',None)
-        return context
-
-
-    def dispatch(self, *args, **kwargs):
-        """Ensure the Event exists before creating a new Team."""
-        self.event = get_object_or_404(Event, pk=kwargs['pk'])
-        self.redirect_to = self.request.GET.get('from')
-        return super(TeamRegisterationView1, self).dispatch(*args, **kwargs)
-
-
-    def get(self, request, *args, **kwargs):
-        
-        # Handles GET requests and instantiates blank versions of the form
-        # and its inline formsets.
-        
-        TeamInlineFormSet = inlineformset_factory(Team,
-            Team_Member,
-            form=TeamMemberForm,
-            extra=self.event.team_size,
-            can_delete=False,
-            can_order=False
-        )
-        #redirect_to = self.redirect_to #request.GET.get('from',None)
-        self.object = None
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        team_member_form = TeamInlineFormSet()
-        #instruction_form = InstructionFormSet()
-        return self.render_to_response(
-            self.get_context_data(form=form,
-                                  #redirect_to=redirect_to,
-                                  team_member_form=team_member_form))
-                                  #instruction_form=instruction_form
-
-    def post(self, request, *args, **kwargs):
-        """
-        Handles POST requests, instantiating a form instance and its inline
-        formsets with the passed POST variables and then checking them for
-        validity.
-        """
-        TeamInlineFormSet = inlineformset_factory(Team,
-            Team_Member,
-            form=TeamMemberForm,
-            extra=self.event.team_size,
-            can_delete=False,
-            can_order=False
-        )
-        #redirect_to = "/events/"+str(self.event.id) + "/"#self.request.GET.get('from')#redirect_to #args[-1]#self.kwargs['from']#
-        self.object = None
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        team_member_form = TeamInlineFormSet(self.request.POST)
-        if (form.is_valid() and team_member_form.is_valid()):
-            return self.form_valid(form, team_member_form)#,redirect_to)
-        else:
-            return self.form_invalid(form, team_member_form)
     
-   
-
-    # Validate forms
-    def form_valid(self, form, team_member_form):#,redirect_to):
-        form.instance.event = self.event
-        #redirect_to = self.redirect_to
-        self.object = form.save()
-        team_member_form.instance = self.object
-        team_member_form.save()
-        #redirect_to = self.args[0]
-        return HttpResponseRedirect(self.get_success_url())#redirect_to)#)get_success_url()#self.kwargs['from'])#self.get_success_url())
-
-    def form_invalid(self, form, team_member_form):
-        """
-        Called if a form is invalid. Re-renders the context data with the
-        data-filled forms and errors.
-        """
-        return self.render_to_response(
-            self.get_context_data(form=form,
-                                  team_member_form=team_member_form))
-        
-   
