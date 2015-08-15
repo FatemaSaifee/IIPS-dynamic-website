@@ -9,9 +9,7 @@ class GalleryInline(admin.StackedInline):
     model = Gallery
     extra = 0
     
-class Sub_EventInline(admin.TabularInline):
-    model = Sub_Event
-    extra = 0
+
 
 class TeamMembertInLine(NestedTabularInline):
     model = Team_Member
@@ -26,6 +24,10 @@ class TeamInline(NestedStackedInline):
     
 class OrganisingCommitteeMemberInline(admin.TabularInline):
     model = Organising_Committee_Member
+    extra = 0
+
+class Sub_EventInline(admin.StackedInline):
+    model = Sub_Event
     extra = 0
 
 class EventAdmin(NestedModelAdmin):
@@ -56,12 +58,15 @@ class EventAdmin(NestedModelAdmin):
     list_filter = ['start_date']
     search_fields = ['title']
     date_hierarchy = 'start_date'
-    inlines = [GalleryInline , Sub_EventInline, TeamInline, OrganisingCommitteeMemberInline]
+    inline = [Sub_EventInline, TeamInline, OrganisingCommitteeMemberInline, GalleryInline]
     
-admin.site.register(Event, EventAdmin)
+
+
+
 admin.site.register(Location)
 admin.site.register(Category)
 admin.site.register(Tag)
-admin.site.register(Gallery)
+#admin.site.register(Gallery)
 admin.site.register(Score)
 
+admin.site.register(Event, EventAdmin)

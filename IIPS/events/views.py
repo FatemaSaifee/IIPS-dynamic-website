@@ -4,10 +4,11 @@ from events.models import *
 from django.core.urlresolvers import reverse, reverse_lazy
 #from django.views import generic
 from django.http import HttpResponseRedirect
+from django.views.generic.detail import SingleObjectMixin#, DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 #from django.views.generic import View
-from django.views.generic.detail import SingleObjectMixin#, DetailView
+
 from django.forms.models import inlineformset_factory
 from django.forms.models import BaseInlineFormSet
 from django.core.context_processors import csrf
@@ -111,9 +112,9 @@ class SubEventView(SingleObjectMixin, ListView):
 #         return context
 
 
-class TeamRegisterationView(CreateView):
-    template_name = 'events/team1.html'
-    model = Team
+class TeamRegisterationView(CreateView, SingleObjectMixin):
+    template_name = 'events/team.html'
+    model = Category
     form_class = TeamForm # the parent object's form
 
     #On successful form submission
@@ -124,6 +125,7 @@ class TeamRegisterationView(CreateView):
 
     def get_context_data(self, **kwargs):
         context=super(TeamRegisterationView, self).get_context_data(**kwargs)
+        context['category'] = self.object
         context['from']=self.request.GET.get('from',None)
         return context
 
@@ -148,7 +150,8 @@ class TeamRegisterationView(CreateView):
             can_order=False
         )
         #redirect_to = self.redirect_to #request.GET.get('from',None)
-        self.object = None
+        self.object = self.get_object(queryset=Category.objects.all())
+        #self.object = None
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         team_member_form = TeamInlineFormSet()
@@ -203,7 +206,8 @@ class TeamRegisterationView(CreateView):
             self.get_context_data(form=form,
                                   team_member_form=team_member_form))
         
-   
+    def get_queryset(self):
+        return self.object.event_set.all()
 
 
 # class TeamMemberRegisterationView(CreateView):
@@ -270,7 +274,7 @@ class TeamRegisterationView(CreateView):
 
 class OCRegisterationView(CreateView):
     template_name = 'events/ocdetail.html'
-    model = Team
+    model = Category
     form_class = TeamForm # the parent object's form
 
     # On successful form submission

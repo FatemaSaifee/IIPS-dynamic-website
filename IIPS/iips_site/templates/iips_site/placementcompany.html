@@ -41,19 +41,25 @@
                         <h2 class="page-header">Companies</h2>
                     </div>
                     {% for company in placement_company_list %}
-                    <div class="col-md-6 text-center">
+                    {% if forloop.counter == 4 %}
+                    <div class="row">
+                    {%endif%}
+                    <div class="col-md-3 text-center">
                         <div class="thumbnail">
-                            <img class="img-responsive" src="../../media/{{company.Logo}}" alt="{{ company.Name }}">
-                            <div class="caption">
-                                <h3>{{ company.Name }}<br>
-                                    
-                                </h3>
-                                
-                            </div>
+                        
+                            <img class="img-responsive" src="../../media/{{company.Logo}}" alt="{{ company.name }}" style="height:50px">
+                        </div>
+                        <div class="caption">
+                                <strong>{{ company.name }}</strong>
+                                       
                         </div>
                     </div>
+                    {% if forloop.counter == 4 %}
+                    <br>
+                    </div>
+                    {%endif%}
                     {% endfor %}
-
+                </div>
 
 
 
