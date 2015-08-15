@@ -322,7 +322,7 @@ class Development_Center(models.Model):
 class Publication(models.Model):
 	pass
 '''
-class Batch(models.model):
+class Batch(models.Model):
 	Semester=models.CharField(max_length=15)
 	Course=models.ForeignKey('Course')
 	def __unicode__(self):  # Python 3: def __str__(self)
