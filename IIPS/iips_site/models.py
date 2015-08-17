@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 import datetime
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 
@@ -42,14 +43,7 @@ class Syllabus(models.Model):
 	def __unicode__(self):  # Python 3: def __str__(self)
 		return str(self.Semester)
 
-class Batch(models.model):
-	Semester=models.CharField(max_length=15)
-	Course=models.ForeignKey('Course')
-	Faculty = models.ManyToManyField('Faculty_Info', verbose_name=_('Faculty'), blank=True)
-	Room_Number = models.CharField(max_length=5)
 
-	def __unicode__(self):  # Python 3: def __str__(self)
-		return str(self.Course.name + ' ' + self.Semester)
 '''
 class Subject(models.Model):
 	Subject_ID=models.CharField(max_length=10,unique=True)
@@ -112,7 +106,7 @@ class StaffInfo(models.Model):
 	Facebook_Link=models.CharField(max_length=40,default=None)
 	Googleplus_Link=models.CharField(max_length=40,default=None)
 	Twitter_Link=models.CharField(max_length=40,default=None)
-	Picture=models.CharField(max_length=100,default=None)
+	Picture=models.URLField(max_length=100,default=None)
 	def __unicode__(self):  # Python 3: def __str__(self):
 		return self.Name
 
@@ -135,8 +129,8 @@ class Faculty_Info(models.Model):
 	Facebook_Link=models.CharField(max_length=40,default=None)
 	Googleplus_Link=models.CharField(max_length=40,default=None)
 	Twitter_Link=models.CharField(max_length=40,default=None)
-	Picture=models.CharField(max_length=100,default=None)
-	Resume =models.CharField(max_length=40,default=None)#Link to resume
+	Picture=models.URLField(max_length=100,default=None)
+	Resume =models.URLField(max_length=40,default=None)#Link to resume
 	def __unicode__(self):  # Python 3: def __str__(self):
 		return self.Name
 
@@ -322,25 +316,5 @@ class Development_Center(models.Model):
 class Publication(models.Model):
 	pass
 '''
-class Batch(models.Model):
-	Semester=models.CharField(max_length=15)
-	Course=models.ForeignKey('Course')
-	def __unicode__(self):  # Python 3: def __str__(self)
-		return str(self.Course.name + ' ' + self.Semester)
 
-class Student(models.Model):
-    User = models.OneToOneField(User, on_delete=models.CASCADE)
-    Batch = models.ForeignKey('Batch')
-    Father_Name =models.CharField(max_length=200)
-    Mother_Name =models.CharField(max_length=200)
-    DOB= models.DateField(max_length=200)
-    Local_Address =models.CharField(max_length=200,default=None,null=True)
-    Permanent_Address =models.CharField(max_length=200,default = None)
-    Mobile_Number =models.CharField(max_length=15,null=True)
-    Telephone_Number =models.CharField(max_length=200,default=None,null=True)
-    Roll_Number =models.CharField(max_length=200,default = None)
-    Enrollment_Number =models.CharField(max_length=200,default=None)
-
-    def __unicode__(self):  # Python 3: def __str__(self):
-		return self.user.username
 

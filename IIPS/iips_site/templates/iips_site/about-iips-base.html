@@ -24,28 +24,20 @@
             <!-- Sidebar Column -->
             <div class="col-md-3">
                 <div class="list-group">
-                	
-
-                    	<a href="{% url 'iips_site:aboutiips' %}" class="list-group-item">About College</a>
+                		<a href="{% url 'iips_site:aboutiips' %}" class="list-group-item">About College</a>
                     	<a href="{% url 'iips_site:director' %}" class="list-group-item">Director</a>
                     	<a href="{% url 'iips_site:visionmissiongoal' %}" class="list-group-item">Vision Mission Goal</a>
                     	<a href="{% url 'iips_site:antiragging' %}" class="list-group-item">Anti-Ragging</a>
-                    
                 </div>
             </div>
             <!-- Content Column -->
-        <div class="col-md-9">
-                
+            <div class="col-md-9">
                 <!-- Page Content -->
-   
-                		{% block content1 %}{% endblock %}
- 
-
-				       
-		</div>
+                {% block content1 %}{% endblock %}       
+    		</div>
 `		</div>
-				        <!-- /.row -->
-
+		<!-- /.row -->
+    </div>
 
 <hr>
 {% endblock %}

@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     #'data_entry',
     'happenings',
     'events',
+    'students',
 
     
 )

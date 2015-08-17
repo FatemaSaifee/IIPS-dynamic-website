@@ -114,7 +114,7 @@ admin.site.register(Anti_Ragging,Anti_RaggingAdmin)
 admin.site.register(Vision_Mission_Goal)
 admin.site.register(About_University)
 admin.site.register(Contact,ContactAdmin)
-admin.site.register(Student)
+#admin.site.register(Student)
 
 #admin.site.register(Course)
 

@@ -35,6 +35,7 @@ urlpatterns = patterns('',
     url(r'^data_entry/', include('data_entry.urls', namespace = 'data_entry')),
     #url(r'^temp_table/$', 'data_entry.views.temp_table',name='home'),
     url(r'^events/', include('events.urls',namespace = "events")),
+    url(r'^students/', include('students.urls',namespace = "students")),
 	url(r'^$', 'data_entry.views.login'),   #displays login.html
     
     
